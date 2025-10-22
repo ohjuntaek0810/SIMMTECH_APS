@@ -1,0 +1,344 @@
+﻿@page
+@model HS.Web.Pages.ready_by_input_material_excel_upload
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    // 헤더컬럼 초기값 정의
+        const defaultColumns = [
+            // { dataField: "VERSION", label: "VERSION", width: 100, editable: false },
+            { dataField: "GUBUN", label: "GUBUN", width: 100, editable: false },
+            { dataField: "PRODUCT_GROUP_CODE", label: "PRODUCT_GROUP_CODE", width: 100, editable: false },
+            { dataField: "ASSEMBLY_ITEM_CODE", label: "ASSEMBLY_ITEM_CODE", width: 100, editable: false },
+            { dataField: "CUSTOMER_NAME", label: "CUSTOMER_NAME", width: 100, editable: false },
+            { dataField: "MODEL_NAME", label: "MODEL_NAME", width: 100, editable: false },
+            { dataField: "NEW_START_DATE", label: "NEW_START_DATE", width: 100, editable: false, type:"date" },
+            { dataField: "NEW_DATE", label: "NEW_DATE", width: 100, editable: false, type:"date" },
+            { dataField: "ASSY_QTY", label: "ASSY_QTY", width: 100, editable: false },
+            { dataField: "ASSY_M2", label: "ASSY_M2", width: 100, editable: false },
+            { dataField: "COMPONET_ITEM_CODE", label: "COMPONET_ITEM_CODE", width: 100, editable: false },
+            { dataField: "COMPONENT_ITEM", label: "COMPONENT_ITEM", width: 100, editable: false },
+            { dataField: "COMPONENT_QUANTITY", label: "COMPONENT_QUANTITY", width: 100, editable: false },
+            { dataField: "EXTENDED_QUANTITY", label: "EXTENDED_QUANTITY", width: 100, editable: false },
+            { dataField: "COMP_ITEM_TYPE", label: "COMP_ITEM_TYPE", width: 100, editable: false },
+            { dataField: "UOM", label: "UOM", width: 100, editable: false },
+            { dataField: "LAYER", label: "LAYER", width: 100, editable: false },
+            { dataField: "CATEGORY_NAME", label: "CATEGORY_NAME", width: 100, editable: false },
+            { dataField: "MFG_DATE", label: "MFG_DATE", width: 100, editable: false, type:"date" },
+            { dataField: "EXPIRATION_DATE", label: "EXPIRATION_DATE", width: 100, editable: false, type:"date" },
+            { dataField: "EXPIRATION_DAY", label: "EXPIRATION_DAY", width: 100, editable: false },
+            { dataField: "CTYPE", label: "CTYPE", width: 100, editable: false },
+            { dataField: "PATTERN", label: "공법구분", width: 100, editable: false },
+            { dataField: "LAY_UP_TYPE", label: "Layup Type", width: 100, editable: false },
+            { dataField: "SHRINKAGE_REATE", label: "Shirink Rate", width: 100, editable: false },
+            { dataField: "CONFIRMED_QTY", label: "확정수량", width: 100, editable: false },
+            { dataField: "INPUT_DATE", label: "투입", width: 100, editable: false, type:"date" },
+            { dataField: "LEAD_TIME", label: "LT", width: 100, editable: false },
+            { dataField: "STD_LEAD_TIME", label: "STD LT", width: 100, editable: false },
+            { dataField: "INSERT_ID", label: "INSERT_ID", width: 100, editable: false, visible: false },
+            { dataField: "INSERT_DTTM", label: "INSERT_DTTM", width: 100, editable: false, visible: false },
+            { dataField: "UPDATE_ID", label: "UPDATE_ID", width: 100, editable: false, visible: false },
+            { dataField: "UPDATE_DTTM", label: "UPDATE_DTTM", width: 100, editable: false, visible: false }
+        ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "excel_upload" : {
+            click: function() {
+                
+
+                let files = document.querySelector("#file").files;
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                let formData = new FormData();
+                formData.append('fileupload', files[0]);
+
+                $hs.postFetch({
+                    command: "excelUplaod",
+                    param : toServer,
+                    files : formData // 업로드 할 데이터를 formData에 담아서 넘긴다.
+                }).then(response => {
+                    alert("업로드가 완료 되었습니다.");
+                    $hs.handler["btnSearch"].click();
+                }).catch(e => $hs.errorBox(e));
+
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    console.log(fromServer["data"]);
+
+                    $hs.$("grid").data(fromServer["data"]);
+                    $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+
+                    $('#file_name').val(fromServer["fileName"][0].FILE_NAME);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "투입대기 자재 엑셀 업로드");
+            }
+        },
+        // "btn_grid_setting" : {  dimension 세팅
+        //     click : function() {
+        //         그리드 세팅 modal open
+        //         param : modal_id, grid_id, dimension_grid_id
+        //         $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+        //     }
+        // },
+        // "btnSave_dimension" : { dimension 변경내용 저장
+        //     click : function() {
+        //         $hs.util.$CommonUtil.saveGridSetting("modalDialog", "grid", "dimension_grid");
+        //     }
+        // },
+        "grid": {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // grid save
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+        
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="lot_routing_sequence_info" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // Division
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST_NOT_IN_ALL",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: "SPS"
+        });
+        
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        $hs.html.input.initAll();
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">투입대기 자재 엑셀 업로드</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">MASTER DATA</li>
+            <li class="breadcrumb-item active">투입대기 자재 엑셀 업로드</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Excel UPLOAD</label></div>
+                                <div class="control-form">
+                                    <input type="file" id="file" name="file" />
+                                    <input type="button" id="excel_upload" class="form-control" placeholder="Search" hs-df="item_code" value="UPLOAD" hs-btn>
+                                </div>
+                            </div>
+
+                            @* <button type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button> *@
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>업로드 파일명</label></div>
+                                <div class="control-form">
+                                    <input type="text" id="file_name" hs-df="file_name" class="form-control" style="width: 300px;">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                    <div class="header-title">
+                        투입대기 자재 엑셀 업로드 정보
+                        <span class="title-list-count">
+                            <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                        </span>
+                    </div>
+                    <div class="header-btn">
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        @* <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button> *@
+                    </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="READY_BY_INPUT_EXCEL_UPLOAD_INFO"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

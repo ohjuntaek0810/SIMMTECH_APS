@@ -1,0 +1,3 @@
+﻿<Project>
+  <Import Project="..\build\SHL_LS.props" />
+</Project>

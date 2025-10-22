@@ -1,0 +1,281 @@
+﻿@page
+@model HS.Web.Pages.bor
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "txtSearch": {
+            keyup: function (data) {
+
+                if (data.key == "Enter") {
+                    $hs.handler["btnSearch"].click();
+                    $hs.$("item_info").expand();
+                }
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                console.log(toServer);
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("bor_info").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "bor_info": {
+            
+        },
+        "bor_info": {
+            cellClick: function (data) {
+
+            },
+        },
+        "btn_excel_download": {
+            click : function() {
+                let toServer = {};
+
+                toServer["terms"] = $hs.$("pnlSearch").val();
+                console.log("toServer = " + JSON.stringify(toServer));
+
+                $hs.post({
+                    command: "ExcelDownload",
+                    param: toServer
+                });
+            }
+        },
+        "btn_grid_setting" : {
+            click : function() {
+                $hs.$("modalDialog").open();
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // bor_info
+        // TODO : 사용자별로 컬럼순서, 보여지는 컬럼 가져오도록 수정필요 --> 2차개발로?
+        $hs.dx.grid.init({
+            id: "bor_info",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: false,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+        }).columns(col => {
+
+                col.add({ dataField: "DIVISION", label: "DIVISION", width: 150 })
+                col.add({ dataField: "CLASS_CODE", label: "CLASS_CODE", width: 100 })
+                col.add({ dataField: "CLASS_NAME", label: "CLASS_NAME", width: 100 })
+                col.add({ dataField: "DEPT_CODE", label: "DEPT_CODE", width: 200 })
+                col.add({ dataField: "DEPT_NAME", label: "DEPT_NAME", width: 100 })
+                col.add({ dataField: "RESOURCE_CODE", label: "RESOURCE_CODE", width: 100 })
+                col.add({ dataField: "RESOURCE_NAME", label: "RESOURCE_NAME", width: 100 })
+                col.add({ dataField: "CUSTOMER", label: "CUSTOMER", width: 100 })
+                col.add({ dataField: "ITEM_CODE", label: "ITEM_CODE", width: 100 })
+                col.add({ dataField: "ITEM_REV", label: "ITEM_REV", width: 100 })
+                col.add({ dataField: "ITEM_NAME", label: "ITEM_NAME", width: 100 })
+                col.add({ dataField: "PROCESS_TIME", label: "PROCESS_TIME", width: 100 })
+                col.add({ dataField: "TACT_TIME", label: "TACT_TIME", width: 100 })
+                col.add({ dataField: "APS_PROCESS_TIME", label: "APS_PROCESS_TIME", width: 100 })
+                col.add({ dataField: "APS_TACT_TIME", label: "APS_TACT_TIME", width: 100 })
+                col.add({ dataField: "USE_YN", label: "USE_YN", width: 100 })
+                col.add({ dataField: "ECIM_PROCESS_TIME", label: "ECIM_PROCESS_TIME", width: 100 })
+                col.add({ dataField: "ECIM_TACT_TIME", label: "ECIM_TACT_TIME", width: 100 })
+                col.add({ dataField: "ECIM_DOWN_TIME", label: "ECIM_DOWN_TIME", width: 100 })
+                col.add({ dataField: "ECIM_RECIPE", label: "ECIM_RECIPE", width: 100 })
+                col.add({ dataField: "UPDATE_DATE", label: "UPDATE_DATE", width: 100 })
+                col.add({ dataField: "UPDATE_ID", label: "UPDATE_ID", width: 100 })
+        });
+
+        const _instance = $hs.$("bor_info")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+
+        $("#bor_info").dxDataGrid({
+            onContextMenuPreparing: function(e) {
+                // 컬럼 헤더에서만 우클릭 메뉴를 추가하도록 확인
+                
+                if (e.target === "header") {
+                    // e.items가 정의되어 있는지 확인
+                    if (!e.items) {
+                        e.items = [];
+                    }
+
+                    const column = e.column;
+
+                    // 컬럼 고정/고정 해제 메뉴 항목
+                    e.items.push({
+                        text: column.fixed ? "고정 해제" : "컬럼 고정",
+                        onItemClick: function() {
+                            var isFixed = column.fixed;
+                            $("#bor_info").dxDataGrid("instance").columnOption(column.dataField, "fixed", isFixed ? false : true);
+                        }
+                    });
+
+                    // 컬럼 숨기기/보이기 메뉴 항목
+                    e.items.push({
+                        text: column.visible ? "컬럼 숨기기" : "컬럼 보이기",
+                        onItemClick: function() {
+                            var isVisible = column.visible;
+                            $("#bor_info").dxDataGrid("instance").columnOption(column.dataField, "visible", !isVisible);
+                        }
+                    });
+
+                    // 모든 컬럼 보이기 항목 추가
+                    e.items.push({
+                        text: "모든 컬럼 보이기",
+                        onItemClick: function() {
+                            var gridInstance = $("#bor_info").dxDataGrid("instance");
+
+                            // 모든 컬럼의 이름(데이터 필드)을 가져옴
+                            var columnNames = gridInstance.getVisibleColumns().map(function(column) {
+                                return column.dataField;
+                            });
+
+                            // 컬럼들을 순회하며 숨겨진 컬럼을 다시 보이도록 설정
+                            columnNames.forEach(function(columnName) {
+                                gridInstance.columnOption(columnName, "visible", true);
+                            });
+                        }
+                    });
+                }
+            }
+        });
+
+
+        // Search Pannel
+        
+
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">BOR</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">MASTER DATA</li>
+            <li class="breadcrumb-item active">BOR</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>사업부</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>APP USE</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="app_use" hs-df="app_use"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>외주</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="test2" hs-df="test2"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>위치</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="test3" hs-df="test3"></select>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon"><span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box" flex>
+                <div class="box-body" flex>
+                    <div class="box-header">
+                        <div class="header-title">BOR 정보<span class="title-list-count"><small></small></span></div>
+                        <div class="header-btn">
+                            <button id="btn_grid_save" type="button" class="btn btn-save">save</button>
+                            <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                            <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                        </div>
+                    </div>
+                    <div class="grid-container" flex>
+                        <div id="bor_info" data-grid-id="BOR"></div>
+                    </div>                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->

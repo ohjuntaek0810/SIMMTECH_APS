@@ -1,0 +1,369 @@
+﻿@page
+@model HS.Web.Pages.bom
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    // 헤더컬럼 초기값 정의
+    const defaultColumns = [
+        { dataField: "ITEM CODE", label: "ITEM CODE", width: 120, editable: false},
+        { dataField: "REVISION", label: "REVISION", width: 95, editable: false },
+        { dataField: "Customer", label: "Customer", width: 125, editable: false },
+        { dataField: "Model", label: "Model", width: 275, editable: false },
+        { dataField: "OPERATION_SEQ", label: "OPERATION_SEQ", width: 130, editable: false },
+        { dataField: "DEPARTMENT_NAME", label: "DEPARTMENT_NAME", width: 210, editable: false },
+        { dataField: "QUANTITY", label: "QUANTITY", width: 75, editable: false },
+        { dataField: "TYPE", label: "TYPE", width: 85, editable: false },
+        { dataField: "NAME", label: "NAME", width: 330, editable: false },
+        { dataField: "THICK", label: "THICK", width: 100, editable: false }
+    ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "item_code" : {
+            keyup: function (data) {
+                if($hs.$("item_code").val().length > 10) { // ITEM_CODE의 길이는 11
+                    // REVISION 선택 재조회
+                    $hs.html.select.init({
+                        id: "revision",
+                        dataurl: "/api/data/REVISION?ITEM_CODE=" + $hs.$("item_code").val(),
+                        valueMember: "REVISION",
+                        displayMember: "REVISION",
+                        val: ""
+                    });
+                    // LAST revision 선택 시 마지막 revision 표기
+                    setTimeout(() => {
+                        const selectBox = document.getElementById("revision");
+                        const options = selectBox.options;
+                        if (options.length > 0) {
+                            selectBox.selectedIndex = options.length - 1;
+                        }
+
+                        // change 이벤트 수동 발생
+                        const event = new Event("change", { bubbles: true });
+                        selectBox.dispatchEvent(event);
+                    }, 500);
+                }
+            }
+        },
+        "revision" : {
+            change : function(data) {
+                if($hs.$("item_code").val().length > 10) { // ITEM_CODE의 길이는 11
+                    // ITEM_CODE에 있는지 Search --> CBST_SPEC_BASIC 테이블에서 model명 확인가능
+                    // REVISION 선택 될 때만 MODEL명 들어가게
+
+                    console.log(data);
+                    let toServer = {};
+                    toServer["terms"] = {
+                        item_code : $hs.$("item_code").val()
+                        , revision : data.value
+                    };
+
+
+                    $hs.fetch({
+                        command: "search_model",
+                        param: toServer
+                    }).then(fromServer => {
+                        console.log(fromServer);
+                        $hs.$("model").val(fromServer["data"][0].MODEL_NAME);
+                    }).catch(e => $hs.errorBox(e))
+                }
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                // TODO : toServer 객체로 만들기 위해서 pnlSearch 부분에 hs-df 추가 필요
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                console.log(toServer);
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                    $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "grid": {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+        },
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "bom_info");
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+            }
+        },
+        "btnSave_dimension" : { // dimension 변경내용 저장
+            click : function() {
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", "grid", "dimension_grid", defaultColumns);
+            }
+        },
+    }
+
+    $hs.load(() => {
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // text Box open
+        $hs.ui.button.init({ id: "btn_txt_box_open" });
+
+        // grid
+        // TODO : 사용자별로 컬럼순서, 보여지는 컬럼 가져오도록 수정필요 --> 2차개발로?
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+
+        $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // Search Filter
+
+        // 사업부
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+            // val: "404",
+            // emptyFirst : false 기본값 false 맨위에 빈 항목을 추가 한다.
+        });
+
+        // 사업부
+        $hs.html.select.init({
+            id: "revision",
+            dataurl: "/api/data/REVISION",
+            valueMember: "REVISION",
+            displayMember: "REVISION",
+            val: ""
+            // val: "404",
+            // emptyFirst : false 기본값 false 맨위에 빈 항목을 추가 한다.
+        });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        $hs.html.input.initAll();
+        
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">BOM</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">MASTER DATA</li>
+            <li class="breadcrumb-item active">BOM</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Item Code</label></div>
+                                <div class="control-form">
+                                    <input type="text" id="item_code" class="form-control" placeholder="Search" style="width:130px" hs-df="item_code" hs-handler="true" maxlength="11">
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>REV.</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="revision" hs-df="revision" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>MODEL</label></div>
+                                <div class="control-form">
+                                    <input type="text" class="form-control" id="model" hs-df="model" style="width: 220px" hs-handler="true" readonly />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>LAST REV.</label></div>
+                                @* <div class="control-form"> *@
+                                <input type="checkbox" class="form-control" id="latest_rev" hs-df="latest_rev" style="width: 20px" checked />
+                                @* </div> *@
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box" flex>
+                <div class="box-body" flex>
+                    <div class="box-header">
+                        <div class="header-title">
+                            <div class="header-title">
+                                BOM 정보
+                                <span class="title-list-count">
+                                    <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                                </span>
+                            </div>
+                        </div>
+                        <div class="header-btn">
+                            <button id="btn_grid_save" type="button" class="btn btn-save">save</button>
+                            <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                            <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                        </div>
+                    </div>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="BOM"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

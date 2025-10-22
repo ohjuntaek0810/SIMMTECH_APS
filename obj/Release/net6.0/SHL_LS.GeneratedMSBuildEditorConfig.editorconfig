@@ -1,0 +1,119 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SHL_LS
+build_property.RootNamespace = SHL_LS
+build_property.ProjectDir = C:\HSSoft\SVN_Root\Products\SHE\SHE_LS\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\HSSoft\SVN_Root\Products\SHE\SHE_LS
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/as_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzX21uZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/common_code.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGNvbW1vbl9jb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRlcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/employee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/grp_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9hdXRoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/mng/mng_2_01_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMl8wMV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/openapi_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9wZW5hcGlfbW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_company.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19jb21wYW55LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_facility.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWNpbGl0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_factory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/saf/saf_6_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfNl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/user.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/user_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXJfYXV0aC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

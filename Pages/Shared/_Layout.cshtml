@@ -1,0 +1,666 @@
+﻿@using HS.Web;
+@{
+    Params ParamsModel = Model.Params;
+
+    string UserName = ParamsModel["UserName"].AsString();
+    string HTMLTree = ParamsModel["HTMLTree"].AsString();
+    string FavoriteTree = ParamsModel["FavoriteTree"].AsString();
+    string Base_HOST = ParamsModel["Base_HOST"].AsString();
+    string Domain = Context.Request.Host.Host;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+
+
+    <base href="~/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>2025 APS</title>
+
+    @await Html.PartialAsync("~/Pages/Partial/_ScriptCss.cshtml")
+
+    <style type="text/css">
+    </style>
+
+    <script>
+
+        const _events = {
+            tabClose: (event) => {
+                event.preventDefault();
+
+                let hs_menu = event.target.getAttribute("data-menu-id");
+
+                tabClose(hs_menu);
+            },
+            tabSelect: (event) => {
+                event.preventDefault();
+                let hs_menu = event.target.getAttribute("data-menu-id");
+                tabSelect(hs_menu);
+            },
+            iframeResize: async (event) => {
+
+                let iframeID = event.target.id;
+
+                var iframe = document.querySelector("#" + iframeID);
+                if (iframe) {
+
+                    let rightbutton = document.querySelector(".scroll_tab_right_button");
+                    var event = new Event('mousedown');
+                    rightbutton.dispatchEvent(event);
+                    var event2 = new Event('mouseup');
+                    rightbutton.dispatchEvent(event2);
+
+                    try { // 에세쪽 아이프레임을 하려면 CORS 설정이 되어 있어야 하므로 일단 try catch 문으로 함
+                        let iframeHeight = iframe.contentWindow.document.body.scrollHeight;
+                        let iframeGrowHeight = 0;
+
+                        let count = 0;
+
+                        while (true) {
+
+                            //if (iframeHeight < 600)
+                            //    continue;
+
+                            if (count == 0) {
+                                iframe.style.border = "none";
+                                iframe.style.width = "100%";
+                                iframe.style.height = iframeHeight + "px";
+                            }
+
+                            if (count > 19) break;
+
+                            let iframeHeight2 = iframe.contentWindow.document.body.scrollHeight;
+
+                            iframe.style.border = "none";
+                            iframe.style.width = "100%";
+                            iframe.style.height = iframeHeight2 + "px";
+
+                            if (iframeGrowHeight == iframeHeight2) {
+                                break;
+                            }
+
+
+                            iframeGrowHeight = iframeHeight2;
+                            count++;
+
+                            await $hs.delay(100);
+                        }
+                    }
+                    catch {
+                        iframe.style.border = "none";
+                        iframe.style.width = "100%";
+                        iframe.style.height = "810px";
+                    }
+                }
+            }
+        }
+
+        function tabSelectEvent(id) {
+
+            document.querySelector("#navTab a[role='tab'][data-menu-id='" + id + "']").removeEventListener("click", _events.tabSelect);
+            document.querySelector("#navTab a[role='tab'][data-menu-id='" + id + "']").addEventListener("click", _events.tabSelect);
+        }
+
+        function tabCloseEvent(id) {
+
+            document.querySelector("#navTab a.tab-btn-close[data-menu-id='" + id + "']").removeEventListener("click", _events.tabClose);
+            document.querySelector("#navTab a.tab-btn-close[data-menu-id='" + id + "']").addEventListener("click", _events.tabClose);
+
+        }
+
+        function iFrameReszieEvent(id) {
+
+            document.querySelector("#" + id).removeEventListener("load", _events.iframeResize);
+            document.querySelector("#" + id).addEventListener("load", _events.iframeResize);
+
+            window.removeEventListener("resize", _events.iframeResize);
+            window.addEventListener("resize", _events.iframeResize);
+        }
+
+        function tabSelect(id) {
+
+            // 현재 메뉴 ID localStorage에 추가
+            localStorage.setItem("curMenuId", id);
+
+            // tab active
+            let tabs = document.querySelectorAll("#navTab li.nav-item.nav-link");
+            tabs.forEach(tab => {
+                tab.classList.remove("active");
+            })
+
+            let activeTab = document.querySelector("#navTab li.nav-item.nav-link[data-menu-id='" + id + "']");
+            activeTab.classList.add("active");
+
+            // iframe display
+            let iFrames = document.querySelectorAll(".content-wrapper iFrame");
+            iFrames.forEach(iframe => {
+                iframe.style.display = "none";
+            })
+
+            let activeFrame = document.querySelector(".content-wrapper iFrame#" + id + "");
+
+            if (activeFrame)
+                activeFrame.style.display = "block";
+
+            //// 하드코딩
+            //if (id == "r_code0")
+            //    document.querySelector("#content-main").style.display = "block";
+            //else
+            //    document.querySelector("#content-main").style.display = "none";
+        }
+
+        function tabClose(id) {
+
+            // iFrame, tab remove
+            let iframe = document.querySelector("iFrame#" + id);
+            let tab = document.querySelector("li.nav-item.nav-link[data-menu-id='" + id + "']");
+
+            let currTabIndex = Array.from(document.querySelectorAll("li.nav-item.nav-link")).indexOf(tab);
+
+            let isActive = tab.classList.contains("active");
+
+            if (isActive) {
+                if (currTabIndex > 0) {
+                    let prevTab = document.querySelectorAll("li.nav-item.nav-link")[currTabIndex - 1];
+
+                    if (prevTab) {
+                        let prevTabId = prevTab.getAttribute("data-menu-id");
+
+                        tabSelect(prevTabId);
+                    }
+                }
+                else {
+                    let nextTab = document.querySelectorAll("li.nav-item.nav-link")[currTabIndex + 1];
+
+                    if (nextTab) {
+                        let nextTabId = nextTab.getAttribute("data-menu-id");
+
+                        tabSelect(nextTabId);
+                    }
+                }
+            }
+
+            if (iframe) {
+                iframe.parentElement.removeChild(iframe);
+            }
+            if (tab) {
+                tab.parentElement.removeChild(tab);
+            }
+
+            let allTabs = Array.from(document.querySelectorAll("#navTab .scroll_tab_inner a[role='tab']"));
+
+            // 탭이 하나도 없을시 css 복원 및 메인 페이지 보이게 처리
+            if (allTabs.length == 0) {
+                // class add
+                document.querySelector("#wrapperMain").classList.add("wrapper-main");
+
+                // 보임 처리
+                document.querySelector("#contentBodySection").style.display = "block";
+                document.querySelector(".navbar-tabs").style.display = "none";
+                document.querySelector(".navbar-content").remove();
+            }
+        }
+
+        function tabMove(id) {
+
+            let li = document.querySelector(`.scroll_tab_inner li[data-menu-id='${id}']`);
+
+            // 모든 li
+            let allli = li.parentElement.querySelectorAll("li");
+            let tabIndex = Array.from(allli).indexOf(li);
+            let widthSum = 0;
+
+            // 나를 제외한 상위 li들의 width를 합산한다.
+            for (let i = 0; i < Array.from(allli).length; i++) {
+                if (i == tabIndex)
+                    break;
+
+                widthSum += allli[i].offsetWidth;
+            }
+
+            //console.log("li", li);
+            //console.log("li_Index", tabIndex);
+            //console.log("width_sum", widthSum);
+
+            // 탭이동
+            $('.scroll_tab_inner').animate({ scrollLeft: widthSum });
+        }
+
+        $hs.load(() => {
+
+            // 트레메뉴 클릭 이벤트
+            (function () {
+                const links = document.querySelectorAll(".sidebar a");
+
+                links.forEach(link => {
+
+                    link.addEventListener('click', function (event) {
+
+                        // target 속성이 있으면 무시한다.
+                        if (event.target.parentElement.hasAttribute("target") || event.target.hasAttribute("target")) {
+                            return;
+                        }
+
+                        event.preventDefault();
+
+                        let _links = document.querySelectorAll(".sidebar a");
+                        _links.forEach(link => link.classList.remove('active'));
+
+                        let path = link.href.toString().endsWith("#link");
+
+                        if (!path) {
+
+                            link.classList.add("active");
+
+                            let linkMenuName = link.querySelector("p").innerText;
+                            let linkMenuId = link.getAttribute("data-menu-id") ?? "";
+                            let linkHref = link.href;
+
+                            // all tabs
+                            let allTabs = Array.from(document.querySelectorAll("#navTab .scroll_tab_inner a[role='tab']"));
+
+                            if (allTabs.length == 0 || allTabs.some(s => s.getAttribute("data-menu-id") == linkMenuId) == false) {
+
+                                creatTab(linkMenuName, linkMenuId, linkHref);
+
+                                return;
+                            } else if (allTabs.some(s => s.getAttribute("data-menu-id") == linkMenuId) == true) {
+                                // tab select
+                                tabSelect(linkMenuId);
+
+                                // tab move
+                                tabMove(linkMenuId);
+                            }
+                        }
+                    });
+
+                });
+            })();
+
+            $hs.html.input.initAll();
+
+
+
+            // 새창열기 테스트
+            const sidebarLinks = document.querySelectorAll('.sidebar a[data-window-menu]');
+
+            sidebarLinks.forEach(link => {
+                link.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const menuId = link.dataset.windowMenu;
+                    const url = link.getAttribute('href');
+
+                    // 새 창 열기
+                    // TODO : menuId 파라미터로 넘겨서 그 메뉴를 열게해주는? 그런 부분이 필요함.
+                    // window.open(url, '_blank');
+                    console.log("Clicked menuId =", menuId);
+                    $hs.post({ //postHandler로 받을 수 있음
+                        url: "/main", 
+                        command: "open_new_window",
+                        param: {
+                            menuId: menuId     // 파라미터로 item_id를 넘겨준다.
+                        },
+                        window: {
+                            option: "width=1200,height=700"
+                        }
+                    });
+                });
+            });
+        })
+
+
+
+        function creatTab(linkMenuName, linkMenuId, linkHref) {
+
+            // class remove
+            document.querySelector("#wrapperMain").classList.remove("wrapper-main");
+
+            // 안보임 처리
+            document.querySelector("#contentBodySection").style.display = "none";
+            document.querySelector(".navbar-tabs").style.display = "block";
+
+
+            let parser = new DOMParser();
+            let tabItem = parser.parseFromString(`<li class="nav-item nav-link" data-menu-id='${linkMenuId}'><a href="#link" role="tab" data-toggle="tab" class="" data-menu-id='${linkMenuId}'>${linkMenuName}</a> <a href="#link" class="tab-btn-close" data-menu-id='${linkMenuId}'></a></li>`, 'text/html');
+            tabItem = tabItem.querySelector('li.nav-item');
+
+            let tabContainer = document.querySelector("#navTab .scroll_tab_inner");
+
+            tabContainer.appendChild(tabItem);
+
+            //await .appendChild(tabItem);
+
+            if (!document.querySelector('.content-wrapper .navbar-content')) {
+
+                let div = document.createElement("div");
+                div.className = "navbar-content";
+                document.querySelector(".content-wrapper").appendChild(div);
+            }
+
+            // add iframe
+            let iFrame = document.createElement("iFrame");
+            iFrame.id = linkMenuId;
+            iFrame.src = linkHref;
+            iFrame.style.border = "none";
+            iFrame.setAttribute("data-menu-id", linkMenuId);
+            try {
+                document.querySelector(".navbar-content").appendChild(iFrame);
+            }
+            catch { }
+
+            // tab select event bind
+            tabSelectEvent(iFrame.id);
+
+            // tab close event bind
+            tabCloseEvent(iFrame.id);
+
+            // iFrame Resize event bind
+            //iFrameReszieEvent(iFrame.id);
+
+            // tab select
+            tabSelect(iFrame.id);
+        }
+
+
+    </script>
+
+    <script>
+        $hs.handler = {
+
+        }
+
+        $hs.load(() => {
+
+            document.querySelector(".dropdown-item.btn-logout").addEventListener("click", (evnet) => {
+
+                // 기존에 자기가 가지고 있는 행동을 무시
+                event.preventDefault();
+
+                let toServer = {};
+                $hs.fetch({
+                    url: "/login",
+                    command: "logout",
+                    param: toServer
+                }).then(fromServer => {
+
+                    location.href = "/login";
+
+                }).catch(e => $hs.errorBox(e))
+            })
+
+            //setTimeout(function(){
+            //    // 디지털트윈 자동 오픈
+            //    let dtLink = document.querySelector("a[data-menu-id='dt']");
+            //    if(dtLink){
+            //        var event = new Event('click');
+            //        dtLink.dispatchEvent(event);
+            //    }
+
+            //}, 300)
+        });
+
+
+
+    </script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+
+
+
+    <!-- s:wrapper -->
+    <div id="wrapperMain" class="wrapper">
+
+        <!-- Preloader(로딩 화면) -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            @* <img class="animation__shake" src="./dist/images/logo-she.svg" alt="tech square Logo" width="180"> *@
+            <img class="animation__shake" src="./dist/images/logo-simmtech.png" alt="tech square Logo" width="180">
+        </div>
+        <!-- /e:Preloader(로딩 화면) -->
+
+        <hr>
+        <!-- s:Navbar -->
+        <nav class="main-header navbar navbar-expand">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link" data-widget="pushmenu" href="#link" role="button"><i class="fas fa-bars"></i></a>
+                </li>
+            </ul>
+
+            <!-- Center navbar links main-menu -->
+            <div class="navbar-nav navbar-nav-tab">
+                <ul class="main-menu">
+                    <li class="nav-item active">
+                        <a class="nav-link" id="master_data" role="button">
+                            <span class="nav-tab-icon nav-tab-mesterdata" aria-hidden="true"></span>MASTER DATA
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="plan_control" role="button">
+                            <span class="nav-tab-icon nav-tab-plancontrol" aria-hidden="true"></span>PLAN CONTROL
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="plan_analysis" role="button">
+                            <span class="nav-tab-icon nav-tab-plananalysis" aria-hidden="true"></span>PLAN ANALYSIS
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="order_promising" role="button">
+                            <span class="nav-tab-icon nav-tab-orderpromising" aria-hidden="true"></span>ORDER PROMISING
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
+                        <a class="nav-link" id="admin" role="button">
+                            <span class="nav-tab-icon nav-tab-admin" aria-hidden="true"></span>ADMIN
+                        </a>
+                    </li>
+                </ul>
+            </div>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="/main" role="button">
+                        <i class="bx bx-home"></i>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-fullscreen">
+                    <a class="nav-link" data-widget="fullscreen" href="javascript:void(0)" role="button">
+                        <i class="bx bx-expand"></i>
+                    </a>
+                </li>
+                @* <li class="nav-item"> *@
+                @*     <a class="nav-link" data-widget="fullscreen" href="#link" role="button"> *@
+                @*         <i class="bx bx-cog"></i> *@
+                @*     </a> *@
+                @* </li> *@
+                <li class="nav-item dropdown">
+                    <a href="#link" class="nav-link nav-link-user" data-toggle="dropdown">
+                        <div class="user-card">
+                            <div class="user-photo"><i class="bx bx-user"></i></div>
+                            <div class="user-info">
+                                <div class="user-name"><strong>@Html.Raw(UserName)</strong></div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu"> 
+                        <a style="cursor:pointer" id="change_password" class="dropdown-item btn-password" ht-btn>
+                            <i class="xi-ico xi-lock"></i> Change Password
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#link" class="dropdown-item btn-logout">
+                            <i class="xi-ico xi-log-out"></i> Logout
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /e:Navbar -->
+
+
+        <hr>
+        <!-- Sidebar Container -->
+        <aside class="main-sidebar">
+            <div class="sidebar-header">
+                <!-- Logo -->
+                <a href="/main" class="brand-link" target="_self">
+                    <img src="./dist/images/logo-simmtech-emblem.png" alt="simmtech emblem Logo" class="brand-image">
+                    <span class="brand-text"><img src="./dist/images/logo-simmtech-txt.png" alt="simmtech Logo"></span>
+                </a>
+                <!-- main-menu -->
+                @* <div class="main-menu"> *@
+                @*     <div class="dropdown"> *@
+                @*         <a href="#link" class="dropdown-link" data-toggle="dropdown" > *@
+                            
+                @*         </a> *@
+                @*     </div> *@
+                @* </div> *@
+
+                @* <div class="main-menu"> *@
+                @*     <div class="dropdown"> *@
+                @*         <a href="#link" class="dropdown-link" data-toggle="dropdown" aria-expanded="false" id="main_category_name"> *@
+                @*             <span class="nav-tab-icon nav-tab-plancontrol" aria-hidden="true"></span> *@
+                @*             <p class="menu-title">PLAN CONTROL</p> *@
+                @*         </a> *@
+                @*         <div class="dropdown-menu" style=""> *@
+                @*             <a href="#link" class="dropdown-item"> *@
+                @*                 <span class="nav-tab-icon nav-tab-mesterdata" aria-hidden="true"></span>MASTER DATA *@
+                @*             </a> *@
+                @*             <div class="dropdown-divider"></div> *@
+                @*             <a href="#link" class="dropdown-item"> *@
+                @*                 <span class="nav-tab-icon nav-tab-plancontrol" aria-hidden="true"></span>PLAN CONTROL *@
+                @*             </a> *@
+                @*             <div class="dropdown-divider"></div> *@
+                @*             <a href="#link" class="dropdown-item"> *@
+                @*                 <span class="nav-tab-icon nav-tab-plananalysis" aria-hidden="true"></span>PLAN ANALYSIS *@
+                @*             </a> *@
+                @*             <div class="dropdown-divider"></div> *@
+                @*             <a href="#link" class="dropdown-item"> *@
+                @*                 <span class="nav-tab-icon nav-tab-orderpromising" aria-hidden="true"></span>ORDER PROMISING *@
+                @*             </a> *@
+                @*             <div class="dropdown-divider"></div> *@
+                @*             <a href="#link" class="dropdown-item"> *@
+                @*                 <span class="nav-tab-icon nav-tab-admin" aria-hidden="true"></span>ADMIN *@
+                @*             </a> *@
+                @*         </div> *@
+                @*     </div> *@
+                @* </div> *@
+
+            </div>
+            <hr>
+            <!-- s:Sidebar -->
+            <div class="sidebar">
+                <!-- s:Sidebar Menu -->
+                <nav>
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                            @Html.Raw(HTMLTree)
+                    </ul>
+                </nav>
+                <!-- /e:sidebar-menu -->
+            </div>
+            <!-- /e:sidebar -->
+            <hr>
+            <!-- s:sidebar-footer -->
+            <!--
+            <div class="sidebar-footer">
+                <ul class="nav nav-pills nav-sidebar flex-column">
+                    <li class="nav-item">
+                        <button type="button" class="nav-link" id="btn-toggle-favorites">
+                            <i class="bx bx-star xi-nav"></i>
+                            <p>favorites</p>
+                            <div class="favorites-toggle-switch" id="favoritesSwitch">
+                                <div class="switch-handle"></div>
+                            </div>
+                        </button>
+                    </li>
+                </ul>
+            </div>
+            -->
+            <!-- /e:sidebar-footer -->
+        </aside>
+        <!-- /e:Sidebar Container -->
+        <hr>
+        <div id="favorites-sidebar">
+            <div class="sidebar-in">
+                <div class="sidebar-header">
+                    <div class="header-title">Favorites</div>
+                    <div class="header-btn">
+                        <button type="button" class="btn btn-close-icon" id="btn-close-favorites"><span class="sr-only">Close</span></button>
+                    </div>
+                </div>
+                <div class="sidebar-menu">
+                    <div class="menu-in">
+                        <!-- s:Sidebar Menu -->
+                        <nav>
+                            <ul class="nav nav-sidebar nav-pills">
+                                @Html.Raw(FavoriteTree)
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <hr>
+        <!-- s:Content Wrapper -->
+
+        <div class="content-wrapper">
+
+            <!-- center navbar tab -->
+            <div class="navbar-tabs" style="display:none;">
+                <nav id="navTab" class="nav nav-tabs">
+                    @*<li class="nav-item nav-link active"><a href="#link" role="tab" data-toggle="tab" class="">Production Achievement Rate</a> <a href="#link" class="tab-btn-close"></a></li>
+                    <li class="nav-item nav-link"><a href="#link" role="tab" data-toggle="tab" class="">MTTR/MTBF</a> <a href="#link" class="tab-btn-close"></a></li>
+                    <li class="nav-item nav-link"><a href="#link" role="tab" data-toggle="tab" class="">Production Status</a> <a href="#link" class="tab-btn-close"></a></li>*@
+                </nav>
+            </div>
+
+            @RenderBody()
+            @*<div class="navbar-content">
+
+            </div>*@
+        </div>
+
+        <!-- /e:Content-wrapper -->
+        <hr>
+        <!-- Footer -->
+        @* <footer class="main-footer"> *@
+        @*     Copyright &copy; 2025 HS soft. All rights reserved. *@
+        @*     <div class="float-right d-none d-sm-inline-block" id="grid-summary"> *@
+        @*         <b>Ver.</b> 0.1 *@
+        @*     </div> *@
+        @* </footer> *@
+        <!-- /e:Footer -->
+
+    </div>
+    <!-- /e:wrapper -->
+    <!-- s:window popup -->
+    <smart-window label="신규 등록" header-template="headerTemplate" footer-template="footerTemplate">
+        <section class="window-popup">
+            <div class="popup-content">
+                <div class="popup-body">
+                </div>
+            </div>
+        </section>
+    </smart-window>
+    <template id="headerTemplate">
+        <label>신규 등록</label>
+    </template>
+    <template id="footerTemplate">
+        <div class="footer-btn">
+            <smart-button class="smart-btn btn-save">저장</smart-button>
+            <smart-button class="smart-btn btn-cancel">취소</smart-button>
+        </div>
+    </template>
+    <!-- /e:window popup -->
+</body>
+</html>

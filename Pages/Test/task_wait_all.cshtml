@@ -1,0 +1,33 @@
+﻿@page
+@model APS_SIMMTECH.Pages.Test.task_wait_allModel
+@{
+	Layout = "_Layout_iFrame";
+}
+
+
+
+<script>
+
+	$hs.handler = {
+		"btnTest" : {
+			click : function(){
+			
+				$hs.fetch({
+					command : "search",
+					param : {}
+				}).then(fromServer => {
+
+					alert("데이타 모두 조회 완료");
+				
+				}).catch(e => alert(e));
+			
+			}
+		}
+	
+	}
+
+</script>
+
+
+
+<button id="btnTest" hs-btn>fetch실행</button>

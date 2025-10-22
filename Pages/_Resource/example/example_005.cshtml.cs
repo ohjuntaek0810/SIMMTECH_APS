@@ -1,0 +1,138 @@
+using HS.Core;
+using HS.Web.Common;
+using System.Data;
+using System.Text;
+
+namespace HS.Web.Pages
+{
+    public class example_005 : BasePageModel
+    {
+        public example_005()
+        {
+            this.Handler = handler;
+        }
+
+        private Params handler(PostAjaxArgs e)
+        {
+            Params toClient = new Params();
+
+            if (e.Command == "search")
+            {
+                Params terms = e.Params["terms"];
+
+                toClient["data"] = this.Search(terms);
+            }
+
+            if (e.Command == "search_detail")
+            {
+                Params terms = e.Params["terms"];
+
+                toClient["data"] = this.Search(terms);
+            }
+
+
+            else if (e.Command == "search_chart")
+            {
+                Params terms = e.Params["terms"];
+
+                toClient = this.search_chart(terms);
+            }
+
+            else if (e.Command == "view")
+            {
+                Params terms = e.Params["terms"];
+
+                toClient["data"] = this.Search(terms);
+            }
+
+            else if (e.Command == "save")
+            {
+                Params data = e.Params["data"];
+
+                Vali vali = new Vali(data);
+                vali.Null("WRK_CLS_CD", "작업분류코드가 입력되지 않았습니다.");
+                vali.Null("WRK_CLS_NM", "작업분류명이 입력되지 않았습니다.");
+                //vali.Null("VIEW_YN", "보이기 여부가 입력되지 않았습니다.");
+
+                vali.DoneDeco();
+
+                this.Save(data);
+
+
+                // 데이터 저장
+            }
+
+            if (e.Command == "delete")
+            {
+                ParamList data = e.Params["data"];
+
+
+                this.delete(data);
+            }
+
+            return toClient;
+        }
+
+        /// <summary>
+        /// 조회 로직 
+        /// </summary>
+        /// <param name="terms"></param>
+        /// <returns></returns>
+        private DataTable Search(Params terms)
+        {
+
+            return new ParamList(@"
+[
+    { id: ""1"", colA: ""가"", colB: ""1002"", colC: ""a"", colD: 100, colE: ""2024-01-01"", colF: true, colG: ""2024-01-01 12:30:00"", colH: ""버튼테스트"" },
+    { id: ""2"", colA: ""나"", colB: ""2003"", colC: ""b"", colD: 99.56, colE: ""2024-01-01"", colF: 0, colG: ""2024-01-02 12:30:00"" },
+    { id: ""3"", pid: ""1"", colA: ""다"", colB: ""3004"", colC: ""c"", colD: -244.1111, colE: ""2024-01-01"", colF: null, colG: ""2024-01-02 12:30:00"" },
+    { id: ""4"", pid: ""2"", colA: ""라"", colB: ""4005"", colC: ""d"", colD: -233.1111, colE: ""2024-01-01"", colF: null, colG: ""2024-01-02 12:30:00"" }
+]
+").ToDataTable();
+        }
+
+        /// <summary>
+        /// 조회 로직 
+        /// </summary>
+        /// <param name="terms"></param>
+        /// <returns></returns>
+        private Params search_chart(Params terms)
+        {
+            Params result = new();
+
+            return result;
+        }
+
+
+        /// <summary>
+        /// 저장 로직 
+        /// </summary>
+        /// <param name="data"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void Save(Params data)
+        {
+            //HS.Web.Proc.SAF_WRK_CLS.Save(data);
+        }
+
+        /// <summary>
+        /// 선택한 항목 삭제
+        /// </summary>
+        /// <param name="data"></param>
+        /// <exception cref="NotImplementedException"></exception>
+        private void delete(ParamList data)
+        {
+            throw new Exception("준비중입니다.");
+
+            StringBuilder sSQL = new StringBuilder();
+
+            data.ForEach(D =>
+            {
+                sSQL.Append($@"
+DELETE FROM SI_CODE_GROUP WHERE CMP_CD = {D["CMP_CD"].V} AND GRP_CD = {D["GRP_CD"].V};
+");
+            });
+
+            HS.Web.Common.Data.Execute(sSQL.ToString());
+        }
+    }
+}

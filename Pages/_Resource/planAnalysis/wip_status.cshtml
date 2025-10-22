@@ -1,0 +1,755 @@
+﻿@page
+@model HS.Web.Pages.wip_status
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+    string first_plan_id = Model.Params["first_plan_id"].AsString();
+}
+
+
+<style scoped>
+    .checkbox-btn {
+        display: flex;
+        align-items: center;
+        padding: 6px 12px;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        background-color: #f9f9f9;
+        cursor: pointer;
+        transition: all 0.2s ease;
+        font-size: 14px;
+        color: #333;
+    }
+
+        .checkbox-btn input[type="checkbox"] {
+            margin-right: 8px;
+            accent-color: #0078D4; /* 체크박스 색상 (파란색 톤) */
+        }
+
+        .checkbox-btn:hover {
+            background-color: #e6f0ff;
+            border-color: #0078D4;
+            color: #0078D4;
+        }
+</style>
+
+<script>
+
+    // 최신버번 PLAN_ID
+    let first_plan_id = '@first_plan_id';
+
+    let cur_group_id = "SPS";
+    let cur_in_out = "";
+
+    // 헤더컬럼 초기값 정의
+    let defaultColumns = [
+        { dataField: "MAIN_CATEGORY", label: "", width: 80, editable: false, fixed: true, align:"center" },
+        { dataField: "CATEGORY_LEVEL1", label: "대분류", width: 150, editable: false, fixed: true, align:"center" },
+        { dataField: "PATTERN", label: "상세", width: 150, editable: false, fixed:true, align:"center" },
+        { dataField: "TOTAL", label: "TOTAL", width: 100, editable: false, fixed:true, align:"right", type:"number" }
+    ];
+
+    $hs.handler = {
+        "btnInput" : {
+            click : function() {
+                window.open(
+                    '/_Resource/planAnalysis/input_daily_production_target', // 새 창에서 열 URL
+                    '_blank', // 새 탭으로 열기
+                    'width=1200,height=800' // 창 크기 설정
+                );
+            }
+        },
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "aps_wip_route_group_name_open" : {
+            click : function() {
+                $hs.$("aps_wip_route_group_name").open();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                const isChecked = document.getElementById("hold_yn").checked;
+                toServer["terms"]["hold_yn"] = isChecked;
+
+                const today = new Date();
+
+                const year = today.getFullYear();
+                const month = String(today.getMonth() + 1).padStart(2, '0'); // 월은 0부터 시작하므로 +1
+                const day = String(today.getDate()).padStart(2, '0');
+
+                const formattedDate = `${year}-${month}-${day}`;
+
+                console.log(toServer);
+
+                $hs.fetch({
+                    command : "search_header",
+                    param : toServer
+                }).then(fromServer => {
+                    const data = fromServer["data"];
+
+                    let defaultColumns2 = [];
+                    
+                    data.forEach(col => {
+                        defaultColumns2.push({
+                            dataField: col.CODE,
+                            label: col.NAME,
+                            width: 120,
+                            visible: true,
+                            type: "number",
+                            align: "right"
+                            // precision: 1
+                        });
+                    });
+
+                    let defaultColumns3 = [...defaultColumns, ...defaultColumns2];
+
+                    // 그리드 헤더 설정
+                    $hs.util.$CommonUtil.getGridSetting("wip_status_info", defaultColumns3);
+
+                    toServer["headers"] = defaultColumns2;
+
+                    $hs.fetch({
+                        command: "search",
+                        param: toServer
+                    }).then(fromServer => {
+
+                        let data = [...fromServer["data"], ...fromServer["data_expectation_target"], ...fromServer["data_production_planned_quantity"], ...fromServer["data_month_available_quantity"]];
+                        // let data = [...fromServer["data"], ...fromServer["data_expectation_target"], ...fromServer["data_production_planned_quantity"]];
+
+                        fromServer["data_expectation_target"].forEach(item => {
+
+                            // TODO :
+                            // item에서 TOTAL값을 새로 넣어야함.
+                            // 수식은 OUT_OQA 컬럼 * (해당월의 일 - 1)
+                            // OUT_OQA
+                            const now = new Date();
+                            const year = now.getFullYear();
+                            const month = now.getMonth() + 1;
+
+                            const lastDay = new Date(year, month, 0).getDate() - 1;
+
+                            const total = item.OUT_OQA * lastDay;
+
+                            let TYPE = item.PATTERN;
+                            let target_row = fromServer["search_summary_actual"].find(q => q.TYPE === TYPE);
+                            let TARGET = target_row ? target_row.TARGET : 0;
+
+                            // item.TOTAL = Math.round(total);
+                            item.TOTAL = TARGET;
+
+                        });
+
+
+                        $hs.$("wip_status_info").data(data);
+                        // 총 개수 필요없음 -> WIP CUT OFF DAY 로 표시 -> 추후 TH_TAR_WIP에서 나오는 YYYYMMDD로 변경 필요
+                        $('#total_cnt').text('WIP Cutoff Date : ' + formattedDate);
+
+                        let summary_data = [];
+                        /**
+                         * {type : 'MSAP', TARGET : 45000, APS : 35659, BALANCE : target-aps},..
+                         * 이런식으로 생성 fromServer["data_expectation_target"] 데이터의 PATTERN -> type데이터, TOTAL -> EventTarget 이거다 여기까지
+                         */
+                        fromServer["data_expectation_target"].forEach(item => { //일 생산목표 조회
+                            let TYPE = item.PATTERN;
+                            // let TARGET = item.TOTAL;
+                            // APS 값을 다른 데이터셋에서 찾아오기
+                            let matchedAPS = fromServer["data_month_available_quantity"].find(q => q.PATTERN === TYPE);
+                            let APS = matchedAPS ? matchedAPS.TOTAL : 0;
+
+                            let target_row = fromServer["search_summary_actual"].find(q => q.TYPE === TYPE);
+                            let TARGET = target_row ? target_row.TARGET : 0;
+                            let DIVISION_ID = target_row ? target_row.DIVISION_ID : null;
+                            
+                            // 소수점 첫째 자리에서 올림 처리
+                            const roundUp = val => Math.ceil(val);
+
+                            summary_data.push({
+                                TYPE,
+                                TARGET: roundUp(TARGET),
+                                APS: roundUp(APS),
+                                DIVISION_ID
+                            });
+
+                        });
+
+                        $hs.$("wip_status_summary").data(summary_data);
+                        console.log('완료');
+                        console.log(new Date());
+                    }).catch(e => $hs.errorBox(e))
+
+
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btn_save_actual" : {
+            click : function() {
+
+                let toServer = {};
+                toServer["data"] = $hs.$("wip_status_summary").data();
+
+                $hs.fetch({
+                    command: "save",
+                    param: toServer
+                }).then(fromServer => {
+                    alert("저장되었습니다.");
+                    $hs.handler["btnSearch"].click();
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btn_excel_download": {
+            click : function() {
+                // 엑셀 다운로드 (grid_id, file_name)
+                $hs.util.$CommonUtil.excelDownload("wip_status_info", "wip_status");
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "wip_status_info", "dimension_grid");
+            }
+        },
+        "btnSave_dimension" : { // dimension 변경내용 저장
+            click : function() {
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", "wip_status_info", "dimension_grid", defaultColumns);
+            }
+        },
+        "wip_status_info" : {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+                data.cell.css("text-align", "center");
+            },
+            cellFormat: function (data) {
+                //data.cell : 이벤트 cell 객체
+                //data.value : cell value
+                //data.dataField : dataField
+                //data.key : 현재 row key
+                //data.index : 현재 row index
+                //data.rowData : 현재 row 데이타
+
+                if (data.rowData.PATTERN == "SUM") {
+                    data.cell.css("background-color", "#e2efda");
+                }
+
+                if (data.rowData.PATTERN == "TOTAL") {
+                    data.cell.css("background-color", "#d9e1f2");
+                }
+            }
+        },
+        "wip_status_summary" : {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+                if (data.dataField == "TARGET") {
+                    data.cell.css("color", "blue");
+                }
+                data.cell.css("text-align", "center");
+            },
+        },
+        "group_id" : {
+            change : function(data){
+                // 넘겨줄 파라미터
+                let division_id = data.value;
+                cur_group_id = division_id;
+                // dept_class_name 데이터 변경
+                // $hs.util.$CommonUtil.setFileterPopup('aps_wip_route_group_name', '/api/data/WIP_ROUTE_GROUP', 'DIVISION_ID', division_id);
+                let wip_route_group_data_url = "/api/data/WIP_ROUTE_GROUP?DIVISION_ID=" + division_id;
+
+                if(cur_in_out != "") {
+                    wip_route_group_data_url = "/api/data/WIP_ROUTE_GROUP?DIVISION_ID=" + division_id + "&INOUT=" + cur_in_out;
+                }
+
+                $hs.ui.combobox.init({
+                    id: "aps_wip_route_group_name",
+                    valueMember : "CODE",      // 값이 없으면 기본값 value
+                    displayMember : "NAME",    // 값이 없으면 기본값 label
+                    //label : "",
+                    placeholder : "",
+                    dataField : "aps_wip_route_group_name",   // panel내에 있을시 서버로 전송할 dataField (단독으로는 의미 없음)
+                    width : "200px",
+                    enabled : true,
+                    selectMode : "checkBox", // 선택모드
+                    seperator : ",", // 여러값일시 구분자 (기본값 ",")
+                    dataurl: wip_route_group_data_url,
+                    handler: true, // handler true 일시 이벤트 등록이 가능
+                });
+            }
+        },
+        "in_out" : {
+            change : function(data){
+                // 넘겨줄 파라미터
+                let in_out = data.value;
+                let cur_in_out = in_out;
+
+                let wip_route_group_data_url = "/api/data/WIP_ROUTE_GROUP?DIVISION_ID=" + cur_group_id + "&INOUT=" + cur_in_out;
+
+                if(cur_in_out == "") {
+                    wip_route_group_data_url = "/api/data/WIP_ROUTE_GROUP?DIVISION_ID=" + cur_group_id;
+                }
+
+                $hs.ui.combobox.init({
+                    id: "aps_wip_route_group_name",
+                    valueMember : "CODE",      // 값이 없으면 기본값 value
+                    displayMember : "NAME",    // 값이 없으면 기본값 label
+                    //label : "",
+                    placeholder : "",
+                    dataField : "aps_wip_route_group_name",   // panel내에 있을시 서버로 전송할 dataField (단독으로는 의미 없음)
+                    width : "200px",
+                    enabled : true,
+                    selectMode : "checkBox", // 선택모드
+                    seperator : ",", // 여러값일시 구분자 (기본값 ",")
+                    dataurl: wip_route_group_data_url,
+                    handler: true, // handler true 일시 이벤트 등록이 가능
+                });
+            }
+        },
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        $hs.ui.button.init({ id: "btnInput", enabled: @W });
+        $hs.ui.button.init({ id: "btn_save_actual", enabled: @W });
+
+        // wip_status_info
+        $hs.dx.grid.init({
+            id: "wip_status_info",
+            // width: "100%",
+            // height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+        
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="wip_status_info" data-grid-id="RESOURCE_GRID"></div>
+        // $hs.util.$CommonUtil.getGridSetting("wip_status_info", defaultColumns);
+        
+        const _instance = $hs.$("wip_status_info")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        const gridInstance = $hs.$("wip_status_info")._instance;
+
+        function mergeCellsByFields(fields, grid) {
+            const rows = grid.getVisibleRows();
+            const columns = grid.getVisibleColumns();
+
+            // 먼저 기존 병합 상태 초기화
+            for (let i = 0; i < rows.length; i++) {
+                fields.forEach(fieldName => {
+                    const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+                    const cell = grid.getCellElement(i, columnIndex);
+                    if (cell && cell.length) {
+                        // display, rowspan 초기화
+                        cell[0].style.display = '';
+                        cell[0].removeAttribute('rowSpan');
+                    }
+                });
+            }
+
+            // 본격 병합 로직
+            fields.forEach(fieldName => {
+                const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+
+                let prevValue = null;
+                let startRowIndex = 0;
+                let spanCount = 1;
+
+                for (let i = 0; i < rows.length; i++) {
+                    const currentValue = rows[i].data[fieldName];
+
+                    if (currentValue === prevValue) {
+                        spanCount++;
+                        const cell = grid.getCellElement(i, columnIndex);
+                        if (cell && cell.length) {
+                            cell[0].style.display = 'none';
+                        }
+                    } else {
+                        // 이전 그룹 병합 처리
+                        if (spanCount > 1) {
+                            const topCell = grid.getCellElement(startRowIndex, columnIndex);
+                            if (topCell && topCell.length) {
+                                topCell[0].rowSpan = spanCount;
+                                topCell[0].style.verticalAlign = 'middle';
+                            }
+                        }
+
+                        // 새 그룹 시작
+                        prevValue = currentValue;
+                        startRowIndex = i;
+                        spanCount = 1;
+                    }
+                }
+
+                // 마지막 그룹 병합 처리
+                if (spanCount > 1) {
+                    const topCell = grid.getCellElement(startRowIndex, columnIndex);
+                    if (topCell && topCell.length) {
+                        topCell[0].rowSpan = spanCount;
+                        topCell[0].style.verticalAlign = 'middle';
+                    }
+                }
+            });
+        }
+
+        // gridInstance.option("scrolling", {
+        //     mode : "standard"
+        // });
+        gridInstance.getScrollable().on("scroll", function() {
+            mergeCellsByFields(["MAIN_CATEGORY","CATEGORY_LEVEL1"], gridInstance);
+        });
+
+
+        // gridInstance.option("scrolling.mode", "standard");
+        gridInstance.option("onContentReady", function(e) {
+            mergeCellsByFields(["MAIN_CATEGORY","CATEGORY_LEVEL1"], gridInstance);
+        });
+
+
+        // wip_status_summary
+        $hs.dx.grid.init({
+            id: "wip_status_summary",
+            // width: "60%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+            reOrdering: true, //컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        }).columns(col => {
+            col.add({ dataField: "DIVISION_ID", label: "GROUP", width: 100, editable: false})
+            col.add({ dataField: "TYPE", label: "TYPE", width: 150, editable: false})
+            col.add({ dataField: "TARGET", label: "TARGET", width: 150, editable: true, type:"number" })
+            col.add({ dataField: "APS", label: "APS", width: 150, editable: false, type:"number" })
+        });
+
+        const _instance2 = $hs.$("wip_status_summary")._instance;
+        // 컬럼 라인 그리기
+        _instance2.option('showColumnLines', true);
+        _instance2.option('rowAlternationEnabled', false);
+        _instance2.option('showBorders', true);
+        _instance2.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        _instance2.getScrollable().on("scroll", function() {
+            mergeCellsByFields(["DIVISION_ID"], _instance2);
+        });
+
+        _instance2.option("onContentReady", function(e) {
+            mergeCellsByFields(["DIVISION_ID"], _instance2);
+        });
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // order_type
+        $hs.html.select.init({
+            id: "order_type",
+            data: [{ label : "ALL", value: ""}, { label: "MASS", value: "MASS" }, { label: "SAMPLE", value: "SAMPLE" }, { label: "TEST", value: "TEST" }], 
+            val: "" 
+        });
+
+        // group_id
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST_NOT_IN_ALL",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: "SPS"
+        });
+
+        // 대분류
+        // $hs.html.select.init({
+        //     id: "category_level1",
+        //     dataurl: "/api/data/CATEGORY_LEVEL1",
+        //     valueMember: "CODE",
+        //     displayMember: "NAME",
+        //     val: ""
+        // });
+
+        // 상세
+        // $hs.html.select.init({
+        //     id: "category_level2",
+        //     dataurl: "/api/data/CATEGORY_LEVEL2",
+        //     valueMember: "CODE",
+        //     displayMember: "NAME",
+        //     val: ""
+        // });
+
+        let wip_route_group_data_url = "/api/data/WIP_ROUTE_GROUP?DIVISION_ID=SPS";
+
+        $hs.ui.combobox.init({
+            id: "aps_wip_route_group_name",
+            valueMember : "CODE",      // 값이 없으면 기본값 value
+            displayMember : "NAME",    // 값이 없으면 기본값 label
+            //label : "",
+            placeholder : "",
+            dataField : "aps_wip_route_group_name",   // panel내에 있을시 서버로 전송할 dataField (단독으로는 의미 없음)
+            width : "200px",
+            enabled : true,
+            selectMode : "checkBox", // 선택모드
+            seperator : ",", // 여러값일시 구분자 (기본값 ",")
+            dataurl: wip_route_group_data_url,
+            handler: true, // handler true 일시 이벤트 등록이 가능
+        });
+
+        // 내/외층
+        $hs.html.select.init({ id: "in_out", data: [{ label : "ALL", value: ""}, { label: "IN", value: "IN" }, { label: "OUT", value: "OUT" }], val: "" });
+        
+
+        // 사업부
+        $hs.html.select.init({
+            id: "plan_id",
+            dataurl: "/api/data/PLAN_ID",
+            valueMember: "PLAN_ID",
+            displayMember: "PLAN_ID",
+            val: first_plan_id
+        });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        $hs.html.input.initAll();
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">재공분석 (WIP Status)</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">PLAN ANALYSIS</li>
+            <li class="breadcrumb-item active">재공분석</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>ORDER TYPE</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="order_type" hs-df="order_type" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>내/외층</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="in_out" hs-df="in_out" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>WIP Route Grp</label></div>
+                                <div class="control-form">
+                                    <div id="aps_wip_route_group_name" class="form-control" hs-df="aps_wip_route_group_name"></div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>PLAN ID</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="plan_id" hs-df="PLAN_ID" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group" style="display:flex; align-items:center;">
+                                <div class="control-form" style="flex:1; display:flex; gap:10px;">
+                                    <label class="checkbox-btn"><input type="checkbox" value="hold_yn" id="hold_yn" />HOLD 포함여부</label>
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+
+                            <div style="margin-left:auto;">
+                                <button id="btnInput" type="button" class="btn btn-add" hs-btn>일 생산목표 입력<span class="blind">filter search</span></button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header"> 
+                    <div class="header-title">Summary</div> 
+                    <div class="header-btn"> 
+                        <button id="btn_save_actual" type="button" class="btn btn-save" hs-btn>save</button>
+                        <button id="btn_excel_download_summary" type="button" class="btn btn-download" hs-btn>excel</button>
+                    </div> 
+                </div> 
+                <!-- 바디부분 정의--> 
+                <div class="box-body" > 
+                    <div class="grid-container" > 
+                        <div id="wip_status_summary" data-grid-id="WIP_STATUS_SUMMARY"></div> 
+                    </div> 
+                </div> 
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                   <div class="header-title">재공분석<span class="title-list-count"><small id="total_cnt"></small></span></div>
+                   <div class="header-btn">
+                       <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                   </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="wip_status_info" data-grid-id="WIP_STATUS"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

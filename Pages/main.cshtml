@@ -1,0 +1,815 @@
+﻿@page
+@model HS.Web.Pages.mainModel
+@{
+    Layout = "_Layout";
+    Params Params = Model.Params;
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string UserName = Params["UserName"].AsString();
+    string UserID = Params["UserID"].AsString();
+    string HTMLTree = Params["HTMLTree"].AsString();
+    string menuId = Params["menuId"];
+    string FavoriteTree = Params["FavoriteTree"].AsString();
+}
+
+<script>
+
+  
+</script>
+<script>
+
+    let htmlTree = '@HTMLTree';
+    let userName = '@UserName';
+    let userId = '@UserID';
+    let favoriteTree = '@FavoriteTree';
+
+    let menuId = '@menuId';
+
+
+    $hs.load(() => {
+
+        // 첫화면 접근 시 MASTER DATA 나타나도록 적용
+        setTimeout(() => {
+            $hs.handler.master_data.click();
+
+            const link = document.querySelector(`a[data-menu-id="${menuId}"]`);
+            if (link) {
+                link.click(); // 클릭 트리거
+            }
+        }, 0);
+
+        $hs.ui.button.init({ id: "btn_notice" });
+        $hs.ui.button.init({ id: "btn_voc" });
+        // modal
+        $hs.html.panel.init({ id: 'panel_input' });
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+        $hs.html.$popup.init('modalDialog2'); // 바로가기 설정 팝업
+        $hs.html.$popup.init('modalDialog3'); // 비밀번호 변경 팝업
+
+        $hs.ui.button.init({ id: "btnSave_input" });
+        $hs.html.panel.init({ id: "panel_input_password" });
+
+        // 공지사항 && 게시판 글 불러오기 및 글 선택 시 상세보기
+        setTableData('searchNotice', 'notice_table', 'notice_detail', 'viewNotice');
+        setTableData('searchVOC', 'voc_table', 'voc_detail', 'viewVOC');
+
+        // 바로가기 설정
+        setShortcut();
+
+        // grid_input
+        $hs.dx.treegrid.init({
+            id: "grid_input",
+            width: "100%",
+            height: "450px",
+            keyDataField: "MENU_CD",
+            parentDataField: "UP_MENU_CD",
+            editable: false,
+            sortable: false,
+            selectMode: "single",
+            rownumber: false,
+            filterable: false,
+            handler: true,
+        }).columns(col => {
+            col.add({
+                dataField: "CLIENT"
+                , label: "CLIENT"
+                , width: 200
+                , visible: false
+            })
+            col.add({
+                dataField: "UP_MENU_CD"
+                , label: "상위메뉴ID"
+                , width: 200
+                , visible: false
+            })
+            col.add({
+                dataField: "MENU_CD"
+                , label: "메뉴ID"
+                , width: 200
+                , visible: false
+            })
+            col.add({
+                dataField: "MENU_NM"
+                , label: "메뉴"
+                , width: 150
+                , align: "center"
+                , editable: false
+            })
+        });
+    });
+
+    $hs.handler = {
+        "change_password": {
+            click: function () { 
+                // 에러메세지 초기화
+                let error = document.querySelectorAll("#error-message");
+                let error2 = document.querySelectorAll("#error-message2");
+
+                error.forEach(e => {
+                    e.style.display = "none";
+                })
+                error2.forEach(e => {
+                    e.style.display = "none";
+                })
+
+                // modal open 시 이전 입력 초기화
+                $hs.$("panel_input_password").reset();
+                $hs.$("modalDialog3").open();
+            }
+        },
+        "btnSave_input": {
+            click: function () {
+                let toServer = {};
+                toServer["terms"] = $hs.$("panel_input_password").val();
+                console.log(toServer);
+                // 에러메세지 정의
+                let error = document.querySelectorAll("#error-message");
+                let error2 = document.querySelectorAll("#error-message2");
+
+                $hs.fetch({
+                    command: "check_password"
+                    ,param : toServer
+                }).then(fromServer => {
+                    let chg_pwd = toServer["terms"].chg_password;
+                    let chk_pwd = toServer["terms"].chk_password;
+                    
+                    if ( chg_pwd != chk_pwd ) {
+                        // 비밀번호 변경이 일치하지 않을경우
+                        error2.forEach(e => {
+                            e.style.display = "inline";
+                        })
+                    } else {
+                        error2.forEach(e => {
+                            e.style.display = "none";
+                        })
+
+                        // 비밀번호가 맞을 경우에 변경 로직 돌아가도록
+                        if(fromServer["data"].length > 0) {
+                            // TODO : 비밀번호 변경
+                            $hs.fetch({
+                                command: "change_password",
+                                param: toServer
+                            }).then(fromServer => {
+                                alert('비밀번호가 변경되었습니다.');
+                                // modal 종료
+                                $hs.$("modalDialog3").close();
+                            }).catch(e => $hs.errorBox(e))
+
+                            error.forEach(e => {
+                                e.style.display = "none";
+                            })
+                        } else {
+                            // 에러메세지 출력
+                            error.forEach(e => {
+                                e.style.display = "inline";
+                            })
+                        }
+                    }
+                    
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "master_data": {
+            click: function () {
+                headerMenuClick("master_data");
+            }
+        },
+        "plan_control": {
+            click: function () {
+                headerMenuClick("plan_control");
+            }
+        },
+        "plan_analysis": {
+            click: function () {
+                headerMenuClick("plan_analysis");
+
+            }
+        },
+        "order_promising": {
+            click: function () {
+                headerMenuClick("order_promising");
+            }
+        },
+        "admin": {
+            click: function () {
+                headerMenuClick("admin");
+            }
+        },
+        "btn_notice" : {
+            click : function() {
+                // notice 화면 이동
+                creatTab("notice", "NOT00001", "/notice");
+            }
+        },
+        "btn_voc" : {
+            click : function() {
+                // voc 화면 이동
+                creatTab("voc", "VOC00001", "/voc");
+            }
+        },
+        "grid_input" : {
+            cellDoubleClick : function(data) {
+                // 대분류인 경우에는 return
+                if(data.rowData.UP_MENU_CD != "") {
+                    const selector = document.getElementsByName('selector');
+                    // main 클래스의 클래스명 바꿔서 이미지 바꾸기 위함.
+                    // UP_MENU_CD 받아온 값으로 필터링
+                    // 대분류 명 가져오기
+                    let i_class = "";
+                    let title_text = "";
+                    switch(data.rowData.UP_MENU_CD.substr(0,2)) {
+                        case "MD" :
+                            i_class = "main-box main-box-masterdata";
+                            title_text = "Master Data";
+                            break;
+                        case "PC" :
+                            i_class = "main-box main-box-plancontrol";
+                            title_text = "Plan Control";
+                            break;
+                        case "PA" :
+                            i_class = "main-box main-box-plananalysis";
+                            title_text = "Plan Analysis";
+                            break;
+                        case "OP" :
+                            i_class = "main-box main-box-orderpromising";
+                            title_text = "Order Promising";
+                            break;
+                        case "si" :
+                            i_class = "main-box main-box-admin";
+                            title_text = "Admin";
+                            break;
+                        default :
+                            i_class = "main-box main-box-etc";
+                            title_text = "Etc.";
+                            break;
+                    }
+                    selector[0].className = i_class;
+                    // dataset.orderSeq로 가져와서 ORDER_SEQ값으로 입력
+                    let toServer = {};
+                    toServer["terms"] = {
+                        SEQ : selector[0].dataset.seq, 
+                        MENU_CD : data.rowData.MENU_CD,
+                        I_CLASS : i_class,
+                        ORDER_SEQ : selector[0].dataset.orderSeq
+                    }
+
+                    console.log(toServer);
+
+                    $hs.fetch({
+                        command: "save_shortcut"
+                        ,param : toServer
+                    }).then(fromServer => {
+
+                                    // box_body 클래스로 찾아서 data-menu-id, text-title, text-substance를 바꾸기 위함.
+                        const box_el = selector[0].querySelector('.box-in');
+                        const title_el = box_el.querySelector('.text-title');
+                        const sub_el = box_el.querySelector('.text-substance');
+
+                        title_el.innerText = title_text;
+                        sub_el.innerText = data.rowData.MENU_NM;
+                        selector[0].querySelector('.box-body').setAttribute('data-menu-id', data.rowData.MENU_CD);
+                        selector[0].querySelector('.box-body').setAttribute('data-url', data.rowData.S_URL);
+
+                    }).catch(e => $hs.errorBox(e))
+
+                    $hs.$('modalDialog2').close();
+                }
+            }
+        },
+    }
+
+    $hs.ui.button.init({ id: "master_data" });
+    $hs.ui.button.init({ id: "plan_control" });
+    $hs.ui.button.init({ id: "plan_analysis" });
+    $hs.ui.button.init({ id: "order_promising" });
+    $hs.ui.button.init({ id: "admin" });
+
+    $hs.ui.button.init({ id: "change_password" });
+
+    
+    
+
+    // 헤더 메뉴 클릭 시 왼쪽 네비게이션 바 메뉴 변경
+    // 서버에서 가져오지않고 미리 다 가져온것들 중에서 SHOW, HIDE로 관리
+    function headerMenuClick(menuNm) {
+        // nav-item중 name속성이 있는 요소만 숨김
+        $(".nav-item[name]").not("." + menuNm).hide();
+
+        let $target = $('[name=' + menuNm + ']');
+
+        if ($target.length) {  // 요소가 존재하는 경우만 실행
+            $target.show();
+        } else {
+            console.log("해당 ID의 요소가 존재하지 않습니다: " + menuNm);
+        }
+
+        const source = document.getElementById(menuNm);
+        const mainCategory = document.getElementById('main_category_name');
+
+        if (source && mainCategory) {
+            const icon = source.querySelector('.material-symbols-rounded');
+            const label = source.querySelector('.menu-label');
+
+            // 기존 내용 비우고 새로 구성
+            mainCategory.innerHTML = '';
+
+            if (icon) {
+                const iconClone = icon.cloneNode(true);
+                iconClone.classList.remove('nav-menu-c'); // 필요 시 클래스 조정
+                iconClone.classList.add('nav-menu-b'); // 원하는 스타일로 변경
+                mainCategory.appendChild(iconClone);
+            }
+
+            if (label) {
+                const title = document.createElement('p');
+                title.className = 'menu-title';
+                title.textContent = label.textContent;
+                mainCategory.appendChild(title);
+            }
+        }
+
+        // 모든 li.nav-item의 active 클래스 제거
+        const allNavItems = document.querySelectorAll('.nav-item');
+        allNavItems.forEach(item => item.classList.remove('active'));
+
+        // 클릭된 메뉴의 부모 li에 active 클래스 추가
+        if (source && source.parentElement.classList.contains('nav-item')) {
+            source.parentElement.classList.add('active');
+        }
+    }
+
+    // 메인화면 공지사항 및 게시판 설정
+    // param : command, tableId, detailId
+    function setTableData(command, tableId, detailId, detailCommand) {
+        // 공지사항 글 불러오기 및 글 선택 시 상세보기
+        let toServer = {};
+        toServer["terms"] = {seq: null};
+        $hs.fetch({
+            command: command,
+            param: toServer
+        }).then(fromServer => {
+
+            let html = "";
+            for(let i=0;i<fromServer["data"].length;i++) {
+                html += "<tr style='cursor:pointer' name='" + detailId + "'>";
+                html += "   <th><input type='hidden' name='seq' value='" + fromServer["data"][i].SEQ + "' />" + fromServer["data"][i].TITLE + "</th>";          // TITLE
+                html += "   <td class='text-center'>" + fromServer["data"][i].INSERT_DTTM + "</td>";    // DATE
+                html += "</tr>";
+            }
+
+            // 조회되는 건수가 4개보다 적으면 화면을 채우기 위해 빈값을 넣어줌
+            if(fromServer["data"].length < 4)
+            {
+                let num = 4 - fromServer["data"].length;
+
+                for(let i=0;i<num;i++) {
+                    html += "<tr>";
+                    html += "   <th style='visibility: hidden;'>hidden area</th>";  // TITLE
+                    html += "   <td class='text-center'></td>";                     // DATE
+                    html += "</tr>";
+                }
+            }
+
+            $('#' + tableId).html(html);
+
+            const detail = document.getElementsByName(detailId);
+
+            detail.forEach( function(item) {
+                item.addEventListener('click', function() {
+                    const seq = item.querySelectorAll('input');
+                    // server로 보낼 param 만들기
+                    let toServer = {};
+                    toServer["terms"] = {SEQ : seq[0].value};
+
+                    $hs.fetch({
+                        command: detailCommand,
+                        param: toServer
+                    }).then(fromServer => {
+                        let title = document.getElementById("TITLE");
+                        title.innerText = fromServer["data"].TITLE;
+
+                        let description = document.getElementById("DESCRIPTION");
+                        description.innerText = fromServer["data"].DESCRIPTION;
+
+                        $hs.$("modalDialog").open();
+                    }).catch(e => $hs.errorBox(e))
+                });
+            });
+
+        }).catch(e => $hs.errorBox(e))
+    }
+
+    // 바로가기 설정
+    function setShortcut() {
+        $hs.fetch({
+            command: "search_shortcut"
+        }).then(fromServer => {
+            for(let i=0;i<fromServer["data"].length;i++) {
+                // data-order-seq에 맞는 element 가져오기
+                const el = document.querySelectorAll('div[data-order-seq="' + (i+1) + '"]');
+                // 세팅해줘야할 항목들
+                el[0].dataset.seq = fromServer["data"][i].SEQ;
+                el[0].className = fromServer["data"][i].I_CLASS;
+                el[0].querySelector('.text-title').innerText = fromServer["data"][i].UPPER_MENU_NM;
+                el[0].querySelector('.text-substance').innerText = fromServer["data"][i].MENU_NM;
+                el[0].querySelector('.box-body').setAttribute('data-menu-id', fromServer["data"][i].MENU_CD);
+                el[0].querySelector('.box-body').setAttribute('data-url', fromServer["data"][i].S_URL);
+            }
+
+        }).catch(e => $hs.errorBox(e))
+
+        const shortcut = document.getElementsByName("shortcut_target");
+
+        shortcut.forEach(function(item) {
+            item.addEventListener('click', function() {
+                // menu_id 불러오기
+                const menu_id = item.dataset.menuId;
+
+                // target_menu 정보 불러오기
+                const target_menu = item.querySelectorAll('p.text-substance');
+
+                // url
+                const url = item.dataset.url;
+
+                // 바로가기 없는경우 확인
+                console.log(target_menu[0].textContent);
+                console.log(target_menu[0].textContent.length);
+                console.log(menu_id);
+                console.log(url);
+                if(target_menu[0].textContent.length == 0) {
+                    alert('바로가기 설정이 필요합니다.');
+                } else {
+                    creatTab(target_menu[0].textContent, menu_id, url);
+                }
+            });
+        });
+
+        const menu_setting = document.querySelectorAll(".btn-main-setting");
+        menu_setting.forEach(function(item) {
+            item.addEventListener('click', function() {
+
+                $hs.fetch({
+                    command: "view"
+                }).then(fromServer => {
+                    $hs.$("grid_input").data(fromServer["data"]);
+                    $hs.$("modalDialog2").open();
+                    // 적용이 필요한 부모요소 까지 찾아야함.
+                    const parent = item.parentNode;
+                    const parent2 = parent.parentNode;
+                    const parent3 = parent2.parentNode;
+                    const parent4 = parent3.parentNode;
+                    // 이전에 selector라고 name 지어준 항목들을 지운다.
+                    const selector = document.getElementsByName('selector');
+                    selector.forEach(function(item) {
+                        item.setAttribute('name', '');
+                    });
+
+                    parent4.setAttribute('name', 'selector');
+                }).catch(e => $hs.errorBox(e))
+
+            });
+        });
+    }
+
+</script>
+
+<section id="contentBodySection" class="content-body">
+
+    <div class="content">
+        <!-- s:main 초기화면 -->
+        <div class="main-content">
+            <div class="main-content-layout" id="main-content-layout">
+                <div class="main-box main-box-intro">
+                    <div class="box-body">
+                        <div class="box-text">
+                            <p class="text-title">
+                                Advanced Planning and Scheduling
+                            </p>
+                            <p class="text-substance">
+                                Enable a better world
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-etc" data-order-seq="1" data-seq="0">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target" >
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-plancontrol" data-order-seq="2">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target">
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-plananalysis" data-order-seq="3">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target">
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-orderpromising" data-order-seq="4">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target">
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-admin" data-order-seq="5">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target">
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-etc" data-order-seq="6">
+                    <div class="box-in">
+                        <div class="box-header">
+                            <div class="header-btn">
+                                <a class="btn btn-main-setting"><i class="xi-cog"></i></a>
+                            </div>
+                        </div>
+                        <div class="box-body" name="shortcut_target">
+                            <a>
+                                <div class="box-img">
+                                    <div class="img-icon"></div>
+                                </div>
+                            </a>
+                            <div class="box-text">
+                                <p class="text-title">
+                                    Etc
+                                </p>
+                                <p class="text-substance"></p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+
+                <div class="main-box main-box-8">
+                    <div class="box-header">
+                        <div class="header-title">NOTICE</div>
+                        <div class="header-btn">
+                            <p class="btn-main-go" id="btn_notice" style="cursor: pointer;"><i class="xi-plus"></i></p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-table">
+                            <table class="table">
+                                <colgroup>
+                                    <col style="width:auto;">
+                                    <col style="width:100px;">
+                                </colgroup>
+                                <thead>
+                                    <tr>
+                                        <th>Title</th>
+                                        <th class="text-center">Date</th>
+                                    </tr>
+                                </thead>
+                                <tbody id="notice_table">
+
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="main-box main-box-9">
+                    <div class="box-header">
+                        <div class="header-title">Voice of Customer</div>
+                        <div class="header-btn">
+                            <p class="btn-main-go" id="btn_voc" style="cursor: pointer;"><i class="xi-plus"></i></p>
+                        </div>
+                    </div>
+                    <div class="box-body">
+                        <div class="box-body">
+                            <div class="box-table">
+                                <table class="table">
+                                    <colgroup>
+                                        <col style="width:auto;">
+                                        <col style="width:100px;">
+                                    </colgroup>
+                                    <thead>
+                                        <tr>
+                                            <th>Title</th>
+                                            <th class="text-center">Date</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody id="voc_table">
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+
+
+            </div>
+        </div>
+        <!-- /e:main 초기화면 -->
+    </div>
+</section>
+<!-- notice/voc modal -->
+<div id="modalDialog" style="display:none; position:absolute; width:800px;height:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title" hs-df="TITLE" id="TITLE"></h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row" style="display:none">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>SEQ</label></div>
+                        <div class="control-form"><input id="SEQ" type="text" class="form-control" placeholder="내용을 입력" hs-df="SEQ"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <p id="DESCRIPTION"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+
+        </div>
+    </div>
+</div>
+<!-- 바로가기 메뉴설정 modal -->
+<div id="modalDialog2" style="display:none; position:absolute; width:400px; height:400px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">바로가기 메뉴설정</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="grid-container" flex>
+                            <div id="grid_input"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 비밀번호 변경 modal -->
+<div id="modalDialog3" style="display:none; position:absolute; width:400px; height:200px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">비밀번호 변경</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input_password">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>현재 비밀번호</label></div>
+                        <div class="control-form"><input id="cur_password" type="password" class="form-control" placeholder="내용을 입력" hs-df="cur_password"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>변경할 비밀번호</label></div>
+                        <div class="control-form"><input id="chg_password" type="password" class="form-control" placeholder="내용을 입력" hs-df="chg_password"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>비밀번호 확인</label></div>
+                        <div class="control-form"><input id="chk_password" type="password" class="form-control" placeholder="내용을 입력" hs-df="chk_password"></div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div id="error-message" class="error-message" style="display: none;color: red;">
+                            <!-- 로그인 오류 메세지 -->
+                            현재 비밀번호를 잘못 입력했습니다.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div id="error-message2" class="error-message" style="display: none;color: red;">
+                            <!-- 로그인 오류 메세지 -->
+                            변경할 비밀번호와 비밀번호 확인이 일치하지 않습니다.
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_input" type="button" class="btn btn-save" hs-btn>저장</button>
+            <button type="button" class="btn btn-close btn-popup-close" hs-btn>닫기</button>
+        </div>
+    </div>
+</div>

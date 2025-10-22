@@ -1,0 +1,529 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DTWIN_OSUNG
+build_property.RootNamespace = DTWIN_OSUNG
+build_property.ProjectDir = F:\Products\TWIN\DTWIN_POWERMAX\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\Products\TWIN\DTWIN_POWERMAX
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_1F.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfMUYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_2F.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfMkYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_2F_a.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfMkZfYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_2F_e.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfMkZfZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_3F.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfM0YuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Fire/map_b1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRmlyZVxtYXBfYjEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/main_bak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbl9iYWsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/main_V2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbl9WMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Mobile/mobileetc_log.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTW9iaWxlXG1vYmlsZWV0Y19sb2cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Print/org_facility_qrcode.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpbnRcb3JnX2ZhY2lsaXR5X3FyY29kZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_Layout_fire.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfZmlyZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_Layout_V2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfVjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFxsb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test/sub-template.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFxzdWItdGVtcGxhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test/sub-template_iframe.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFxzdWItdGVtcGxhdGVfaWZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test/sub-template_tab.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFxzdWItdGVtcGxhdGVfdGFiLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/Test/sub-template_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFxzdWItdGVtcGxhdGVfdGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/WebSocket.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2ViU29ja2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/WebSocket2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2ViU29ja2V0Mi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/WebSocket3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcV2ViU29ja2V0My5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/api_req_mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFwaV9yZXFfbWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_agitator_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2FnaXRhdG9yX2NoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_agitator_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2FnaXRhdG9yX2NoYXJ0X3Rlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_catapult_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NhdGFwdWx0X2NoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_catapult_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NhdGFwdWx0X2NoYXJ0X3Rlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_compr_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NvbXByX2NoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_compr_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NvbXByX2NoYXJ0X3Rlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_compr_pr_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NvbXByX3ByX2NoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_compr_pr_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2NvbXByX3ByX2NoYXJ0X3Rlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_cooltower_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2Nvb2x0b3dlcl9jaGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_cooltower_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2Nvb2x0b3dlcl9jaGFydF90ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_distriboard_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X2Rpc3RyaWJvYXJkX2NoYXJ0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_max.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X21heC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_min.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X21pbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_parent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3BhcmVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_pump_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3B1bXBfY2hhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_pump_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3B1bXBfY2hhcnRfdGVzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_scrapgn_i_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3NjcmFwZ25faV9jaGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_scrapgn_i_chart_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3NjcmFwZ25faV9jaGFydF90ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/asset_simul.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzc2V0X3NpbXVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/common_code.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGNvbW1vbl9jb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_all_chart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9hbGxfY2hhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_chart1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9jaGFydDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_chart2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9jaGFydDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_chart3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9jaGFydDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_chart4.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9jaGFydDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/danger_chart5.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRhbmdlcl9jaGFydDUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/dept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRlcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/eairm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVhaXJtLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/employee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/fire_detector_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGZpcmVfZGV0ZWN0b3Jfc3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/fire_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGZpcmVfc3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9hdXRoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_buffer.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9idWZmZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_buffer2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9idWZmZXIyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_buffer3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9idWZmZXIzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_depot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9kZXBvdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_depot2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9kZXBvdDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_depot3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9kZXBvdDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_equipper.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9lcXVpcHBlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_equipper2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9lcXVpcHBlcjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_equipper3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9lcXVpcHBlcjMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_flowanal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9mbG93YW5hbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_flowanal2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9mbG93YW5hbDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_flowanal3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9mbG93YW5hbDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_leadtime.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sZWFkdGltZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_leadtime2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sZWFkdGltZTIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_leadtime3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sZWFkdGltZTMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_linebal.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9saW5lYmFsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_linebal2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9saW5lYmFsMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_linebal3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9saW5lYmFsMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logicom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpY29tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logicom2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpY29tMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logicom3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpY29tMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logiutil.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpdXRpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logiutil2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpdXRpbDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_logiutil3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9sb2dpdXRpbDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_relationship.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9yZWxhdGlvbnNoaXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_relationship2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9yZWxhdGlvbnNoaXAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_relationship3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9yZWxhdGlvbnNoaXAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_uph.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF91cGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_uph2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF91cGgyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_uph3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF91cGgzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_worker.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF93b3JrZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_worker2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF93b3JrZXIyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/grp_worker3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF93b3JrZXIzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/hfm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGhmbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/hrf_clsf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGhyZl9jbHNmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/layout_json_import.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxheW91dF9qc29uX2ltcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/login_log.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxvZ2luX2xvZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/maintenance.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1haW50ZW5hbmNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/openapi_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9wZW5hcGlfbW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_biz.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19iaXouY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_company.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19jb21wYW55LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_facility.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWNpbGl0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_factory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19pbmZvLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_line.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19saW5lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_proc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19wcm9jLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/org_wc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ193Yy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/osung_rr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9zdW5nX3JyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/plc_not_connect_log.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsY19ub3RfY29ubmVjdF9sb2cuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/prod_plan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByb2RfcGxhbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/prod_result.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByb2RfcmVzdWx0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/rat.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHJhdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/rat_search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHJhdF9zZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/sago_his1.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZ29faGlzMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/sago_his2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZ29faGlzMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/sago_his3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZ29faGlzMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHRlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/testmail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHRlc3RtYWlsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/user.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/user_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXJfYXV0aC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_POWERMAX/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

@@ -1,0 +1,632 @@
+﻿@page
+@model HS.Web.Pages.example_004
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    $hs.handler = {
+        "txtSearch": {
+            keyup: function (data) {
+
+                if (data.key == "Enter") {
+                    $hs.handler["btnSearch"].click();
+                    $hs.$("grid").expand();
+                }
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btnNew": {
+            click: function () {
+                $hs.$("panel_input").reset();
+
+                $hs.$("modalDialog").open();
+            }
+        },
+        "btnSave_input": {
+            click: function () {
+
+                return alert("Click Save!");
+            }
+        },
+        "btnDel": {
+            click: function () {
+                return alert("Click Delete!");
+            }
+        },
+        "grid": {
+            cellClick: function (data) {
+               let toServer = {};
+
+                toServer["terms"] = data.rowData;
+
+                $hs.fetch({
+                    command: "search_chart",
+                    param: toServer
+                }).then(fromServer => {
+                    
+                    $hs.$("chart").set({
+                        "xAxis": {
+                            "categories": [
+                                "",
+                                "1225000",
+                                "1307800",
+                                "1420400",
+                                "21558 4MT0A",
+                                "21558 6RA5A",
+                                "21558 6RC0A",
+                                "21558 6RU0A",
+                                "21559 4MT0A",
+                                "21559 6RA5A",
+                                "21559 6RC0A",
+                                "21559 6RC1A",
+                                "21559 6RK0A",
+                                "21559 6RU0A",
+                                "21579 6RA6A",
+                                "21579 6RU0A",
+                                "3MON00624A",
+                                "42750492",
+                                "42795025",
+                                "42795027",
+                                "42854159",
+                                "42854161",
+                                "50516225161",
+                                "50516225162",
+                                "50516225163",
+                                "50516225165",
+                                "50516225169",
+                                "50516225170",
+                                "50516225385",
+                                "50911172002",
+                                "50911172011",
+                                "57161172001",
+                                "57161172006",
+                                "57161172301",
+                                "62766255001",
+                                "64261173405",
+                                "64366225037",
+                                "64366225038",
+                                "64366225039",
+                                "64366225040",
+                                "64366225310",
+                                "64366225311",
+                                "64461172011",
+                                "64461173404",
+                                "64461173405-1 T",
+                                "64461175010-1R",
+                                "64466225110",
+                                "64466225111",
+                                "64466225112",
+                                "64466225113",
+                                "64466225119",
+                                "64466225120",
+                                "64611173407",
+                                "64611175008-1R",
+                                "64611636001",
+                                "64611636002",
+                                "64616225208",
+                                "64616225212",
+                                "64616225213-1R",
+                                "64616225215-1R",
+                                "64616225403",
+                                "64616225404",
+                                "64616225405",
+                                "64616295272",
+                                "64616295273",
+                                "64616295274",
+                                "64616295277",
+                                "64616295279",
+                                "64616295281",
+                                "64616295283-1R",
+                                "65011173402",
+                                "65A0002100",
+                                "67211184001",
+                                "76915-7499R",
+                                "76916-1684R",
+                                "BPU23029",
+                                "BPU23029 B",
+                                "GS12-0163A",
+                                "GS13-0143A",
+                                "GS13-0153A",
+                                "GS13-0154A",
+                                "GS13-0156A",
+                                "GS13-0157",
+                                "GS13-0164A",
+                                "GS13-0165A",
+                                "GS13-0166A",
+                                "GS13-0238A",
+                                "GS13-0239A",
+                                "IT21016L",
+                                "IT21017L",
+                                "IT21018L",
+                                "IT21019L",
+                                "IT21020L1",
+                                "IT21020L2",
+                                "IT21020L3",
+                                "IT21021L",
+                                "M22144S(품번미지정)",
+                                "M22145S",
+                                "M22146S",
+                                "M22147S",
+                                "M22148S",
+                                "M22150P",
+                                "M22191M",
+                                "M22202B",
+                                "M23027P",
+                                "M23030P",
+                                "M23071S",
+                                "M23071S-1",
+                                "M23073I",
+                                "M23074I",
+                                "M23075I",
+                                "M23078I",
+                                "M23080I",
+                                "MCA021209501",
+                                "MCB12P-LX34201",
+                                "MCV00070AH",
+                                "MCV00070AH #2",
+                                "MCV00135AH",
+                                "MCV00135AH#2",
+                                "MCV00308AB",
+                                "MCV00680AC",
+                                "MCV00680AC#2",
+                                "MCV00701AL",
+                                "MCV00706AH",
+                                "MCV01396AA",
+                                "MCV01397AA",
+                                "MCV01414AA",
+                                "MCV01443AA",
+                                "MCV01445AA",
+                                "MCV01446AA",
+                                "MDT00176AA",
+                                "MEAAA008130",
+                                "MEAAA008150",
+                                "MEC00243AD-4",
+                                "MEC00590AE",
+                                "MEC00590AE#3",
+                                "MEC00590AE#4",
+                                "MEC00829AA",
+                                "MFR01350AA",
+                                "MHU00840AA",
+                                "MOT00093AB",
+                                "MPL00524AF #2",
+                                "MPL00526AF #2",
+                                "MPL02875AA",
+                                "MSP00129AA",
+                                "MTY00188AL",
+                                "MTY00188AL #2",
+                                "MTY00188AL #3",
+                                "MUC02-AR0101",
+                                "MUC02-AR0102",
+                                "MUC02-AR0103",
+                                "MUC02-AT0001",
+                                "MUC02-BA0007",
+                                "MUC02-BR0005",
+                                "MUC02-BR0008",
+                                "MUC02-BR0008S",
+                                "MUC02-DL0002",
+                                "MUC02-DL0014",
+                                "MUC02-DL0015",
+                                "MUC02-DL0016",
+                                "MUC02-DL0017",
+                                "MUC02-DL0018",
+                                "MUC02-DP0001",
+                                "MUC02-FC0010",
+                                "MUC02-TA0001",
+                                "MUC02-TA0002",
+                                "MUC02-TA0037",
+                                "MUC02-TA0040",
+                                "MUC02-TA0041",
+                                "MUC02-UN0001",
+                                "MUC02-UN0003",
+                                "MUC02-UN0059",
+                                "MUC02-UN0061",
+                                "MUC02-UN0200",
+                                "MUC02-UN0301",
+                                "P6F13-AC510",
+                                "P6F13-AC520",
+                                "P6F13-AC550",
+                                "P7F13-ABA10",
+                                "P7F13-ABA20",
+                                "P7F13-ABA50",
+                                "P7F13-AC510",
+                                "P7F13-AC520",
+                                "P7F13-AC550",
+                                "PBF004-01",
+                                "PBF006-01",
+                                "PBF007-01",
+                                "PBF008-01",
+                                "PBF009-01",
+                                "PBF010-01",
+                                "PBF015-01",
+                                "PBF019-01",
+                                "PBF020-02",
+                                "PBF021-01",
+                                "PBF023-03",
+                                "PBF024-01",
+                                "PBF025-01",
+                                "PMD001-01",
+                                "PMD004-01",
+                                "PMD006-01",
+                                "PMD008-01",
+                                "PMSBP-RA0108-00",
+                                "PMSBP-RA0109-00",
+                                "PMSBP-RA0110-00",
+                                "PMSBP-RA0111-00",
+                                "PMSBP-RA0112-00",
+                                "PMSBP-RA0113",
+                                "PMSUP-RA0209-00",
+                                "R-M3x10L",
+                                "VF804 5836",
+                                "VF804 5837",
+                                "발사관전방마개",
+                                "핸들커버",
+                                "화이트자재박스"
+                            ]
+                        },
+                        "yAxis": [
+                            {
+                                "title": {
+                                    "text": "생산정보"
+                                }
+                            },
+                            {
+                                "title": {
+                                    "text": "달성률"
+                                },
+                                "opposite": true
+                            }
+                        ],
+                        "series": [
+                            {
+                                "name": "지시량",
+                                "data": [
+                                    0,
+                                    3291,
+                                    8802,
+                                    12606,
+                                    53728,
+                                    56823,
+                                    4875,
+                                    21425,
+                                    5021,
+                                    3355
+                                ],
+                                "yAxis": 0
+                            },
+                            {
+                                "name": "생산량",
+                                "data": [
+                                    0,
+                                    4217,
+                                    3591,
+                                    4074,
+                                    44465,
+                                    17159,
+                                    4119,
+                                    29355,
+                                    4401,
+                                    1637
+                                ],
+                                "yAxis": 0
+                            },
+                            {
+                                "name": "달성률",
+                                "data": [
+                                    0,
+                                    4217 / 3291 * 100,
+                                    3591 / 8802 * 100,
+                                    4074 / 12606 * 100,
+                                    44465 / 53728 * 100,
+                                    17159 / 56823 * 100,
+                                    4119 / 4875 * 100,
+                                    29355 / 21425 * 100,
+                                    4401 / 5021 * 100,
+                                    1637 / 3355 * 100
+                                ],
+                                "yAxis": 1,
+                                "type": "spline"
+                            }
+                        ]
+                });
+
+                }).catch(e => $hs.errorBox(e))
+            },
+            cellDoubleClick: function (data) {
+                //data.$ : 컨트롤객체(그리드)
+                //data.dataField : dataField
+                ///data.index : 현재 row index
+                //data.visibleIndex : 현재 row visibleIndex
+                //data.rowData : 현재 row 데이타
+
+                $hs.$("panel_input").val(data.rowData);
+                $hs.$("modalDialog").open();
+            }
+        }
+    }
+
+    $hs.load(() => {
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // button
+        $hs.ui.button.init({ id: "btnNew", enabled: @W});
+        //$hs.ui.button.init({ id: "btnSave" });
+        $hs.ui.button.init({ id: "btnDel", enabled: @W});
+
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            rownumber: true,
+            filterable: false,
+            editable: false,
+            handler: true,
+        })
+            .columns(col => {
+
+                col.add({ dataField: "colA", label: "A", width: 100 })
+                col.add({ dataField: "colB", label: "B", width: 100 })
+                col.add({ dataField: "colC", label: "C", width: 100 })
+                col.add({ dataField: "colD", label: "D", width: 100 })
+                col.add({ dataField: "colE", label: "E", width: 100 })
+                col.add({ dataField: "colF", label: "F", width: 100 })
+                col.add({ dataField: "colG", label: "G", width: 100 })
+                col.add({ dataField: "colH", label: "H", width: 100 })
+            });
+
+        $hs.chart.high.init({
+            id : "chart", // div의 id
+            //chart: {
+            //    type : "bar"
+            //},
+            title: {
+                text: 'U.S Solar Employment Growth',
+                align: 'left'
+            },
+
+            subtitle: {
+                text: 'By Job Category. Source: <a href="https://irecusa.org/programs/solar-jobs-census/" target="_blank">IREC</a>.',
+                align: 'left'
+            },
+
+            yAxis: {
+                title: {
+                    text: 'Number of Employees'
+                }
+            },
+
+            xAxis: {
+                accessibility: {
+                    rangeDescription: 'Range: 2010 to 2020'
+                }
+            },
+
+            legend: {
+                layout: 'vertical',
+                align: 'right',
+                verticalAlign: 'middle'
+            },
+
+            plotOptions: {
+                series: {
+                    label: {
+                        connectorAllowed: false
+                    },
+                    pointStart: 2010
+                }
+            },
+
+            responsive: {
+                rules: [{
+                    condition: {
+                        maxWidth: 500
+                    },
+                    chartOptions: {
+                        legend: {
+                            layout: 'horizontal',
+                            align: 'center',
+                            verticalAlign: 'bottom'
+                        }
+                    }
+                }]
+            },
+        })
+
+
+        // modal
+        $hs.html.panel.init({ id: 'panel_input' });
+        $hs.html.select.init({ id: "cbo1", data: [{ label: "애플", value: "Apple" }, { label: "삼성", value: "Samsung" }, { label: "샤오미", value: "Xiaomi" }], val: "Apple" });
+        $hs.html.select.init({ id: "cbo2", data: [{ label: "대한민국", value: "kor" }, { label: "미국", value: "usa" }, { label: "일본", value: "jpn" }, { label: "중국", value: "chn" }], val: "kor" });
+        $hs.html.select.init({ id: "cbo3", data: [{ label: "a", value: "a" }, { label: "b", value: "b" }, { label: "c", value: "c" }, { label: "d", value: "d" }], val: "a" });
+
+        $hs.ui.button.init({ id: "btnSave_input", enabled: @W });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">샘플002</div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">예제메뉴</li>
+            <li class="breadcrumb-item active">샘플002</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <button id="btnSearch" type="button" class="btn btn-search">search</button>
+            <button id="btnNew" type="button" class="btn btn-add">add</button>
+            <button id="btnDel" type="button" class="btn shadow btn-delete">delete</button>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box" flex>
+
+                <div class="box-header">
+                    <!--서브 상단 필터 영역-->
+                    <div class="grid-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>분류1 :</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="cbo1"></select>
+                                </div>
+
+                                <div class="control-label"><label>분류2 :</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="cbo2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body" flex>
+
+                    <div class="grid-container" flex>
+                        <div id="chart" style="width:100%;height:300px"></div>
+                    </div>
+
+                    <div class="grid-container" flex>
+                        <!-- s:grid content -->
+                        <div id="grid"></div>
+                        <!-- /e:grid content -->
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:800px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">작업분류 등록/수정</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>* A</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colA">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>* B</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colB">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>C</label></div>
+                        <div class="control-form">
+                            <select class="form-control" id="cbo3" hs-df="colC"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>D</label></div>
+                        <div class="control-form">
+                            <input type="number" class="form-control" hs-df="colD">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>E</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-datepicker form-control" data-toggle="datepicker" style="width:100%;" hs-df="colE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>F</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colF">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>G</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colG">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>H</label></div>
+                        <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력" hs-df="colH"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_input" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

@@ -1,0 +1,363 @@
+﻿@page
+@model HS.Web.Pages.problem_report
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+    string first_plan_id = Model.Params["first_plan_id"].AsString();
+}
+
+
+<script>
+    let allData = [];
+    let isLoading = false; // 조회 중 여부
+
+
+     // 최신버번 PLAN_ID
+    let first_plan_id = '@first_plan_id';
+    // 헤더컬럼 초기값 정의
+    const defaultColumns = [
+        { dataField: "PROBLEM_TYPE_NM", label: "PROBLEM_TYPE", width: 150, editable: false},
+        { dataField: "PROBLEM_DESCR_NM", label: "PROBLEM상세", width: 200, editable: false },
+        //{ dataField: "NODE_TYPE", label: "NODE_TYPE", width: 100, editable: false},     
+        { dataField: "문제공정", label: "PROBLEM 공정", width: 150, editable: false},        
+        { dataField: "DEMAND_ID", label: "JOB_NAME", width: 200, editable: false, },
+        { dataField: "ITEM_NAME", label: "ITEM_NAME", width: 200, editable: false, },
+        { dataField: "PROBLEM_QTY", label: "LOT QTY", width: 100, editable: false,  },
+      
+       // { dataField: "PLAN_ID", label: "PLAN ID", width: 100, editable: false, },    
+    ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+                toServer["offset"] = 0;       // 시작 위치
+                toServer["limit"] = 300;      // 한 번에 가져올 건수
+
+                isLoading = true;
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    allData = fromServer["data"]; // 초기 데이터 저장
+
+                    console.log(fromServer["total_count"]);
+
+                    $hs.$("grid").data(fromServer["data"]);
+                    $('#total_cnt').text('(Total Count:' + fromServer["total_count"][0].Column1 + ')');
+                    
+
+                    isLoading = false;
+                }).catch(e => {
+                    $hs.errorBox(e);
+                    isLoading = false;
+                });
+            }
+        },     
+        "grid" : {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+        },
+         "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "PROBLEM_REPORT");
+            }
+        },
+        "plan_id" : {
+            change : function(data) {
+                // console.log(data);
+                // // PLAN ID 선택 시 달력에 시작날짜를 세팅한다.
+                // // data.value 잘라서 날짜형식으로 바꾸기
+                // const plan_id_parts = data.value.split("_");
+                // const date_part = plan_id_parts[1];
+                // // Date 포맷으로 변경
+                // const date_format = `${date_part.slice(0,4)}-${date_part.slice(4,6)}-${date_part.slice(6,8)}`;
+                // const dateObj = new Date(date_format);
+
+                // // 이번 달 마지막 날
+                // const endDate = new Date(dateObj.getTime() + 14 * 24 * 60 * 60 * 1000)
+
+                // // 실제 input에 설정
+                // document.getElementById('start_date').value = formatDate(dateObj);
+                // document.getElementById('end_date').value = formatDate(endDate);
+
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+        $hs.html.panel.init({ id: "pnlSearch" });
+      
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+      
+
+        // grid setting
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="grid" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        const scrollContainer = _instance.element().find(".dx-scrollable-container");
+
+        scrollContainer.on("scroll", function () {
+            const scrollTop = $(this).scrollTop();
+            const scrollHeight = $(this)[0].scrollHeight;
+            const clientHeight = $(this).height();
+
+            if (scrollTop + clientHeight >= scrollHeight - 10) {
+                // 스크롤 끝에 닿았음
+                loadMoreData(); // 추가 데이터 요청
+            }
+        });
+
+        function loadMoreData() {
+            if(isLoading) return; // 로딩중이면 안함
+
+            const offset = allData.length;
+            const limit = 300;
+
+            isLoading = true;
+
+            $hs.fetch({
+                command: "search",
+                param: {
+                    terms: $hs.$("pnlSearch").val(),
+                    offset: offset,
+                    limit: limit
+                }
+            }).then(fromServer => {
+                allData = allData.concat(fromServer["data"]);
+                $hs.$("grid").data(allData); // 이어붙인 데이터로 다시 바인딩
+                // $('#total_cnt').text('(Total Count:' + allData.length + ')');
+
+                isLoading = false;
+            }).catch(e => {
+                $hs.errorBox(e);
+                isLoading = false;
+            });
+        }
+
+
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+
+          $hs.html.select.init({
+            id: "ddl_PROBLEM_TYPE",
+            dataurl: "/api/data/PROBLEM_TYPE_GB",
+            valueMember: "PROBLEM_TYPE",
+            displayMember: "PROBLEM_TYPE_NM",
+            val: ""
+        });
+                
+        $hs.html.select.init({
+            id: "plan_id",
+            dataurl: "/api/data/PLAN_ID",
+            valueMember: "PLAN_ID",
+            displayMember: "PLAN_ID",
+             // val : ""
+            val: first_plan_id
+        });
+
+        
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        $hs.html.input.initAll();
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">Problem Report</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">PLAN ANALYSIS</li>
+            <li class="breadcrumb-item active">Problem Report</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+
+                            <div class="form-group">
+                                <div class="control-label"><label>PROBLEM_TYPE</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="ddl_PROBLEM_TYPE" hs-df="PROBLEM_TYPE" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>PLAN ID</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="plan_id" hs-df="PLAN_ID" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                    <div class="header-title">
+                        Problem Report
+                        <span class="title-list-count">
+                            <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                        </span>
+                    </div>
+                    <div class="header-btn">
+                        @* <button id="btn_grid_save" type="button" class="btn btn-save">save</button> *@
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="PROBLEM_REPORT"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

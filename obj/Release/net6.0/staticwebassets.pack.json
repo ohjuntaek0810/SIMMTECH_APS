@@ -1,0 +1,665 @@
+{
+  "Files": [
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\dx.light.compact.css",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\dx.light.compact.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\dx.material.blue.light.compact.css",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\dx.material.blue.light.compact.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\dx.material.purple.dark.compact.css",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\dx.material.purple.dark.compact.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-300.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-300.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-300.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-300.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-300.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-300.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-400.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-400.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-400.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-400.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-400.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-400.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-500.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-500.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-500.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-500.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-500.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-500.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-700.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-700.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-700.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-700.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\fonts\\Roboto-700.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\fonts\\Roboto-700.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxicons.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxicons.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxicons.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxicons.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxicons.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxicons.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsfluent.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsfluent.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsfluent.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsfluent.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsfluent.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsfluent.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsmaterial.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsmaterial.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsmaterial.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsmaterial.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\devex\\icons\\dxiconsmaterial.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\devex\\icons\\dxiconsmaterial.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\font\\smart-icons.eot",
+      "PackagePath": "staticwebassets\\Core\\css\\font\\smart-icons.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\font\\smart-icons.svg",
+      "PackagePath": "staticwebassets\\Core\\css\\font\\smart-icons.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\font\\smart-icons.ttf",
+      "PackagePath": "staticwebassets\\Core\\css\\font\\smart-icons.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\font\\smart-icons.woff",
+      "PackagePath": "staticwebassets\\Core\\css\\font\\smart-icons.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\font\\smart-icons.woff2",
+      "PackagePath": "staticwebassets\\Core\\css\\font\\smart-icons.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\smart.default.css",
+      "PackagePath": "staticwebassets\\Core\\css\\smart.default.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\css\\smart.hstest.css",
+      "PackagePath": "staticwebassets\\Core\\css\\smart.hstest.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\dx.all.js",
+      "PackagePath": "staticwebassets\\Core\\js\\dx.all.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\highcharts-more.js",
+      "PackagePath": "staticwebassets\\Core\\js\\highcharts-more.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\highcharts.js",
+      "PackagePath": "staticwebassets\\Core\\js\\highcharts.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\hs.core.min.js",
+      "PackagePath": "staticwebassets\\Core\\js\\hs.core.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\hs.ui.min.js",
+      "PackagePath": "staticwebassets\\Core\\js\\hs.ui.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\hs.ui.min222.js",
+      "PackagePath": "staticwebassets\\Core\\js\\hs.ui.min222.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\jquery.min.js",
+      "PackagePath": "staticwebassets\\Core\\js\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\signalr.js",
+      "PackagePath": "staticwebassets\\Core\\js\\signalr.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\signalr.min.js",
+      "PackagePath": "staticwebassets\\Core\\js\\signalr.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\smart.elements.js",
+      "PackagePath": "staticwebassets\\Core\\js\\smart.elements.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\solid-gauge.js",
+      "PackagePath": "staticwebassets\\Core\\js\\solid-gauge.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\Core\\js\\solid-gauge.src.js",
+      "PackagePath": "staticwebassets\\Core\\js\\solid-gauge.src.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\adminlte.min.css",
+      "PackagePath": "staticwebassets\\dist\\css\\adminlte.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\adminlte.min.css.map",
+      "PackagePath": "staticwebassets\\dist\\css\\adminlte.min.css.map"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\base.css",
+      "PackagePath": "staticwebassets\\dist\\css\\base.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\custom.json",
+      "PackagePath": "staticwebassets\\dist\\css\\custom.json"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\login.css",
+      "PackagePath": "staticwebassets\\dist\\css\\login.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\sub.css",
+      "PackagePath": "staticwebassets\\dist\\css\\sub.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\css\\ui.css",
+      "PackagePath": "staticwebassets\\dist\\css\\ui.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\bg-login.png",
+      "PackagePath": "staticwebassets\\dist\\images\\bg-login.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\bg-visual.jpg",
+      "PackagePath": "staticwebassets\\dist\\images\\bg-visual.jpg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\download.png",
+      "PackagePath": "staticwebassets\\dist\\images\\download.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-01.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-01.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-02.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-02.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-03.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-03.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-04.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-04.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-05.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-05.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-06.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-06.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-07.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-07.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-admin.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-admin.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-etc.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-etc.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-intro.jpg",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-intro.jpg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-masterdata.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-masterdata.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-orderpromising.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-orderpromising.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-plananalysis.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-plananalysis.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\img-main-box-plancontrol.png",
+      "PackagePath": "staticwebassets\\dist\\images\\img-main-box-plancontrol.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-hss-emblem.png",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-hss-emblem.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-hss-txt.png",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-hss-txt.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-she-emblem.svg",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-she-emblem.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-she-txt.svg",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-she-txt.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-she.svg",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-she.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-simmtech-emblem.png",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-simmtech-emblem.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-simmtech-txt.png",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-simmtech-txt.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-simmtech.png",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-simmtech.png"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-techsquare-white.svg",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-techsquare-white.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\images\\logo-techsquare.svg",
+      "PackagePath": "staticwebassets\\dist\\images\\logo-techsquare.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\adminlte.min.js",
+      "PackagePath": "staticwebassets\\dist\\js\\adminlte.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\adminlte.min.js.map",
+      "PackagePath": "staticwebassets\\dist\\js\\adminlte.min.js.map"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\jquery.mousewheel.js",
+      "PackagePath": "staticwebassets\\dist\\js\\jquery.mousewheel.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\jquery.scrolltabs.js",
+      "PackagePath": "staticwebassets\\dist\\js\\jquery.scrolltabs.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\login.js",
+      "PackagePath": "staticwebassets\\dist\\js\\login.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\sub.js",
+      "PackagePath": "staticwebassets\\dist\\js\\sub.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\dist\\js\\ui.js",
+      "PackagePath": "staticwebassets\\dist\\js\\ui.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\favicon.ico",
+      "PackagePath": "staticwebassets\\favicon.ico"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\index.html",
+      "PackagePath": "staticwebassets\\index.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\js\\common.js",
+      "PackagePath": "staticwebassets\\js\\common.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\login.html",
+      "PackagePath": "staticwebassets\\login.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\main.html",
+      "PackagePath": "staticwebassets\\main.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\bootstrap\\js\\bootstrap.bundle.min.js",
+      "PackagePath": "staticwebassets\\plugins\\bootstrap\\js\\bootstrap.bundle.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\bootstrap\\js\\bootstrap.bundle.min.js.map",
+      "PackagePath": "staticwebassets\\plugins\\bootstrap\\js\\bootstrap.bundle.min.js.map"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\bootstrap\\js\\bootstrap.min.js",
+      "PackagePath": "staticwebassets\\plugins\\bootstrap\\js\\bootstrap.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\bootstrap\\js\\bootstrap.min.js.map",
+      "PackagePath": "staticwebassets\\plugins\\bootstrap\\js\\bootstrap.min.js.map"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\css\\boxicons.min.css",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\css\\boxicons.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\fonts\\boxicons.eot",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\fonts\\boxicons.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\fonts\\boxicons.svg",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\fonts\\boxicons.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\fonts\\boxicons.ttf",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\fonts\\boxicons.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\fonts\\boxicons.woff",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\fonts\\boxicons.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\boxicons\\fonts\\boxicons.woff2",
+      "PackagePath": "staticwebassets\\plugins\\boxicons\\fonts\\boxicons.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\datepicker\\css\\datepicker.min.css",
+      "PackagePath": "staticwebassets\\plugins\\datepicker\\css\\datepicker.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\datepicker\\js\\datepicker.ko-kr.js",
+      "PackagePath": "staticwebassets\\plugins\\datepicker\\js\\datepicker.ko-kr.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\datepicker\\js\\datepicker.min.js",
+      "PackagePath": "staticwebassets\\plugins\\datepicker\\js\\datepicker.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\all.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\all.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\all.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\all.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\brands.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\brands.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\brands.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\brands.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\fontawesome.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\fontawesome.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\fontawesome.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\fontawesome.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\regular.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\regular.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\regular.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\regular.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\solid.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\solid.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\solid.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\solid.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\svg-with-js.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\svg-with-js.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\svg-with-js.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\svg-with-js.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\v4-shims.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\v4-shims.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\css\\v4-shims.min.css",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\css\\v4-shims.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.eot",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.svg",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.ttf",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.woff",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.woff2",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-brands-400.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.eot",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.svg",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.ttf",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.woff",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.woff2",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-regular-400.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.eot",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.svg",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.ttf",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.woff",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.woff2",
+      "PackagePath": "staticwebassets\\plugins\\fontawesome-free\\webfonts\\fa-solid-900.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\jquery\\jquery.min.js",
+      "PackagePath": "staticwebassets\\plugins\\jquery\\jquery.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\jquery\\jquery.min.map",
+      "PackagePath": "staticwebassets\\plugins\\jquery\\jquery.min.map"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\overlayScrollbars\\css\\OverlayScrollbars.min.css",
+      "PackagePath": "staticwebassets\\plugins\\overlayScrollbars\\css\\OverlayScrollbars.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\overlayScrollbars\\js\\OverlayScrollbars.min.js",
+      "PackagePath": "staticwebassets\\plugins\\overlayScrollbars\\js\\OverlayScrollbars.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\overlayScrollbars\\js\\jquery.overlayScrollbars.min.js",
+      "PackagePath": "staticwebassets\\plugins\\overlayScrollbars\\js\\jquery.overlayScrollbars.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\fonts\\poppins-v23-latin-500.woff2",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\fonts\\poppins-v23-latin-500.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\fonts\\poppins-v23-latin-600.woff2",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\fonts\\poppins-v23-latin-600.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\fonts\\poppins-v23-latin-700.woff2",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\fonts\\poppins-v23-latin-700.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\fonts\\poppins-v23-latin-800.woff2",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\fonts\\poppins-v23-latin-800.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\fonts\\poppins-v23-latin-regular.woff2",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\fonts\\poppins-v23-latin-regular.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\poppins\\poppins.css",
+      "PackagePath": "staticwebassets\\plugins\\poppins\\poppins.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\pretendard\\fonts\\Pretendard-Bold.subset.woff2",
+      "PackagePath": "staticwebassets\\plugins\\pretendard\\fonts\\Pretendard-Bold.subset.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\pretendard\\fonts\\Pretendard-Medium.subset.woff2",
+      "PackagePath": "staticwebassets\\plugins\\pretendard\\fonts\\Pretendard-Medium.subset.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\pretendard\\fonts\\Pretendard-Regular.subset.woff2",
+      "PackagePath": "staticwebassets\\plugins\\pretendard\\fonts\\Pretendard-Regular.subset.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\pretendard\\fonts\\Pretendard-SemiBold.subset.woff2",
+      "PackagePath": "staticwebassets\\plugins\\pretendard\\fonts\\Pretendard-SemiBold.subset.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\pretendard\\pretendard.css",
+      "PackagePath": "staticwebassets\\plugins\\pretendard\\pretendard.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\scrolling-bootstrap-tabs\\css\\scrollable-tabs.min.css",
+      "PackagePath": "staticwebassets\\plugins\\scrolling-bootstrap-tabs\\css\\scrollable-tabs.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\scrolling-bootstrap-tabs\\js\\scrollable-tabs.min.js",
+      "PackagePath": "staticwebassets\\plugins\\scrolling-bootstrap-tabs\\js\\scrollable-tabs.min.js"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\css\\xeicon.min.css",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\css\\xeicon.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\fonts\\xeicon.eot",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\fonts\\xeicon.eot"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\fonts\\xeicon.svg",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\fonts\\xeicon.svg"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\fonts\\xeicon.ttf",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\fonts\\xeicon.ttf"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\fonts\\xeicon.woff",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\fonts\\xeicon.woff"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\fonts\\xeicon.woff2",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\fonts\\xeicon.woff2"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\plugins\\xeicon\\xeicon.min.css",
+      "PackagePath": "staticwebassets\\plugins\\xeicon\\xeicon.min.css"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\sub-layout-form.html",
+      "PackagePath": "staticwebassets\\sub-layout-form.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\sub-layout-grid.html",
+      "PackagePath": "staticwebassets\\sub-layout-grid.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\sub-layout-image.html",
+      "PackagePath": "staticwebassets\\sub-layout-image.html"
+    },
+    {
+      "Id": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\wwwroot\\sub-layout.html",
+      "PackagePath": "staticwebassets\\sub-layout.html"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.APS_SIMMTECH.Microsoft.AspNetCore.StaticWebAssetEndpoints.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssetEndpoints.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.APS_SIMMTECH.Microsoft.AspNetCore.StaticWebAssets.props",
+      "PackagePath": "build\\Microsoft.AspNetCore.StaticWebAssets.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.build.APS_SIMMTECH.props",
+      "PackagePath": "build\\APS_SIMMTECH.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildMultiTargeting.APS_SIMMTECH.props",
+      "PackagePath": "buildMultiTargeting\\APS_SIMMTECH.props"
+    },
+    {
+      "Id": "obj\\Release\\net6.0\\staticwebassets\\msbuild.buildTransitive.APS_SIMMTECH.props",
+      "PackagePath": "buildTransitive\\APS_SIMMTECH.props"
+    }
+  ],
+  "ElementsToRemove": []
+}

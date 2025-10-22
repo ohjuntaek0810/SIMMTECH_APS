@@ -1,0 +1,57 @@
+﻿CLIENT									CHAR(4)				--client
+ASSET_ID								VARCHAR(100)			--Asset 아이디
+ASSET_NM								VARCHAR(200)			--Asset 이름
+PARENT_ASSET_ID							VARCHAR(100)			--Parent Asset 아이디
+MODE_CD									INT(11)				--0:운영모드, 1: 시뮬레이션모드, 2: TEST 모드
+AREAID									INT(11)				--DT의 위험 요소 위치 ID
+HRF_CLSF_S_CD							VARCHAR(20)			--유해위험요인 소분류 CODE
+RAT_S_CD								VARCHAR(20)			--공정 세부분류 소분류 CODE
+LINE_CD									VARCHAR(20)			--생산라인코드(SI_ORG_LINE)
+STREAM_URL								VARCHAR(200)			--관제 PC에서 중계되는 STREAM 영상 URL
+TO_DT_ALARM								VARCHAR(200)			--DT에서 보여 주는 화면 형태 TABLE: DT_HRF_ALARM_CODE 참조
+CTRL_YN									CHAR(1)				--인터락 사용여부 Y:사용, N: 사용안함
+TLAP_CTRL_YN							CHAR(1)				--타워램프 사용 여부 Y: 사용, N: 사용안함
+SMS_YN									CHAR(1)				--SMS 송신 여부
+SMS_RECEIVE_LIST						VARCHAR(1000)			--SMS 수신 대상 리스트(01011112222, 01022223333)
+CTRLSYTM_ALERT_SND_YN					CHAR(1)				--관제 시스템 소리 알람 사용 여부
+CTRLSYTM_ALERT_SCN_YN					CHAR(1)				--관제 시스템 화면 알람 사용 여부
+ASSET_LOC								VARCHAR(200)			--위치
+ASSET_FCLT_CD							VARCHAR(20)			--설비(SI_ORG_FACILITY - FCL_CD)
+ASSET_GUBUN								VARCHAR(100)			--구분 = Parent Asset 아이디
+UPDATE_RESN								VARCHAR(200)			--변경 사유
+UPDATE_CONTNT							VARCHAR(200)			--변경 내용
+ASSET_TEMP1_MAX							DECIMAL(18,0)			--온도 최대값1
+ASSET_TEMP1_MIN							DECIMAL(18,0)			--온도 최소값1
+ASSET_TEMP1_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_TEMP2_MAX							DECIMAL(18,0)			--온도 최대값2
+ASSET_TEMP2_MIN							DECIMAL(18,0)			--온도 최소값2
+ASSET_TEMP2_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_TEMP3_MAX							DECIMAL(18,0)			--온도 최대값3
+ASSET_TEMP3_MIN							DECIMAL(18,0)			--온도 최소값3
+ASSET_TEMP3_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_PRES1_MAX							DECIMAL(18,0)			--압력 최대값
+ASSET_PRES1_MIN							DECIMAL(18,0)			--압력 최소값
+ASSET_PRES1_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_PRES2_MAX							DECIMAL(18,0)			--압력 최대값
+ASSET_PRES2_MIN							DECIMAL(18,0)			--압력 최소값
+ASSET_PRES2_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_PRES3_MAX							DECIMAL(18,0)			--압력 최대값
+ASSET_PRES3_MIN							DECIMAL(18,0)			--압력 최소값
+ASSET_PRES3_UNIT						VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_ETC1_MAX							DECIMAL(18,0)			--기타1 최대값
+ASSET_ETC1_MIN							DECIMAL(18,0)			--기타1 최소값
+ASSET_ETC1_UNIT							VARCHAR(20)				--Unit COMMON CODE 입력 값
+ASSET_ETC2_MAX							DECIMAL(18,0)			--기타2 최대값
+ASSET_ETC2_MIN							DECIMAL(18,0)			--기타2 최소값
+ASSET_ETC2_UNIT							VARCHAR(20)			--Unit COMMON CODE 입력 값
+PLC_IP_1								VARCHAR(400)			--PLC IP ADDRESS 1(안전도어 인터락)
+PLC_PORT_1								INT(11)				--PLC PORT 1
+PLC_SIGNAL_TO_1							VARCHAR(40)			--SIignal 1
+PLC_IP_2								VARCHAR(400)			--PLC IP ADDRESS 2(경광등)
+PLC_PORT_2								INT(11)				--PLC PORT 2
+PLC_SIGNAL_TO_2							VARCHAR(40)			--SIignal 2
+PLC_IP_3								VARCHAR(400)			--PLC IP ADDRESS 3(예비)
+PLC_PORT_3								INT(11)				--PLC PORT 3
+PLC_SIGNAL_TO_3							VARCHAR(40)			--SIignal 3
+USE_YN									CHAR(1)				--사용 유무
+USERID									VARCHAR(20)			--

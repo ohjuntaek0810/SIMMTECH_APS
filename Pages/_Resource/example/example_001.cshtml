@@ -1,0 +1,270 @@
+﻿@page
+@model HS.Web.Pages.example_001
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    $hs.handler = {
+        "txtSearch": {
+            keyup: function (data) {
+
+                if (data.key == "Enter") {
+                    $hs.handler["btnSearch"].click();
+                    $hs.$("grid").expand();
+                }
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btnNew": {
+            click: function () {
+                $hs.$("panel_input").reset();
+
+                $hs.$("modalDialog").open();
+            }
+        },
+        "btnSave_input": {
+            click: function () {
+
+                return alert("Click Save!");
+            }
+        },
+        "btnDel": {
+            click: function () {
+                return alert("Click Delete!");
+            }
+        },
+        "grid": {
+            cellDoubleClick: function (data) {
+                //data.$ : 컨트롤객체(그리드)
+                //data.dataField : dataField
+                ///data.index : 현재 row index
+                //data.visibleIndex : 현재 row visibleIndex
+                //data.rowData : 현재 row 데이타
+
+                $hs.$("panel_input").val(data.rowData);
+                $hs.$("modalDialog").open();
+            }
+        }
+    }
+
+    $hs.load(() => {
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // button
+        $hs.ui.button.init({ id: "btnNew", enabled: @W});
+        //$hs.ui.button.init({ id: "btnSave" });
+        $hs.ui.button.init({ id: "btnDel", enabled: @W});
+
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "600px",
+            sortable: true,
+            selectMode: "single",
+            rownumber: true,
+            filterable: true,
+            editable: true,
+            handler: true,
+        })
+            .columns(col => {
+
+                col.add({ dataField: "colA", label: "A", width: "10%" })
+                col.add({ dataField: "colB", label: "B", width: "20%" })
+                col.add({ dataField: "colC", label: "C", width: "30%" })
+                col.add({ dataField: "colD", label: "D", width: "10%" })
+                col.add({ dataField: "colE", label: "E", width: "10%" })
+                col.add({ dataField: "colF", label: "F", width: "5%" })
+                col.add({ dataField: "colG", label: "G", width: "10%" })
+                col.add({ dataField: "colH", label: "H", width: "10%" })
+            });
+
+        // modal
+        $hs.html.panel.init({ id: 'panel_input' });
+        $hs.html.select.init({ id: "cbo1", data: [{ label: "애플", value: "Apple" }, { label: "삼성", value: "Samsung" }, { label: "샤오미", value: "Xiaomi" }], val: "Apple" });
+        $hs.html.select.init({ id: "cbo2", data: [{ label: "대한민국", value: "kor" }, { label: "미국", value: "usa" }, { label: "일본", value: "jpn" }, { label: "중국", value: "chn" }], val: "kor" });
+        $hs.html.select.init({ id: "cbo3", data: [{ label: "a", value: "a" }, { label: "b", value: "b" }, { label: "c", value: "c" }, { label: "d", value: "d" }], val: "a" });
+
+        $hs.ui.button.init({ id: "btnSave_input", enabled: @W });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">샘플001</div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">예제메뉴</li>
+            <li class="breadcrumb-item active">샘플001</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <button id="btnSearch" type="button" class="btn btn-search">search</button>
+            <button id="btnNew" type="button" class="btn btn-add">add</button>
+            <button id="btnDel" type="button" class="btn shadow btn-delete">delete</button>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box" flex>
+
+                <div class="box-header">
+                    <!--서브 상단 필터 영역-->
+                    <div class="grid-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>분류1 :</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="cbo1"></select>
+                                </div>
+
+                                <div class="control-label"><label>분류2 :</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="cbo2"></select>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <!-- s:grid content -->
+                        <div id="grid"></div>
+                        <!-- /e:grid content -->
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:800px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">작업분류 등록/수정</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>* A</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colA">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>* B</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colB">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="row">
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>C</label></div>
+                        <div class="control-form">
+                            <select class="form-control" id="cbo3" hs-df="colC"></select>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>D</label></div>
+                        <div class="control-form">
+                            <input type="number" class="form-control" hs-df="colD">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-4">
+                    <div class="form-group">
+                        <div class="control-label"><label>E</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-datepicker form-control" data-toggle="datepicker" style="width:100%;" hs-df="colE">
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>F</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colF">
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>G</label></div>
+                        <div class="control-form">
+                            <input type="text" class="form-control" placeholder="내용을 입력" hs-df="colG">
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>H</label></div>
+                        <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력" hs-df="colH"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_input" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

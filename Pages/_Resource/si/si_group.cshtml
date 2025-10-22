@@ -1,0 +1,274 @@
+﻿@page
+@model HS.Web.Pages.si_group
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    $hs.handler = {
+        "txtSearch": {
+            keyup: function (data) {
+
+                if (data.key == "Enter") {
+                    $hs.handler["btnSearch"].click();
+                }
+
+            }
+        },
+        "btnSearch" : {
+            click : function(){
+
+                let toServer = {};
+                
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btnNew" : {
+            click : function(){
+                document.getElementById('GRP_ID').readOnly = false;
+                $hs.$("panel_input").reset();
+                
+                $hs.$("modalDialog").open();
+            }
+        },
+        "btnSave_input": {
+            click : function(){
+
+                let toServer = {};
+                toServer["data"] = $hs.$("panel_input").val();
+
+                $hs.fetch({
+                    command : "save",
+                    param : toServer
+                }).then(fromServer => {
+                    alert("저장 되었습니다.");
+                    $hs.$("modalDialog").close();
+                    // 다시 조회
+                    $hs.handler["btnSearch"].click();
+                
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "btnDel" : {
+            click : function(){
+
+                let selData = $hs.$("grid").val();
+
+                if (selData.length == 0) {
+                    alert("삭제할 항목을 체크해 주세요.");
+                    return;
+                }
+
+                if(confirm("선택한 항목을 삭제 하시겠습니까?")){
+
+                    let toServer = {};
+                    toServer["data"] = selData;
+                
+                    $hs.fetch({
+                        command: "delete",
+                        param: toServer
+                    }).then(fromServer => {
+
+                        // 다시 조회
+                        $hs.handler["btnSearch"].click();
+
+
+                    }).catch(e => $hs.errorBox(e))
+                
+                }
+
+            }
+        },
+        "grid": {
+            cellDoubleClick: function (data) {
+                //data.$ : 컨트롤객체(그리드)
+                //data.dataField : dataField
+                ///data.index : 현재 row index
+                //data.visibleIndex : 현재 row visibleIndex
+                //data.rowData : 현재 row 데이타
+
+                document.getElementById("GRP_ID").readOnly = true;
+
+                let toServer = {};
+                toServer["terms"] = data.rowData;
+                console.log("data = ", data.rowData)
+                $hs.fetch({
+                    command: "view",
+                    param: toServer
+                }).then(fromServer => {
+                    console.log(fromServer["data"])
+                    $hs.$("panel_input").val(fromServer["data"]);
+                    $hs.$("modalDialog").open();
+                }).catch(e => $hs.errorBox(e))
+            }
+        }
+    }
+
+    $hs.load(() => {
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"], enabled: @R });
+
+        // button
+        $hs.ui.button.init({ id: "btnNew", enabled: @W});
+        $hs.ui.button.init({ id: "btnDel", enabled: @W });
+
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // select box 
+        $hs.html.select.init({ id: "com1", data: [{ label: "Y", value: "Y" }, { label: "N", value: "N" }], val: "Y" });
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "600px",
+            selectMode: "single",
+            sortable: true,
+            rownumber: true,
+            filterable: true,
+            handler: true,
+        })
+        .columns(col => {
+            col.add({
+                dataField: "CLIENT"
+                , label: "CLIENT"
+                , width: 200
+                , visible: false
+            })
+            col.add({
+                dataField: "GRP_ID"
+                , label: "그룹코드"
+                , width: 200
+            })
+            col.add({
+                dataField: "GRP_NM"
+                , label: "그룹명"
+                , width: 200
+            })
+            col.add({
+                dataField: "USE_YN"
+                , label: "사용여부"
+                , width: 100
+                , align: "center"
+            })
+            col.add({
+                dataField: "RMK"
+                , label: "비고"
+                , width: 320
+            })
+        });
+
+        // modal
+        $hs.html.panel.init({ id: 'panel_input' });
+
+        $hs.ui.button.init({ id: "btnSave_input", enabled: @W });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">사용자 그룹관리</div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">환경설정</li>
+            <li class="breadcrumb-item active">사용자 그룹관리</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div id="pnlSearch" class="form-search form-search-text shadow">
+                <input id="txtSearch" type="text" class="form-control" placeholder="사용자ID, 사용자명 입력" hs-df="search" hs-handler="true">
+                <button id="btnSearch" type="button" class="btn btn-search"><span class="blind">search</span></button>
+            </div>
+            <button id="btnNew" type="button" class="btn shadow btn-add">add</button>
+            <button id="btnDel" type="button" class="btn shadow btn-delete">delete</button>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box" flex>
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">사용자 그룹 등록/수정</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>그룹코드</label></div>
+                        <div class="control-form"><input id="GRP_ID" type="text" class="form-control" placeholder="내용을 입력" hs-df="GRP_ID" readonly></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>그룹명</label></div>
+                        <div class="control-form"><input id="GRP_NM" type="text" class="form-control" placeholder="내용을 입력" hs-df="GRP_NM"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <div class="control-label"><label>사용여부</label></div>
+                        <div class="control-form"><select id="com1" class="form-control" style="width:100%;" hs-df="USE_YN" hs-handler="true"></select></div>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>비고</label></div>
+                        <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력" hs-df="RMK"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_input" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

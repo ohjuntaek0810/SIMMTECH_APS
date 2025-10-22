@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<!--
+https://go.microsoft.com/fwlink/?LinkID=208121.
+-->
+<Project>
+  <PropertyGroup>
+    <_PublishTargetUrl>D:\Dev\Products\APS\APS_SIMMTECH\bin\Release\net6.0\publish\</_PublishTargetUrl>
+    <History>True|2025-06-30T01:10:12.9172056Z||;True|2025-06-18T10:32:15.6314885+09:00||;True|2025-05-28T12:13:35.5360734+09:00||;True|2025-05-28T11:42:46.0844609+09:00||;True|2025-05-28T09:19:03.2347897+09:00||;True|2025-05-27T10:00:00.4076717+09:00||;True|2025-05-09T10:13:50.5650710+09:00||;True|2025-03-19T17:09:56.7615847+09:00||;False|2024-11-05T10:17:46.6581095+09:00||;True|2024-08-12T11:23:55.3459473+09:00||;True|2024-06-10T14:22:33.7694887+09:00||;True|2024-05-30T14:23:37.3808849+09:00||;True|2024-02-15T18:20:13.2644343+09:00||;True|2023-12-19T09:53:38.7376797+09:00||;</History>
+    <LastFailureDetails />
+  </PropertyGroup>
+</Project>

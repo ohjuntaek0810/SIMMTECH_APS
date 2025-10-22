@@ -1,0 +1,386 @@
+﻿@page
+@model HS.Web.Pages.delivery_scheduler
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btn_item_code_box_open": {
+            click: function () {
+                $hs.$("itemCodeBox").open();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("delivery_scheduler_info").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "delivery_scheduler_info": {
+            cellClick: function(data) {
+                console.log(data);
+
+                let toServer = {};
+                toServer["terms"] = data.rowData;
+
+                $hs.fetch({
+                    command: "search_detail",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("delivery_scheduler_detail_info").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            },
+        },
+        "btn_grid_save": {
+            click: function () {
+                alert('준비중 입니다.');
+            },
+        },
+        "btn_excel_download": {
+            click : function() {
+                let toServer = {};
+
+                toServer["terms"] = $hs.$("pnlSearch").val();
+                console.log("toServer = " + JSON.stringify(toServer));
+
+                $hs.post({
+                    command: "ExcelDownload",
+                    param: toServer
+                });
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "delivery_scheduler_info", "dimension_grid");
+            }
+        },
+        "btnSave_dimension" : { // dimension 변경내용 저장
+            click : function() {
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", "delivery_scheduler_info", "dimension_grid");
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // grid save
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        // text Box open
+        $hs.ui.button.init({ id: "btn_item_code_box_open" });
+
+        // delivery_scheduler_info
+        $hs.dx.grid.init({
+            id: "delivery_scheduler_info",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "multiple",
+            rownumber: true,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+        })
+        // 헤더컬럼 초기값 정의
+        const defaultColumns = [
+            { dataField: "Sales Order ID", label: "Planning Date", width: 150, editable: false },
+            { dataField: "Item ID", label: "Team", width: 130, editable: false },
+            { dataField: "Demand Type", label: "Customer", width: 130, editable: false },
+            { dataField: "긴급도", label: "Ship To", width: 100, editable: false },
+            { dataField: "Order QTY", label: "Model", width: 130, editable: false },
+            { dataField: "Inventory QTY", label: "SO Number", width: 130, editable: false },
+            { dataField: "납기준수 여부", label: "Item code", width: 100, editable: false },
+            { dataField: "Scheduled Date", label: "요청일", width: 200, editable: false },
+            { dataField: "입고 예상일", label: "QTY_PCS", width: 100, editable: false },
+            { dataField: "지연 예상일수", label: "QTY_SQM", width: 150, editable: false },
+            { dataField: "납기준수량", label: "현 재고", width: 150, editable: false },
+            { dataField: "지연수량", label: "비고", width: 150, editable: true },
+            { dataField: "test1", label: "처리상태", width: 150, editable: true },
+            { dataField: "test2", label: "수주확정 여부", width: 150, editable: true },
+            { dataField: "test3", label: "차일 계획 유지 여부", width: 150, editable: true },
+            { dataField: "test4", label: "자재 점검 필요 여부", width: 150, editable: true },
+            { dataField: "test5", label: "Remark", width: 150, editable: true }
+        ];
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="lot_routing_sequence_info" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("delivery_scheduler_info", defaultColumns);
+
+        // delivery_scheduler_detail_info
+        $hs.dx.grid.init({
+            id: "delivery_scheduler_detail_info",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+        })
+        // 헤더컬럼 초기값 정의
+        const detailDefaultColumns = [
+            { dataField: "Sales Order ID", label: "Sales Order ID", width: 150, editable: false },
+            { dataField: "Order QTY", label: "Order QTY", width: 130, editable: false },
+            { dataField: "Lot ID", label: "Lot ID", width: 130, editable: false },
+            { dataField: "Lot QTY", label: "Lot QTY", width: 100, editable: false },
+            { dataField: "Pegged QTY", label: "Pegged QTY", width: 130, editable: false },
+            { dataField: "Lot Status", label: "Lot STatus", width: 130, editable: false },
+            { dataField: "공정그룹 Location", label: "공정그룹 Location", width: 100, editable: false },
+            { dataField: "상세공정 Location", label: "상세공정 Location", width: 200, editable: false },
+            { dataField: "Site", label: "Site", width: 100, editable: false },
+            { dataField: "Dept", label: "Dept", width: 150, editable: false },
+            { dataField: "Scheduled Date", label: "Scheduled Date", width: 150, editable: false },
+            { dataField: "납기 준수여부", label: "납기 준수여부", width: 150, editable: true },
+            { dataField: "Hold 여부", label: "Hold 여부", width: 150, editable: true },
+            { dataField: "Hold 해제 예정일", label: "Hold 해제 예정일", width: 150, editable: true },
+            { dataField: "입고 예상일", label: "입고 예상일", width: 150, editable: true },
+            { dataField: "지연 예상 일수", label: "지연 예상 일수", width: 150, editable: true },
+            { dataField: "지연 사유", label: "지연 사유", width: 150, editable: true }
+        ];
+        $hs.util.$CommonUtil.getGridSetting("delivery_scheduler_detail_info", detailDefaultColumns);
+
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+
+        $hs.dx.poptextbox.init({
+            id: "itemCodeBox",
+            //label : "",
+            placeholder: "",
+            dataField: "ITEM_CODE",
+            // displayField: "ITEM_CODE",   단일 input으로 활용할때
+            //displayBindField: "DIV_NM", // mergeParent가 true 이고 별도의 input에 바인딩이 필요할때
+            width: "150px",
+            enabled: true,
+            mergeParent: true, //
+            handler: true, // handler true 일시 이벤트 등록이 가능
+            //handlerName : "testhandler", // 핸들러 명칭 지정시 해당 핸들러로 호출 가능
+        }).popup(grid => {
+
+            grid.set({
+                width: "250px",
+                height: "300",
+                rownumber: true,
+                dataurl: "/api/data/ITEM_CODE",
+            });
+
+            grid.columns(col => {
+                col.add({
+                    label: "ITEM_CODE", dataField: "ITEM_CODE", width: 200
+                });
+            })
+
+        });
+
+
+        // Search Pannel
+        $hs.html.select.init({ 
+            id: "group_id", 
+            data: [{ label: "전체", value: "" },{ label: "SPS", value: "SPS" }, { label: "HDI", value: "HDI" }],
+            val: "" 
+        });
+        
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">납기 산출</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">Order Promising</li>
+            <li class="breadcrumb-item active">납기 산출</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>사업부</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Item Code</label></div>
+                                <div class="control-form">
+                                    <div class="input-group form-search">
+                                        <input type="text" id="itemCodeBox" class="form-control" placeholder="Search">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-search" id="btn_item_code_box_open"><span class="blind">search</span></button>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Sales Order ID</label></div>
+                                <div class="control-form">
+                                    <div class="input-group form-search">
+                                        <input type="text" id="srch_sales_order_id" class="form-control" placeholder="Search">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                    <div class="header-title">납기 산출 정보<span class="title-list-count"><small></small></span></div>
+                    <div class="header-btn">
+                        <button id="btn_grid_save" type="button" class="btn btn-save">save</button>
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body">
+                    <div class="grid-container">
+                        <div id="delivery_scheduler_info" data-grid-id="DELIVERY_SCHEDULER"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="box-header">
+                    <div class="header-title">납기 산출 상세정보<span class="title-list-count"><small></small></span></div>
+                    <div class="header-btn">
+                        <button id="btn_detail_grid_save" type="button" class="btn btn-save">save</button>
+                        <button id="btn_detail_excel_download" type="button" class="btn btn-download">excel</button>
+                        <button id="btn_detail_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <div class="box-body">
+                    <div class="grid-container">
+                        <div id="delivery_scheduler_detail_info" data-grid-id="DELIVERY_SCHEDULER_DETAIL"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

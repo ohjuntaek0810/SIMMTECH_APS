@@ -1,0 +1,494 @@
+﻿@page
+@model HS.Web.Pages.control_resource_item
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+<script>
+      
+    var cur_dimension = "";
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                toServer["terms"]["INPUT_TYPE"] = 'ITEM'    // ITEM / CUSTOMER
+                
+
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                    $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "grid": {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+                if (data.dataField == "ITEM_CODE") {
+                    data.cell.css("color", "blue");
+                }
+                if (data.dataField == "CUSTOMER_NAME") {
+                    data.cell.css("color", "blue");
+                }
+                if (data.dataField == "RESOURCE_CAPA_GROUP_NAME") {
+                    data.cell.css("color", "blue");
+                }
+                if (data.dataField == "PREFER_RESOURCE_NAME") {
+                    data.cell.css("color", "blue");
+                }
+                if (data.dataField == "DESCRIPTION") {
+                    data.cell.css("color", "blue");
+                }
+                data.cell.css("text-align", "center");
+            },
+
+            cellValueChanged: function (data) {
+                data.rowData["$update"] = true;
+                // 2025-09-16 프레임워크 오류로 다른 방법 처리
+                if(data.dataField == "ITEM_CODE")
+                {
+                    let item_code = data.value
+                    if(item_code.length > 10) {
+                        let toServer = {};
+                        let trems ={};
+                        trems["ITEM_CODE"] = data.value;
+                        toServer["trems"] = trems;
+                        $hs.fetch({
+                            command: "GET_CBST_SPEC_BASIC",
+                            param: toServer
+                        }).then(fromServer => {
+                            let trems_result = fromServer["trems_result"][0];
+
+                            $hs.$("grid").rowData(data.index, {
+                                ITEM_CODE : trems_result["ITEM_CODE"],                               
+                                ITEM_NAME : trems_result["ITEM_NAME"],                              
+                            });
+                        }).catch(e => $hs.errorBox(e))
+                    }
+                }
+
+            },
+
+        },
+        "btn_grid_add": {
+            click: function () {
+
+                let pnlSearch = $hs.$("pnlSearch").val();
+                if(pnlSearch["group_id"] =="" || pnlSearch["group_id"] == null)
+                {
+                    alert('DIVISION 구분을 선택 하세요');
+                    document.getElementById("group_id").focus();
+                    return false;
+                }
+              //  $hs.$("grid").addRow();
+
+                $hs.$("grid").addRow({
+                     DIVISION_ID : pnlSearch["group_id"],
+                     ORGANIZATION_ID : "101",
+                     INPUT_TYPE : "ITEM",
+                    $update : true
+                });
+
+                setTimeout(() => {
+                    const instance = $hs.$("grid")._instance;
+                    const scrollable = instance.getScrollable();
+                    if (scrollable) {
+                        scrollable.scrollTo({ top: 999999 }); // 맨 아래로 스크롤
+                    }
+                }, 100);
+            }
+        }
+        ,
+        "btn_grid_delete": {
+            click: function () {
+                let toServer = {};
+                toServer["searchterms"] = $hs.$("pnlSearch").val();
+                let selData = $hs.$("grid").val();
+
+                if (selData.length == 0) {
+                     alert("삭제할 항목을 체크해 주세요.");
+                     return;
+                }
+
+                if(confirm("선택한 항목을 삭제 하시겠습니까?")){
+
+                    toServer["data"] = selData;
+                    $hs.fetch({
+                        command: "delete",
+                        param: toServer
+                    }).then(fromServer => {
+                        // 다시 조회
+                        $hs.$("grid").data(fromServer["data"]);                     
+                    }).catch(e => $hs.errorBox(e))
+
+                }
+
+            }
+         }
+        ,
+        "btn_grid_save": {
+            click: function () {
+                let updated_data = [];
+                // 클릭 이력으로 수정 or 입력여부 체크
+                $hs.$("grid").data().forEach(item => {
+                    if(item.$rowChecked == false ) {
+                        updated_data.push(item);
+                    }
+                });
+
+                let toServer = {};
+                toServer["data"] = updated_data;
+
+                $hs.fetch({
+                    command: "save",
+                    param: toServer
+                }).then(fromServer => {
+                    alert("저장되었습니다.");
+                    $hs.handler["btnSearch"].click();
+                }).catch(e => $hs.errorBox(e))
+            },
+        },
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "CUST_RGG");
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.$("modalDialog").open();
+                cur_dimension = 'grid';
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+            }
+        },
+        "btnSave_dimension" : { // dimension 변경내용 저장
+            click : function() {
+                //console.log('cur_dimension = ', cur_dimension);
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", cur_dimension, "dimension_grid", defaultColumns);
+            }
+        },
+        "group_id" : {
+            change : function(data) {
+                let division_id = data.value;
+                // CAPA GROUP
+                $hs.html.select.init({
+                    id: "resource_capa_group",
+                    dataurl: "/api/data/RESOURCE_MES_CAPA?DIVISION_ID=" + $hs.$("group_id").val(),
+                    valueMember: "CODE",
+                    displayMember: "NAME",                   
+                });
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 설비그룹 Capa 최신버전 헤더로 
+
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // grid save
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        $hs.ui.button.init({ id: "btn_grid_add" });   
+        $hs.ui.button.init({ id: "btn_grid_delete" });
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "multiple",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        }).columns(col => {            
+            col.add({ dataField: "ITEM_CUST_IDX", label: "ITEM_CUST_IDX", width: 120, editable: false, visible:false, align:"center" })
+            col.add({ dataField: "ORGANIZATION_ID", label: "ORGANIZATION_ID", width: 120, editable: true, visible:false, align:"center" })
+            col.add({ dataField: "DIVISION_ID", label: "DIVISION_ID", width: 120, editable: true, visible:false, align:"center" })
+            col.add({ dataField: "INPUT_TYPE", label: "INPUT_TYPE", width: 120, editable: false, visible:true, align:"center" })
+            col.add({ dataField: "ITEM_CODE", label: "ITEM_CODE", width: 120, editable: true, align:"center" })
+            col.add({ dataField: "ITEM_NAME", label: "ITEM_NAME", width: 200, editable: false })
+            col.add({ dataField: "RESOURCE_CAPA_GROUP_ID", label: "RESOURCE_CAPA_GROUP_ID", width: 150, editable: false, align:"center" })
+            col.add({
+                dataField: "RESOURCE_CAPA_GROUP_NAME"
+                , displayField: "RESOURCE_CAPA_GROUP_NAME" // displayField에 해당되는 정의된 컬럼이 있으면 그쪽으로 바인딩, 없으면 데이타소스에 저장
+                , label: "RESOURCE_CAPA_GROUP_NAME"
+                , width: 150
+                , popValueField: "RESOURCE_CAPA_GROUP_NAME" // 팝업그리드에서 value에 해당되는 컬럼을 지정
+                , popTextField: "RESOURCE_CAPA_GROUP_NAME"  // 팝업그리드에서 text에 해당되는 컬럼을 지정
+                , type: "poptextbox"
+                , mergeParent: true          // (기본값 (false))
+                , grid: {                    // 팝업 그리드 속성 정의
+                    width: "500px",
+                    height: "300px",                  
+                    dataurl: "/api/data/ITEM_CUST__TAR_DEPT_MASTER_WITH_NAME_V",
+                    columns: [
+                        { label: "CAPA_GROUP_ID", dataField: "RESOURCE_CAPA_GROUP_ID", width: 200 },
+                        { label: "CAPA_GROUP_NAME", dataField: "RESOURCE_CAPA_GROUP_NAME", width: 200 },
+                    ]
+                }
+            })
+            col.add({ dataField: "PREFER_RESOURCE_ID", label: "PREFER_RESOURCE_ID", width: 150, editable: false, align:"center" })
+            col.add({
+                dataField: "PREFER_RESOURCE_NAME"
+                , displayField: "PREFER_RESOURCE_NAME" // displayField에 해당되는 정의된 컬럼이 있으면 그쪽으로 바인딩, 없으면 데이타소스에 저장
+                , label: "PREFER_RESOURCE_NAME"
+                , width: 150
+                , popValueField: "PREFER_RESOURCE_NAME" // 팝업그리드에서 value에 해당되는 컬럼을 지정
+                , popTextField: "PREFER_RESOURCE_NAME"  // 팝업그리드에서 text에 해당되는 컬럼을 지정
+                , type: "poptextbox"
+                , mergeParent: true          // (기본값 (false))
+                , grid: {                    // 팝업 그리드 속성 정의
+                    width: "700px",
+                    height: "300px",
+                    dataurl: "/api/data/ITEM_CUST__APS_ENG_SITE_RESOURCE_LIST_V",
+                    columns: [
+                        { label: "RESOURCE_ID", dataField: "PREFER_RESOURCE_ID", width: 200 },
+                        { label: "RESOURCE_NAME", dataField: "PREFER_RESOURCE_NAME", width: 200 },
+                        { label: "SITE_ID", dataField: "PREFER_SITE_ID", width: 200 },
+                    ]
+                }
+            })
+            col.add({ dataField: "PREFER_SITE_ID", label: "PREFER_SITE_ID", width: 120, editable: false, align:"center" })
+            col.add({ dataField: "DESCRIPTION", label: "DESCRIPTION", width: 120, editable: true, align:"center" })
+            col.add({ dataField: "USE_YN", label: "USE_YN", width: 120, editable: true, visible:false, align:"center" })
+        });
+        
+       // $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+        
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // 사업부
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST_FOR_DEPARTMENT",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: "SPS"
+        });
+
+        // CAPA GROUP
+        $hs.html.select.init({
+            id: "resource_capa_group",
+            dataurl: "/api/data/RESOURCE_MES_CAPA",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+
+        // USE_YN
+        $hs.html.select.init({ id: "use_yn", data: [{ label : "ALL", value: "" }, { label : "Y", value: "Y" }, { label : "N", value: "N" }], val: "Y" });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        $hs.html.input.initAll();
+    });
+
+    window.addEventListener('DOMContentLoaded', function () {
+       $hs.$("grid").data(null);
+    });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">Item 기준 사이트 지정</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">Plan Control</li>
+            <li class="breadcrumb-item active">Item 기준 사이트 지정</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>CAPA GROUP</label></div>
+                                <div class="control-form">
+                                    <select style="width:200px !important;" class="form-control" id="resource_capa_group" hs-df="resource_capa_group" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>USE_YN</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="use_yn" hs-df="use_yn"></select>
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div> 
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <div class="box-header">
+                    <div class="header-title" id="aps_capa_rev">
+                                    Item 기준 사이트 지정
+                        <span class="title-list-count">
+                            <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                        </span>
+                    </div>
+                    <div class="header-btn">
+                        <button id="btn_grid_save" type="button" class="btn btn-save">Save</button>
+                        <button id="btn_grid_add" type="button" class="btn btn-add">Row Add</button>
+                        <button id="btn_grid_delete" type="button" class="btn btn-delete">Delete</button>
+                        <button id="btn_excel_download" type="button" class="btn btn-download" hs-btn>excel</button>
+                        <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="CONTROL_CUST_RESOURCE"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

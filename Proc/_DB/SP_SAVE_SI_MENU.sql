@@ -1,0 +1,79 @@
+﻿CREATE OR ALTER PROCEDURE SP_SAVE_TH_GUI_MENU
+(
+	 @CMP_CD		VARCHAR(20)
+	,@MENU_CD		VARCHAR(100) OUTPUT
+	,@MENU_NM		VARCHAR(100)
+	,@UP_MENU_CD	VARCHAR(100)
+	,@SORT			INT
+	,@S_URL			VARCHAR(255)
+	,@MENU_NM_DTL	VARCHAR(255)
+	,@I_CLASS		VARCHAR(128)
+	,@TARGET		VARCHAR(60)
+	,@VIEW_YN		CHAR(1)
+	,@USE_YN		CHAR(1)
+	,@USER_ID		VARCHAR(20)
+)
+AS
+BEGIN
+
+	IF EXISTS (SELECT 1 FROM TH_GUI_MENU WHERE CMP_CD = @CMP_CD AND MENU_CD = @MENU_CD)
+	BEGIN
+　		UPDATE TH_GUI_MENU
+		SET
+			 MENU_NM		= @MENU_NM
+			,UP_MENU_CD		= @UP_MENU_CD	
+			,SORT			= @SORT			
+			,S_URL			= @S_URL			
+			,MENU_NM_DTL	= @MENU_NM_DTL
+			,I_CLASS		= @I_CLASS		
+			,TARGET			= @TARGET		
+			,VIEW_YN		= @VIEW_YN	
+			,USE_YN			= @USE_YN	
+			,MDF_ID			= @USER_ID
+			,MDF_DM			= CURRENT_TIMESTAMP
+		WHERE   CMP_CD = @CMP_CD
+			AND MENU_CD = @MENU_CD
+	END
+	ELSE
+	BEGIN
+		INSERT INTO TH_GUI_MENU (
+			 CMP_CD
+			,MENU_CD
+			,MENU_NM		
+			,UP_MENU_CD		
+			,SORT			
+			,S_URL			
+			,MENU_NM_DTL	
+			,I_CLASS		
+			,TARGET			
+			,VIEW_YN		
+			,USE_YN			
+			,REG_ID
+			,REG_DM
+		) 
+		VALUES (
+			 @CMP_CD
+			,@MENU_CD
+			,@MENU_NM
+			,@UP_MENU_CD
+			,@SORT			
+			,@S_URL		
+			,@MENU_NM_DTL
+			,@I_CLASS		
+			,@TARGET		
+			,@VIEW_YN	
+			,@USE_YN	
+			,@USER_ID
+			,CURRENT_TIMESTAMP
+		)
+
+		EXECUTE [dbo].[SP_SAVE_TH_GUI_USER_AUTH] 
+		   @CMP_CD	    -- @CMP_CD
+		  ,@MENU_CD		-- @MENU_CD
+		  ,'admin' 	    -- @USER_ID
+		  ,7			-- 권한 (1 : READ, 2 : WRITE, 4 : EXECUTE) 1, 3, 7로 구분  
+		  ,@USE_YN		-- @USE_YN
+		  ,@USER_ID	    -- @USER_ID
+	END
+
+END;

@@ -1,0 +1,69 @@
+﻿USE [APS_SIMMTECH_2501_DEV]
+GO
+
+/****** Object:  StoredProcedure [dbo].[SP_SAVE_TH_GUI_MENU]    Script Date: 2025-01-21 오전 10:14:48 ******/
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+
+CREATE   PROCEDURE [dbo].[SP_SAVE_SI_CODE_GROUP]
+(
+	 @CMP_CD		VARCHAR(20)
+	,@GRP_CD		VARCHAR(20) OUTPUT
+	,@GRP_NM		VARCHAR(100)
+	,@UP_GRP_CD		VARCHAR(20)
+	,@USE_YN		CHAR(1)
+	,@SYS_YN		CHAR(1)
+	,@RMK			TEXT
+	,@USER_ID		VARCHAR(20)
+)
+AS
+BEGIN
+
+	IF EXISTS (SELECT 1 FROM SI_CODE_GROUP WHERE CMP_CD = @CMP_CD AND GRP_CD = @GRP_CD)
+	BEGIN
+　		UPDATE SI_CODE_GROUP
+		SET
+			 GRP_NM		= @GRP_NM
+			,UP_GRP_CD	= @UP_GRP_CD	
+			,USE_YN		= @USE_YN			
+			,SYS_YN		= @SYS_YN			
+			,RMK		= @RMK
+			,MDF_ID		= @USER_ID
+			,MDF_DM		= CURRENT_TIMESTAMP
+		WHERE   CMP_CD = @CMP_CD
+			AND GRP_CD = @GRP_CD
+	END
+	ELSE
+	BEGIN
+		INSERT INTO SI_CODE_GROUP (
+			 CMP_CD
+			,GRP_CD
+			,GRP_NM		
+			,UP_GRP_CD	
+			,USE_YN			
+			,SYS_YN			
+			,RMK			
+			,REG_ID
+			,REG_DM
+		) 
+		VALUES (
+			 @CMP_CD
+			,@GRP_CD
+			,@GRP_NM
+			,@UP_GRP_CD	
+			,@USE_YN			
+			,@SYS_YN			
+			,@RMK
+			,@USER_ID
+			,CURRENT_TIMESTAMP
+		)
+	END
+
+END;
+GO
+
+

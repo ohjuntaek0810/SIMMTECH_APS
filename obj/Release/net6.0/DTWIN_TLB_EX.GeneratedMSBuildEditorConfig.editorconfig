@@ -1,0 +1,113 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DTWIN_TLB_EX
+build_property.RootNamespace = DTWIN_TLB_EX
+build_property.ProjectDir = F:\Products\TWIN\DTWIN_TLB_EX\
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = F:\Products\TWIN\DTWIN_TLB_EX
+build_property._RazorSourceGeneratorDebug = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/main_bak.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbl9iYWsuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/main_V2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbl9WMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/Shared/_Layout_V2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfVjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/dt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/eqp_mttr_mtbf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVxcF9tdHRyX210YmYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/eqp_overall_efficiency.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVxcF9vdmVyYWxsX2VmZmljaWVuY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/lca_carbon_emissions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9jYXJib25fZW1pc3Npb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/lca_dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9kYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/lca_energy_monitoring.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9lbmVyZ3lfbW9uaXRvcmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/prd_achieve_rate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9hY2hpZXZlX3JhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/prd_daily_productivity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9kYWlseV9wcm9kdWN0aXZpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/prd_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9zdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/qlt_defect_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHFsdF9kZWZlY3Rfc3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[F:/Products/TWIN/DTWIN_TLB_EX/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

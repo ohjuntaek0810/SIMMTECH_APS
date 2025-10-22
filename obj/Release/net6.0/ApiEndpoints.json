@@ -1,0 +1,188 @@
+[
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CMN_CD",
+    "RelativePath": "api/data/CMN_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CST_CD",
+    "RelativePath": "api/data/CST_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DIV_CD",
+    "RelativePath": "api/data/DIV_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DPT_CD",
+    "RelativePath": "api/data/DPT_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "GRP_CD",
+    "RelativePath": "api/data/GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "LOGIN_GRP_CD",
+    "RelativePath": "api/data/LOGIN_GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "MONTH",
+    "RelativePath": "api/data/MONTH",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TIME_HH",
+    "RelativePath": "api/data/TIME_HH",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TIME_MM",
+    "RelativePath": "api/data/TIME_MM",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_CMN_CD",
+    "RelativePath": "api/data/UP_CMN_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_GRP_CD",
+    "RelativePath": "api/data/UP_GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_MENU_CD",
+    "RelativePath": "api/data/UP_MENU_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "USER_ID",
+    "RelativePath": "api/data/USER_ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "YEAR",
+    "RelativePath": "api/data/YEAR",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "yn",
+    "RelativePath": "api/data/yn",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "down",
+    "RelativePath": "api/file/down",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "down",
+    "RelativePath": "api/file/down",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "upload",
+    "RelativePath": "api/file/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

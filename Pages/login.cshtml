@@ -1,0 +1,145 @@
+﻿@page
+@model HS.Web.Pages.loginModel
+@{
+
+    Layout = null;
+
+    string Ref = Model.Params["Ref"].AsString();
+    string Type = Model.Params["dt"].AsString();
+}
+
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>2025 APS</title>
+
+    @await Html.PartialAsync("~/Pages/Partial/_ScriptCss_login.cshtml")
+
+    <script>
+
+        let refUrl = '@Ref';
+        let type = '@Type';
+       
+        $hs.handler = {
+            "PASSWD": {
+                keyup: function (data) {
+                    if (data.key == "Enter") {
+
+                        $hs.handler["btnLogin"].click();
+                    }
+
+                }
+            },
+            "btnLogin": {
+                click: function () {
+
+                    let toServer = {};
+                    toServer["terms"] = $hs.$("login-form").val();
+                    
+                    toServer["terms"].CLIENT = "0100";
+                    console.log(toServer["terms"]);
+
+                    $hs.fetch({
+                        command: "login",
+                        param: toServer
+                    }).then(fromServer => {
+
+                        if (fromServer["data"] == true) {
+                            if(refUrl != ""){
+                                window.location.href = refUrl;
+                            }
+                            else{
+                                window.location.href = "/main";
+                            }
+                        }
+                        else {
+                            let error = document.querySelectorAll("#error-message");
+                            error.forEach(e => {
+                                e.style.display = "inline";
+                            })
+                        }
+
+                    }).catch()
+                }
+            }
+        }
+       
+        $hs.load(() => {
+            $hs.html.panel.init({ id: 'login-form' });
+            // $hs.ui.textbox.init({ id: 'CLIENT', dataField: "CLIENT" });
+            $hs.ui.textbox.init({ id: 'USER_ID', dataField: "USER_ID" });
+            $hs.ui.textbox.init({ id: 'PASSWD', dataField: "PASSWD" });
+            $hs.ui.checkbox.init({ id: 'chk-id-keep', dataField: "chk-id-keep" });
+            $hs.html.input.initAll();
+
+            let uid = $hs.cookie.get("UID");
+            // let client = $hs.cookie.get("CLIENT");
+            let chk_id_keep = $hs.cookie.get("chk-id-keep");
+
+            // $hs.$("CLIENT").val(client);
+            $hs.$("USER_ID").val(uid);
+            $hs.$("chk-id-keep").val(chk_id_keep);
+        });
+       
+    </script>
+</head>
+<body>
+
+    <!-- s:wrapper -->
+    <div class="wrapper">
+        <!-- s:Content Wrapper. Login page content -->
+        <div class="content-login">
+            <!-- s:logo -->
+            <div class="login-logo">
+                <img src="./dist/images/logo-simmtech.png" alt="SIMMTECH" />
+            </div>
+            <!-- /e:logo -->
+            <hr>
+            <!-- s:로그인 form -->
+            <div id="login-content">
+                <div id="login-form">
+                    <div class="login-title">
+                        Log in.
+                    </div>
+                    <div class="form-group form-id">
+                        <label class="input-label">아이디</label>
+                        <input type="text" class="form-control" name="userid" id="USER_ID" placeholder="Enter your ID">
+                        <span class="form-icon"></span>
+                    </div>
+                    <div class="form-group form-password">
+                        <label class="input-label">비밀번호</label>
+                        <input type="password" class="form-control" name="userpassword" id="PASSWD" hs-handler="true" hs-df="PASSWD" placeholder="Enter your PASSWORD">
+                        <span class="form-icon"></span>
+                    </div>
+                    <div class="form-group id-keep-wrap">
+                        <input type="checkbox" id="chk-id-keep" class="substituted" aria-hidden="true">
+                        <label for="chk-id-keep">Remember me</label>
+                    </div>
+                    <div id="error-message" class="error-message" style="display:none;">
+                        <!-- 로그인 오류 메세지 -->
+                        아이디 또는 비밀번호를 잘못 입력했습니다.
+                    </div>
+                    <hr>
+                    <button type="button" class="btn-login" id = "btnLogin" hs-btn>LOGIN</button>
+                    <hr>
+                    <ul class="login-guide">
+                        <li>본 시스템은 인가된 사용자만 접속이 가능합니다.</li>
+                        <li>불법적인 목적으로 접속을 시도하시는 경우 관련 법에 의해서 처벌 받을 수 있음을 알려드립니다.</li>
+                    </ul>
+                </div>
+            </div>
+            <!-- /e:로그인 form -->
+        </div>
+        <!-- /e:content-wrapper -->
+        <footer class="main-footer">
+            Copyright &copy; 2025 HS SOFT. All rights reserved.
+        </footer>
+    </div>
+    <!-- /e:wrapper -->
+
+</body>
+</html>
