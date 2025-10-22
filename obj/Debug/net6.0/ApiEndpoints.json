@@ -1,0 +1,608 @@
+[
+  {
+    "ContainingType": "HS.Web.Controllers.BaseController",
+    "Method": "SimpleOk",
+    "RelativePath": "api/comdata",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.BaseController",
+    "Method": "SimpleOk",
+    "RelativePath": "api/data",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_DEPT_GRP",
+    "RelativePath": "api/data/APS_DEPT_GRP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_ENG_SITE_RESOURCE_LIST_V__CAPA_GROUP_ID",
+    "RelativePath": "api/data/APS_ENG_SITE_RESOURCE_LIST_V__CAPA_GROUP_ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_ENG_SITE_RESOURCE_LIST_V__SITE_ID",
+    "RelativePath": "api/data/APS_ENG_SITE_RESOURCE_LIST_V__SITE_ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_ENG_SITE_RESOURCE_LIST_V_PDATALIST",
+    "RelativePath": "api/data/APS_ENG_SITE_RESOURCE_LIST_V_PDATALIST",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_RESOURCE_GROUP",
+    "RelativePath": "api/data/APS_RESOURCE_GROUP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_RESOURCE_GROUP_V2",
+    "RelativePath": "api/data/APS_RESOURCE_GROUP_V2",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "APS_RESOURCE_NAME",
+    "RelativePath": "api/data/APS_RESOURCE_NAME",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "BOTTLE_NECK",
+    "RelativePath": "api/data/BOTTLE_NECK",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CATEGORY_LEVEL1",
+    "RelativePath": "api/data/CATEGORY_LEVEL1",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CATEGORY_LEVEL2",
+    "RelativePath": "api/data/CATEGORY_LEVEL2",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CMN_CD",
+    "RelativePath": "api/data/CMN_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "CST_CD",
+    "RelativePath": "api/data/CST_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DEPARTMENT_CLASS",
+    "RelativePath": "api/data/DEPARTMENT_CLASS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DEPARTMENT_NAME",
+    "RelativePath": "api/data/DEPARTMENT_NAME",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DIV_CD",
+    "RelativePath": "api/data/DIV_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DIVISION_LIST",
+    "RelativePath": "api/data/DIVISION_LIST",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DIVISION_LIST_FOR_DEPARTMENT",
+    "RelativePath": "api/data/DIVISION_LIST_FOR_DEPARTMENT",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DIVISION_LIST_NOT_IN_ALL",
+    "RelativePath": "api/data/DIVISION_LIST_NOT_IN_ALL",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "DPT_CD",
+    "RelativePath": "api/data/DPT_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "GET_AR_CUSTOMERS",
+    "RelativePath": "api/data/GET_AR_CUSTOMERS",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "GROUP_GUBUN",
+    "RelativePath": "api/data/GROUP_GUBUN",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "GRP_CD",
+    "RelativePath": "api/data/GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "ITEM_CODE",
+    "RelativePath": "api/data/ITEM_CODE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "ITEM_CODE_FOR_ROUTING",
+    "RelativePath": "api/data/ITEM_CODE_FOR_ROUTING",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "ITEM_CUST__APS_ENG_SITE_RESOURCE_LIST_V",
+    "RelativePath": "api/data/ITEM_CUST__APS_ENG_SITE_RESOURCE_LIST_V",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "ITEM_CUST__TAR_DEPT_MASTER_WITH_NAME_V",
+    "RelativePath": "api/data/ITEM_CUST__TAR_DEPT_MASTER_WITH_NAME_V",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "LOGIN_GRP_CD",
+    "RelativePath": "api/data/LOGIN_GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "MONTH",
+    "RelativePath": "api/data/MONTH",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "OFF_SHIFT",
+    "RelativePath": "api/data/OFF_SHIFT",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "OWN_OUT_GBN",
+    "RelativePath": "api/data/OWN_OUT_GBN",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "PATTERN_TYPE",
+    "RelativePath": "api/data/PATTERN_TYPE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "PLAN_DETAIL",
+    "RelativePath": "api/data/PLAN_DETAIL",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "PLAN_ID",
+    "RelativePath": "api/data/PLAN_ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "PROBLEM_TYPE_GB",
+    "RelativePath": "api/data/PROBLEM_TYPE_GB",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "RESOURCE_CAPA_GROUP",
+    "RelativePath": "api/data/RESOURCE_CAPA_GROUP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "RESOURCE_CODE",
+    "RelativePath": "api/data/RESOURCE_CODE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "RESOURCE_MES_CAPA",
+    "RelativePath": "api/data/RESOURCE_MES_CAPA",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "RESOURCE_NAME",
+    "RelativePath": "api/data/RESOURCE_NAME",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "REVISION",
+    "RelativePath": "api/data/REVISION",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "SITE",
+    "RelativePath": "api/data/SITE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "SITE_TH_TAR_DEPT_MASTER_WITH_NAME_V",
+    "RelativePath": "api/data/SITE_TH_TAR_DEPT_MASTER_WITH_NAME_V",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TH_TAR_ITEM_MASTER",
+    "RelativePath": "api/data/TH_TAR_ITEM_MASTER",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TH_TAR_WIP_ROUTING_DEPARTMENT",
+    "RelativePath": "api/data/TH_TAR_WIP_ROUTING_DEPARTMENT",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TIME_HH",
+    "RelativePath": "api/data/TIME_HH",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "TIME_MM",
+    "RelativePath": "api/data/TIME_MM",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_CMN_CD",
+    "RelativePath": "api/data/UP_CMN_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_GRP_CD",
+    "RelativePath": "api/data/UP_GRP_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "UP_MENU_CD",
+    "RelativePath": "api/data/UP_MENU_CD",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "USER_ID",
+    "RelativePath": "api/data/USER_ID",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "WIP_ITEM_CODE",
+    "RelativePath": "api/data/WIP_ITEM_CODE",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "WIP_ITEM_CODE_REVISION",
+    "RelativePath": "api/data/WIP_ITEM_CODE_REVISION",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "WIP_ROUTE_GROUP",
+    "RelativePath": "api/data/WIP_ROUTE_GROUP",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "YEAR",
+    "RelativePath": "api/data/YEAR",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.WebDataController",
+    "Method": "yn",
+    "RelativePath": "api/data/yn",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.BaseController",
+    "Method": "SimpleOk",
+    "RelativePath": "api/file",
+    "HttpMethod": "",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "down",
+    "RelativePath": "api/file/down",
+    "HttpMethod": "GET",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "down",
+    "RelativePath": "api/file/down",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [],
+    "ReturnTypes": []
+  },
+  {
+    "ContainingType": "HS.Web.Controllers.FileController",
+    "Method": "upload",
+    "RelativePath": "api/file/upload",
+    "HttpMethod": "POST",
+    "IsController": true,
+    "Order": 0,
+    "Parameters": [
+      {
+        "Name": "file",
+        "Type": "Microsoft.AspNetCore.Http.IFormFile",
+        "IsRequired": false
+      }
+    ],
+    "ReturnTypes": []
+  }
+]

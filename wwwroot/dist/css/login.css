@@ -1,0 +1,381 @@
+@charset "utf-8";
+/************************************************************************
+ * filename     : login.css
+ * description  : SIMMTECH APS login style CSS
+ * date         : 2025.05.08 JDW
+************************************************************************/
+html, body{
+    height:100% !important;
+    min-width:320px;
+}
+
+/* wrapper */
+.wrapper{
+    background:#F5F8FA url('../images/bg-login.png') no-repeat 100% bottom / auto 60%;
+}
+.content-login{
+    max-width:450px;
+    padding:50px 15px 80px;
+    margin:0 auto;
+    color:#1A2142;
+    transition: all 0.2s ease-in-out;
+}
+.content-login .site-option{
+    margin-bottom:60px;
+}
+
+/* 언어선택 */
+.site-lang{
+    text-align:right;
+}
+.site-lang .btn-lang{
+    display:inline-block;
+    padding:5px 12px;
+    background:rgba(233, 241, 255, 0.3);
+    border:1px solid rgba(255, 255, 255, 0.5);
+    color: #1A2142;
+    border-radius: 2px;
+    font-size:.85rem;
+}
+.site-lang .btn-lang::after{
+    font-size: .5rem;
+    display: inline-block;
+    padding-left: 0.3rem;
+    color: #1A2142;
+    content: "\e936";
+    font-family: xeicon !important;
+}
+.site-lang .dropdown-menu{
+    top:100% !important; right:0 !important; left:auto !important;
+    transform:none !important;
+    min-width:auto;
+    padding: 0;
+    border-radius: 0;
+}
+.site-lang .dropdown-menu .dropdown-divider{
+    margin: 0;
+}
+.site-lang .dropdown-menu .dropdown-item{
+    padding: 0.5rem 0.8rem;
+    font-size: .85rem;
+    color: #666;
+}
+.site-lang .dropdown-menu .dropdown-item:hover{
+    background-color: #f5f5f5;
+}
+
+/* 로고 */
+.login-logo{
+    margin-bottom:0;
+    color:#1A2142;
+    font-size:18px;
+    font-weight:500;
+}
+.login-logo > img{
+    max-width:180px;
+    width:100%;
+}
+.login-logo .logo-title{
+    margin-top:10px;
+}
+
+/* login coptent */
+#login-content{
+    margin-top: 30px;
+}
+#login-content #login-form{
+    padding: 30px 30px;
+    background: rgba(255, 255, 255, 0.9);
+    box-shadow: 0 0px 20px rgba(0,0,0,.05);
+}
+#login-content #login-form .login-title{
+    padding:0 0 20px;
+    text-align: center;
+    font-size:28px;
+    font-weight:600;
+}
+#login-content #login-form .form-group{
+    position: relative;
+    width:100%;
+    margin-bottom:.9rem;
+}
+#login-content #login-form .form-group label.input-label{
+    display: none;
+}
+#login-content #login-form .form-group .form-icon{
+    display:block;
+    width:20px; height:20px;
+    position:absolute;
+    right:18px; top:12px;
+    font-size:1.2rem;
+    color:rgba(0, 0, 0, 0.3);
+}
+#login-content #login-form .form-group.form-number .form-icon::after{
+    font-family: xeicon !important;
+    content: "\eb43";
+}
+#login-content #login-form .form-group.form-id .form-icon::after{
+    font-family: xeicon !important;
+    content: "\e9f5";
+}
+#login-content #login-form .form-group.form-password .form-icon::after{
+    font-family: xeicon !important;
+    content: "\e966";
+}
+#login-content #login-form .form-group .form-control{
+    display:block;
+    padding:10px 20px;
+    width:100%; height:50px;
+    border:0 none;
+    border-radius:8px;
+    color:#1A2142;
+    background: rgba(255, 255, 255, 0.6);
+    transition: all 0.2s ease-in-out;
+    font-size:.85rem;
+    border:2px solid #E8E8E8;
+}
+#login-content #login-form .form-group .form-control:focus{
+    border:2px solid #0098FF;
+    background: rgba(233, 241, 255, 0.35);
+}
+#login-content #login-form .form-group .form-control:focus + .form-icon::after{
+    color:#0098FF;
+}
+#login-content #login-form .error-message{
+    padding-top:.8rem;
+    font-size:.85rem;
+    color:#ff1e00;
+}
+#login-content #login-form .form-group .form-control::placeholder{
+    color:rgba(155, 158, 173, 1);
+}
+#login-content #login-form .form-group .form-control:-webkit-autofill{
+    -webkit-box-shadow: 0 0 0 1000px rgb(65 134 161) inset;
+    -webkit-text-fill-color: #fff;
+}
+#login-content #login-form .form-group.form-select select.form-control{
+    width: 100%;
+    padding: 10px 45px 10px 20px;
+    cursor: pointer;
+    background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAB4AAAAUCAMAAACtdX32AAAAdVBMVEUAAAD///8AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAhMdQaAAAAJ3RSTlMAAAECAwQGBwsOFBwkJTg5RUZ4eYCHkJefpaytrsXGy8zW3+Do8vNn0bsyAAAAYElEQVR42tXROwJDQAAA0Ymw1p9kiT+L5P5HVEi3qJn2lcPjtIuzUIJ/rhIGy762N3XaThqMN1ZPALsZPEzG1x8LrFL77DHBnEMxBewz0fJ6LyFHTPL7xhwzWYrJ9z22AqmQBV757MHfAAAAAElFTkSuQmCC);
+    background-position: 98%;
+    background-repeat: no-repeat;
+}
+#login-content #login-form .btn-login{
+    width:100%;
+    display:block;
+    height:50px;
+    padding:10px 0;
+    margin-top:1.5rem;
+    background: #365cf5;
+    color:#fff;
+    border-radius:8px;
+    font-size:1rem;
+}
+#login-content #login-form .btn-login:hover{
+    filter: brightness(1.1);
+}
+
+/* 아이디 저장 */
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted{
+    margin: 0;
+    width: 0;
+    height: 0;
+    display: inline;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted + label{
+    font-size:.85em;
+    font-weight:400;
+    cursor: pointer;
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted + label:before{
+    content: "";
+    display: inline-block;
+    vertical-align:-3px;
+    height: 1.15em;
+    width: 1.15em;
+    margin-right: 0.6em;
+    color: rgba(0, 0, 0, 0.275);
+    border: solid 0.06em;
+    box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em inset, 0 0 0 0.07em transparent inset;
+    border-radius: 0.2em;
+    background: url('data:image/svg+xml;charset=UTF-8,<svg xmlns="http://www.w3.org/2000/svg" version="1.1" xml:space="preserve" fill="white" viewBox="0 0 9 9"><rect x="0" y="4.3" transform="matrix(-0.707 -0.7072 0.7072 -0.707 0.5891 10.4702)" width="4.3" height="1.6" /><rect x="2.2" y="2.9" transform="matrix(-0.7071 0.7071 -0.7071 -0.7071 12.1877 2.9833)" width="6.1" height="1.7" /></svg>') no-repeat center, white;
+    background-size: 0;
+    will-change: color, border, background, background-size, box-shadow;
+    transform: translate3d(0, 0, 0);
+    transition: color 0.1s, border 0.1s, background 0.15s, box-shadow 0.1s;
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:enabled:active + label:before,
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:enabled + label:active:before{
+    box-shadow: 0 0 0.04em, 0 0.06em 0.16em -0.03em transparent inset, 0 0 0 0.07em rgba(0, 0, 0, 0.1) inset;
+    background-color: #f0f0f0;
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:checked + label:before{
+    background-color: #365cf5;
+    background-size: 0.75em;
+    color: rgba(0, 0, 0, 0.075);
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:checked:enabled:active + label:before,
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:checked:enabled + label:active:before{
+    background-color: #365cf5;
+    color: rgba(0, 0, 0, 0.275);
+}
+#login-content #login-form .id-keep-wrap [type=checkbox].substituted:disabled + label:before{
+    opacity: 0.5;
+}
+
+/* 로그인 안내 */
+.login-guide{
+    margin-top:20px;
+}
+.login-guide li{
+    padding:0 0 5px 10px;
+    font-size:0.85rem;
+    position:relative;
+    word-break: keep-all;
+}
+.login-guide li::before{
+    content:'';
+    width:3px; height:3px;
+    background-color:#9B9EAD;
+    position:absolute;
+    left:0; top:7px;
+}
+
+/* footer */
+.main-footer{
+    position:absolute;
+    bottom:0; left:0; right:0;
+    text-align:center;
+    margin:0 !important; padding:0.8rem;
+    text-align:center;
+    transition: none;
+    border:0 none;
+    background:none;
+    font-size: .8rem;
+    color:rgba(0,0,0,0.2);
+}
+
+/* tablet 설정 ============================================== */
+@media (max-width: 991px){
+
+    /* wrapper */
+    .wrapper{
+        background:#F5F8FA url('../images/bg-login.png') no-repeat 100% bottom / auto 45%;
+    }
+
+    .content-login{
+        max-width: 420px;
+        padding:30px 15px 50px;
+    }
+    .login-logo > img{
+        max-width: 170px;
+    }
+    .login-logo .logo-title{
+        font-size:1.1rem;
+    }
+    #login-content #login-form .form-group .form-control{
+        height:50px;
+        font-size:.95rem;
+    }
+
+    /* login content */
+    #login-content{
+        margin-top: 25px;
+    }
+    #login-content #login-form{
+        padding: 25px 25px;
+    }
+    #login-content #login-form .login-title{
+        padding:0 0 20px;
+        font-size:26px;
+    }
+
+}
+
+/* mobile 설정 ============================================== */
+@media (max-width: 767px){
+
+    /* wrapper */
+    .wrapper{
+        background:#F5F8FA url('../images/bg-login.png') no-repeat 100% bottom / auto 30%;
+    }
+
+    .content-login{
+        max-width: 400px;
+        padding:30px 10px 50px;
+    }
+    .content-login .site-option{
+        margin-bottom: 30px;
+    }
+
+    /* 언어선택 */
+    .site-lang .btn-lang{
+        font-size: .8rem;
+    }
+
+    /* 로고 */
+    .login-logo > img{
+        max-width: 160px;
+    }
+    .login-logo .logo-title{
+        font-size:1rem;
+    }
+
+    /* login content */
+    #login-content{
+        margin-top: 20px;
+    }
+    #login-content #login-form{
+        padding: 20px 20px;
+    }
+    #login-content #login-form .login-title{
+        padding:0 0 20px;
+        font-size:24px;
+    }
+    #login-content #login-form .form-group{
+        margin-bottom:.8rem;
+    }      
+    #login-content #login-form .form-group .form-control{
+        padding: 8px 15px;
+        height: 45px;
+        font-size:.85rem;
+    }
+    #login-content #login-form .form-group .form-icon{
+        top:8px;
+    }
+    #login-content #login-form .btn-login{
+        height:45px;
+        padding: 10px 0;
+        font-size: 1rem;
+    }
+
+    /* 아이디 저장 */
+    #login-content #login-form .id-keep-wrap{
+        margin-bottom:.5rem;
+    }
+    #login-content #login-form .id-keep-wrap [type=checkbox].substituted + label{
+        font-size:.8rem;
+        font-weight:400;
+    }
+    #login-content #login-form .error-message{
+        padding-top: .5rem;
+        font-size: .85rem;
+    }
+
+    /* 로그인 안내 */
+    .login-guide{
+        margin-top:15px;
+    }
+    .login-guide li{
+        padding:0 0 5px 12px;
+        font-size:.8rem;
+    }
+    .login-guide li::before{
+        left:0; top:8px;
+    }
+
+}

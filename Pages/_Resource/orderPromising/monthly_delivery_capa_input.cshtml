@@ -1,0 +1,464 @@
+﻿@page
+@model HS.Web.Pages.monthly_delivery_capa_input
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+    string OM_CAPA_MONTHS = Model.Params["OM_CAPA_MONTHS"].AsString();
+}
+
+<script>
+     let OM_CAPA_MONTHS = '@OM_CAPA_MONTHS';
+        // 헤더컬럼 초기값 정의
+        const defaultColumns = [
+            { dataField: "DIVISION_ID", label: "DIVISION", width: 100, editable: false, align:"center"},
+            { dataField: "GROUP_GUBUN_ID", label: "GROUP_GUBUN_ID", width: 100,editable: false, visible: false },
+            { dataField: "BOTTLE_NECK_ID", label: "BOTTLE_NECK_ID", width: 100,editable: false, visible: false},
+            { dataField: "GROUP_GUBUN_NAME", label: "GROUP_GUBUN", width: 200, editable: false },
+            { dataField: "BOTTLE_NECK_NAME", label: "BOTTLE_NECK", width: 200, editable: true },
+        ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();         
+                let OM_CAPA_MONTHS = document.getElementById('OM_CAPA_MONTHS').value *1;
+               
+                grid_date_col_set(OM_CAPA_MONTHS);
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+
+                   
+
+                    let basic_data = fromServer["data"];
+                    $hs.$("grid").data(basic_data);
+
+
+
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+
+        "btn_grid_save": {
+            click: function () {
+
+                  let rowsAllData = $hs.$("grid").data();
+                  let updated_data = [];
+
+                  //수정된 행 배열에 담기
+                  for (var D of rowsAllData) {
+                       if(D["$update"] === true)
+                       {
+                           updated_data.push(D);
+                       }
+                  }
+
+                  if(updated_data.length == 0) {
+                       alert("변경된 데이터가 없습니다.");
+                  }
+
+                  let toServer = {};
+                  toServer["terms"] = $hs.$("pnlSearch").val();
+                  toServer["data"] = updated_data;
+
+                  $hs.fetch({
+                    command: "save",
+                    param: toServer
+                  }).then(fromServer => {
+                    alert("저장되었습니다.");
+                    let basic_data = fromServer["data"];
+                    $hs.$("grid").data(basic_data);
+
+                  }).catch(e => $hs.errorBox(e))
+
+            },
+        },
+
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "납기모듈CAPA입력");
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+            }
+        },
+
+        "grid": {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+                data.cell.css("text-align", "center");
+            },
+            //셀이 변경 되면 data.rowData["$update"] = true 입력함
+            cellValueChanged: function (data) {
+                data.rowData["$update"] = true;
+            },
+
+        }
+    }
+
+    $hs.load(() => {
+
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId");
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+        $hs.ui.button.init({ id: "btn_excel_download"});
+
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+
+        
+         document.getElementById('OM_CAPA_MONTHS').value = OM_CAPA_MONTHS;
+   
+
+
+
+        grid_date_col_set(document.getElementById('OM_CAPA_MONTHS').value*1); //그리드 컬럼열에 검색범위내 날짜 컬럼 추가
+
+        //demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // 사업부
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: "SPS"
+        });
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+
+        //그리드 셀머지
+        const gridInstance = $hs.$("grid")._instance;
+
+
+
+        gridInstance.getScrollable().on("scroll", function() {
+        mergeCellsByFields(gridInstance,["DIVISION_ID","GROUP_GUBUN_NAME"]);
+        });
+
+        gridInstance.option("onContentReady", function(e) {
+        mergeCellsByFields(gridInstance,["DIVISION_ID","GROUP_GUBUN_NAME"]);
+        });
+
+    });
+
+    //그리드 컬럼열에 검색범위내 날짜 컬럼 추가
+    function grid_date_col_set(OM_CAPA_MONTHS)
+    {
+         const now = new Date();
+        const startDate = new Date(now.getFullYear(), now.getMonth(), 1);
+
+        // 8개월 뒤의 첫날
+        const endDate = new Date(now.getFullYear(), now.getMonth() + OM_CAPA_MONTHS, 1);
+        // 실제 input에 설정
+        document.getElementById('start_date').value = formatDate(startDate);
+        document.getElementById('end_date').value = formatDate(endDate);
+
+        // 기존 default 컬럼 초기화
+        const firstColumn = [];
+        defaultColumns.forEach(col => firstColumn.push(col));
+
+
+        // 월 단위로 컬럼 생성
+        let d = new Date(startDate);
+        while (d <= endDate) {
+            const year = d.getFullYear();
+            const month = String(d.getMonth() + 1).padStart(2, '0');
+            const dateStr = formatDate(d);
+            const dateStr_ym = `${year}-${month}`;
+
+            firstColumn.push({
+                dataField: dateStr,
+                label: dateStr_ym,
+                width: 100,
+                editable: true,
+                align:"right",
+                type: "number",
+            });
+            // 다음 달로 이동
+            d.setMonth(d.getMonth() + 1);
+        }
+
+        $hs.util.$CommonUtil.getGridSetting("grid", firstColumn);
+
+    }
+
+    // yyyy-mm-dd 포맷으로 변환하는 함수
+    function formatDate(date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); // month: 0-based
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+
+    function mergeCellsByFields(gridInstance,fields) {
+            const rows = gridInstance.getVisibleRows();
+            const columns = gridInstance.getVisibleColumns();
+
+            // 먼저 기존 병합 상태 초기화
+            for (let i = 0; i < rows.length; i++) {
+                fields.forEach(fieldName => {
+                    const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+                    const cell = gridInstance.getCellElement(i, columnIndex);
+                    if (cell && cell.length) {
+                        // display, rowspan 초기화
+                        cell[0].style.display = '';
+                        cell[0].removeAttribute('rowSpan');
+                    }
+                });
+            }
+
+            // 본격 병합 로직
+            fields.forEach(fieldName => {
+                const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+
+                let prevValue = null;
+                let startRowIndex = 0;
+                let spanCount = 1;
+
+                for (let i = 0; i < rows.length; i++) {
+                    const currentValue = rows[i].data[fieldName];
+
+                    if (currentValue === prevValue) {
+                        spanCount++;
+                        const cell = gridInstance.getCellElement(i, columnIndex);
+                        if (cell && cell.length) {
+                            cell[0].style.display = 'none';
+                        }
+                    } else {
+                        // 이전 그룹 병합 처리
+                        if (spanCount > 1) {
+                            const topCell = gridInstance.getCellElement(startRowIndex, columnIndex);
+                            if (topCell && topCell.length) {
+                                topCell[0].rowSpan = spanCount;
+                                topCell[0].style.verticalAlign = 'middle';
+                            }
+                        }
+
+                        // 새 그룹 시작
+                        prevValue = currentValue;
+                        startRowIndex = i;
+                        spanCount = 1;
+                    }
+                }
+
+                // 마지막 그룹 병합 처리
+                if (spanCount > 1) {
+                    const topCell = gridInstance.getCellElement(startRowIndex, columnIndex);
+                    if (topCell && topCell.length) {
+                        topCell[0].rowSpan = spanCount;
+                        topCell[0].style.verticalAlign = 'middle';
+                    }
+                }
+            });
+        }
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">납기모듈 CAPA 입력</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">ORDER PROMISING</li>
+            <li class="breadcrumb-item active">납기모듈 CAPA 입력</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>DATE</label></div>
+                                <div class="control-form">
+                                    <div class="form-date-period">
+                                        <input type="text" id="start_date" hs-df="start_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="Start Date">
+                                        <input type="text" id="end_date" hs-df="end_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="End Date" style="display:none">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label"><label>CAPA MONTH</label></div>
+                                <div class="control-form">
+                                    <div class="form-date-period">
+                                        <input type="text" id="OM_CAPA_MONTHS" hs-df="OM_CAPA_MONTHS" style="width:50px" class="form-control">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <button type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                    <div class="header-title"><span class="title-list-count"><small></small></span></div>
+                    <div class="header-btn">
+                        <button id="btn_grid_save" type="button" class="btn btn-save">save</button>
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="monthly_delivery_capa_input_1"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

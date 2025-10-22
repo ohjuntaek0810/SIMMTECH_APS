@@ -1,0 +1,54 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{FD8FF13A-7CB2-45ED-B731-09DAB99308E0}|APS_SIMMTECH.csproj|d:\\dev\\products\\aps\\aps_simmtech\\pages\\_resource\\masterdata\\lookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD8FF13A-7CB2-45ED-B731-09DAB99308E0}|APS_SIMMTECH.csproj|solutionrelative:pages\\_resource\\masterdata\\lookup.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{FD8FF13A-7CB2-45ED-B731-09DAB99308E0}|APS_SIMMTECH.csproj|d:\\dev\\products\\aps\\aps_simmtech\\pages\\_resource\\plananalysis\\input_plan_simul.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{FD8FF13A-7CB2-45ED-B731-09DAB99308E0}|APS_SIMMTECH.csproj|solutionrelative:pages\\_resource\\plananalysis\\input_plan_simul.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 224,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "lookup.cshtml",
+              "DocumentMoniker": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\Pages\\_Resource\\masterData\\lookup.cshtml",
+              "RelativeDocumentMoniker": "Pages\\_Resource\\masterData\\lookup.cshtml",
+              "ToolTip": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\Pages\\_Resource\\masterData\\lookup.cshtml",
+              "RelativeToolTip": "Pages\\_Resource\\masterData\\lookup.cshtml",
+              "ViewState": "AgIAAHcAAAAAAAAAAAAuwJQAAAAUAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-22T01:51:01.035Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "input_plan_simul.cshtml",
+              "DocumentMoniker": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\Pages\\_Resource\\planAnalysis\\input_plan_simul.cshtml",
+              "RelativeDocumentMoniker": "Pages\\_Resource\\planAnalysis\\input_plan_simul.cshtml",
+              "ToolTip": "D:\\Dev\\Products\\APS\\APS_SIMMTECH\\Pages\\_Resource\\planAnalysis\\input_plan_simul.cshtml",
+              "RelativeToolTip": "Pages\\_Resource\\planAnalysis\\input_plan_simul.cshtml",
+              "ViewState": "AgIAAHsAAAAAAAAAAADwvwsAAAAZAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-10-22T01:50:45.649Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

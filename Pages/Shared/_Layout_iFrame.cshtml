@@ -1,0 +1,91 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <base href="~/">
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>2025 HSS APS</title>
+
+    @await Html.PartialAsync("~/Pages/Partial/_ScriptCss.cshtml")
+
+    <style type="text/css">
+        [flex] {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        [flex_row] {
+            flex: 1;
+            display: flex;
+            flex-direction: row;
+        }
+
+
+        /* ※ 삭제예정!! : 템플릿 페이지 용 css 입니다. */
+        /*.content-box {
+            background: greenyellow;
+            border: 1px solid #7fc513;
+        }*/
+
+        /*행높이 조절시 아래 주석 풀기*/
+        smart-grid[theme=custom].smart-element {
+            --smart-grid-row-height: 28px;
+            --smart-grid-column-header-height: 38px;
+        }
+
+        .template-title {
+            font-size: 20px;
+            color: blue;
+        }
+    </style>
+
+    <script>
+
+        $hs.load(() => {
+            $hs.html.input.initAll();
+        })
+
+
+
+        // 색상 배열
+        //const $colors = [
+        //    '#59009F',
+        //    '#571ECA',
+        //    '#4A40E3',
+        //    '#305DF6',
+        //    '#0079F9',
+        //    '#0092F4',
+        //    '#00A9F6',
+        //    '#00BFFB',
+        //    '#24D5FF',
+        //    '#85E8FF'
+        //];
+
+        const $colors = [
+            '#F75526',
+            '#FC6C2D',
+            '#FCB985',
+            '#F7DCAD',
+            '#78D3C5',
+            '#1CB1C5',
+            '#0D8CBC',
+            '#356DB6',
+            '#224D85',
+            '#00214C'
+        ];
+        
+        
+    </script>
+</head>
+<body class="hold-transition sidebar-mini layout-fixed">
+    <div class="navbar-content">
+        <div class="navbar-content" style="height:100vh;display:flex;flex-direction:column">
+        @RenderBody()
+        </div>
+    </div>
+</body>
+</html>

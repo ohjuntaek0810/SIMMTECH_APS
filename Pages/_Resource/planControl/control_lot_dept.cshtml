@@ -1,0 +1,652 @@
+﻿@page
+@model HS.Web.Pages.control_lot_dept
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+<script>
+    const defaultColumns = [
+
+
+        { dataField: "CUSTOMER_NAME", label: "CUSTOMER_NAME", width: 100, editable: false, align: "left" },
+        { dataField: "MODEL_NAME", label: "MODEL_NAME", width: 100, editable: false, align: "left" },
+        { dataField: "ITEM_CODE", label: "ITEM_CODE", width: 100, editable: false, align: "left" },
+        { dataField: "JOB_NAME", label: "JOB_NAME", width: 100, editable: false, align: "left" },
+        { dataField: "DEPT_NAME", label: "DEPT_NAME", width: 100, editable: false, align: "left" },
+        { dataField: "OPERATION_SEQ_NUM", label: "STEP", type: "number", width: 100, editable: false, align: "right" },
+        { dataField: "PRODUCT_WPNL", label: "WPNL",type: "number", width: 100, editable: false, align: "right" },
+        { dataField: "PRODUCT_M2", label: "M2", type: "number",width: 100, editable: false, align: "right" },
+        { dataField: "JOB_ID", label: "JOB_ID", width: 100, editable: false, align: "left" },
+        { dataField: "SITE_ID", label: "SITE_ID", width: 100, editable: false, align: "left", visible: true, },
+
+    ];
+
+
+    $hs.handler = {
+        "item_code" : {
+            keyup: function (data) {
+                if($hs.$("item_code").val().length > 10) { // ITEM_CODE의 길이는 11
+                    // REVISION 선택 재조회
+                    $hs.html.select.init({
+                        id: "ddl_REVISION",
+                        dataurl: "/api/data/REVISION?ITEM_CODE=" + $hs.$("item_code").val(),
+                        valueMember: "REVISION",
+                        displayMember: "REVISION",
+                        val: ""
+                    });
+                    // LAST revision 선택 시 마지막 revision 표기
+                    setTimeout(() => {
+                        const selectBox = document.getElementById("ddl_REVISION");
+                        const options = selectBox.options;
+                        if (options.length > 0) {
+                            selectBox.selectedIndex = options.length - 1;
+                        }
+
+                        // change 이벤트 수동 발생
+                        const event = new Event("change", { bubbles: true });
+                        selectBox.dispatchEvent(event);
+                    }, 500);
+                } else {
+                    // REVISION 재조회
+                    $hs.html.select.init({
+                        id: "ddl_REVISION",
+                        dataurl: "/api/data/REVISION?ITEM_CODE=" + $hs.$("item_code").val(),
+                        valueMember: "REVISION",
+                        displayMember: "REVISION",
+                        val: ""
+                    });
+                }
+            }
+        },
+        "btn_target_department_open": {
+                click: function () {
+                $hs.$("ptb_TARGET_DEPARTMENT").open();
+            }
+        },
+        "btn_ptb_site_open": {
+            click: function () {
+                $hs.$("ptb_SITE").open();
+            }
+        },
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+           }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid").data(fromServer["data"]);
+                  //  $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+                }).catch(e => $hs.errorBox(e))
+
+
+
+                let item_code = $hs.$("item_code").val();
+                // let ITEM_CODE = (item_code["ITEM_CODE"])
+                let REVISION = $hs.$("ddl_REVISION").val();
+
+                $hs.$('ptb_TARGET_DEPARTMENT').popup(grid => {
+                    grid.set({
+                        dataurl: "/api/data/TH_TAR_WIP_ROUTING_DEPARTMENT?ITEM_CODE=" + item_code+"&REVISION="+REVISION,
+                    });
+                });
+
+                $hs.fetch({
+                    command: "Search_Grid_Input",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("grid_input").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+
+
+
+                $hs.$("pnlSearch3").reset();
+
+
+            }
+        }        ,
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid_input", "LOT_DEPT_등록2");
+            }
+        },
+        "btn_grid_setting" : {  // dimension 세팅
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+            }
+        }
+        ,
+        "btnSave_dimension" : { // dimension 변경내용 저장ptb_SITE
+            click : function() {
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", "grid", "dimension_grid", defaultColumns);
+            }
+         },
+        "grid" : {
+            contextHeaderClick: function (data) {
+               $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+            },
+         },
+        "grid_input" : {
+            contextHeaderClick: function (data) {
+               $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+            headerFormat: function (data) {
+                if (data.dataField == "PREFER_SITE_ID" || data.dataField == "PREFER_RESOURCE_ID" || data.dataField == "PREFER_RESOURCE" || data.dataField == "DESCRIPTION") {
+                    data.cell.css("color", "blue");
+                }
+            },
+         },
+        "ptb_TARGET_DEPARTMENT" : {
+            select : function(data) {
+                 let DEPT_CODE = data.rowData["DEPT_CODE"];
+
+                 $hs.$('ptb_SITE').popup(grid => {
+                    grid.set({
+                        dataurl: "/api/data/SITE_TH_TAR_DEPT_MASTER_WITH_NAME_V?DEPT_CODE=" + DEPT_CODE,
+                    });
+                 });
+
+              }
+         }
+        ,
+        "btn_grid_save": {
+            click: function () {
+
+                 let selData = $hs.$("grid").val();
+
+                 if (selData.length == 0) {
+                     alert("저장할 항목을 체크해 주세요.");
+                     return;
+                 }
+                let toServer = {};
+                let pnlSearch2 = $hs.$("pnlSearch2").val();
+                let pnlSearch3= $hs.$("pnlSearch3").val();
+                let DESCRIPTION =  $hs.$("TXT_MESSAGE").val();
+
+                toServer["Searchterms"] = $hs.$("pnlSearch").val();
+
+                if(pnlSearch2["OPERATION_SEQ_NUM"] == null || pnlSearch2["OPERATION_SEQ_NUM"] =="") {
+                    alert("MTARGET DEPARTMENT를 선택 하세요.");
+                    return false;
+                }
+                if(pnlSearch3["SITE_ID"] == null || pnlSearch3["SITE_ID"] =="") {
+                    alert("SITE를 선택 하세요");
+                    return false;
+                }
+
+
+                selData.forEach(D => {
+                    D["OPERATION_SEQ_NUM"] = pnlSearch2["OPERATION_SEQ_NUM"];
+                    D["SITE_ID"] = pnlSearch3["SITE_ID"];
+                    D["PREFER_RESOURCE_ID"] = pnlSearch3["APS_RESOURCE_ID"];
+                    D["PREFER_RESOURCE"] = pnlSearch3["APS_RESOURCE_NAME"];
+                    D["DESCRIPTION"] = DESCRIPTION;
+                });
+                toServer["data"] = selData;
+
+                $hs.fetch({
+                    command: "Save_Grid_Input",
+                    param: toServer
+                }).then(fromServer => {
+                      $hs.$("grid_input").data(fromServer["TermsResultInput"]);
+                }).catch(e => $hs.errorBox(e))
+
+
+            },
+        },
+        "btn_grid_delete": {
+            click: function () {
+                 let toServer = {};
+                 toServer["Searchterms"] = $hs.$("pnlSearch").val();
+                let selData = $hs.$("grid_input").val();
+
+                 if (selData.length == 0) {
+                     alert("삭제할 항목을 체크해 주세요.");
+                     return;
+                 }
+
+                 if(confirm("선택한 항목을 삭제 하시겠습니까?")){
+
+                    toServer["data"] = selData;
+                    $hs.fetch({
+                        command: "delete",
+                        param: toServer
+                    }).then(fromServer => {
+                        // 다시 조회
+                        $hs.$("grid_input").data(fromServer["TermsResultInput"]);
+                    }).catch(e => $hs.errorBox(e))
+
+                }
+
+            },
+        },
+        "btn_excel_download_mst" : {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "LOT_DEPT_등록1");
+            }
+        }
+    }
+
+    $hs.load(() => {
+         // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId");
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+        $hs.html.panel.init({ id: "pnlSearch2" });
+        $hs.html.panel.init({ id: "pnlSearch3" });
+        $hs.html.panel.init({ id: "txt_APS_RESOURCE_ID" });
+        $hs.html.panel.init({ id: "txt_APS_RESOURCE_NAME" });
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+        // grid save
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+        $hs.ui.button.init({ id: "btn_grid_delete", enabled: @W });
+        $hs.ui.button.init({ id: "btn_excel_download"});
+        $hs.ui.button.init({ id: "btn_excel_download_mst"});
+
+        //검색박스 DIVISION
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+
+        // grid setting
+       // $hs.ui.button.init({ id: "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+
+         // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "multiple",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="grid" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        $hs.dx.grid.init({
+            id: "grid_input",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "multiple",
+            dragRow: false,
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "ORGANIZATION_ID", label: "ORGANIZATION_ID", width: 100, editable: false, visible: false, })
+            col.add({ dataField: "DIVISION_ID", label: "DIVISION_ID", width: 100, editable: false, visible: false,})
+            col.add({ dataField: "CUSTOMER_NAME", label: "CUSTOMER_NAME", width: 100, editable: false ,visible:true})
+            col.add({ dataField: "JOB_ID", label: "JOB_ID", width: 100, editable: false })
+            col.add({ dataField: "JOB_NAME", label: "JOB_NAME", width: 100, editable: false })
+            col.add({ dataField: "MODEL_NAME", label: "MODEL_NAME", width: 100, editable: false })
+            col.add({ dataField: "ITEM_CODE", label: "ITEM_CODE", width: 100, editable: false, })
+            col.add({ dataField: "REVISION", label: "REVISION", width: 100, editable: false, })
+            col.add({ dataField: "OPERATION_SEQ_NUM", label: "OPERATION_SEQ_NUM", width: 100, editable: false, })
+            col.add({ dataField: "DEPT_CODE", label: "DEPT_CODE", width: 100, editable: false, })
+            col.add({ dataField: "DEPT_NAME", label: "DEPT_NAME", width: 100, editable: false, })
+            col.add({ dataField: "SITE_ID", label: "SITE ID", width: 150, editable: false, })
+            col.add({ dataField: "PREFER_SITE_ID", label: "PREFER_SITE_ID", width: 150, editable: false, })
+            col.add({ dataField: "PREFER_RESOURCE_ID", label: "PREFER_RESOURCE_ID", width: 150, editable: false, })
+            col.add({ dataField: "PREFER_RESOURCE", label: "PREFER_RESOURCE", width: 150, editable: false, })
+            col.add({ dataField: "DESCRIPTION", label: "MESSAGE", width: 150, editable: false, })
+        });
+
+        const _instance2 = $hs.$("grid_input")._instance;
+        // 컬럼 라인 그리기
+        _instance2.option('showColumnLines', true);
+        _instance2.option('rowAlternationEnabled', false);
+        _instance2.option('showBorders', true);
+        _instance2.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        //팝업TEXT박스 설정
+        $hs.dx.poptextbox.init({
+            id: "ptb_TARGET_DEPARTMENT",
+            placeholder: "",
+            popValueField: "OPERATION_SEQ_NUM",
+            popTextField: "DEPT_NAME",
+            width: "150px",
+            enabled: true,
+            handler: true,
+            //mergeParent: true,
+        }).popup(grid => {
+            grid.set({
+                width: "400px",
+                height: "300",
+                rownumber: true,
+                dataurl: "/api/data/TH_TAR_WIP_ROUTING_DEPARTMENT",
+            });
+            grid.columns(col => {
+                col.add({
+                label: "OPERATION_SEQ_NUM", dataField: "OPERATION_SEQ_NUM", width: 80
+                });
+                col.add({
+                label: "DEPT_CODE", dataField: "DEPT_CODE", width: 100
+                });
+                col.add({
+                label: "DEPT_NAME", dataField: "DEPT_NAME", width: 150
+                });
+            })
+        });
+
+        $hs.dx.poptextbox.init({
+            id: "ptb_SITE",
+            placeholder: "",
+            popValueField: "SITE_ID",
+            popTextField: "SITE_ID",
+            width: "150px",
+            enabled: true,
+            mergeParent: true,
+        }).popup(grid => {
+            grid.set({
+                width: "400px",
+                height: "300",
+                rownumber: true,
+                dataurl: "/api/data/SITE_TH_TAR_DEPT_MASTER_WITH_NAME_V",
+            });
+            grid.columns(col => {
+                col.add({
+                label: "SITE_ID", dataField: "SITE_ID", width: 80
+                });
+                col.add({
+                label: "DEPT_CODE", dataField: "DEPT_CODE", width: 80
+                });
+                col.add({
+                label: "ROUTE_NAME", dataField: "ROUTE_NAME", width: 150
+                });
+                col.add({
+                label: "APS_RESOURCE_ID", dataField: "APS_RESOURCE_ID", width: 150
+                });
+                col.add({
+                label: "APS_RESOURCE_NAME", dataField: "APS_RESOURCE_NAME", width: 150
+                });
+
+            })
+       });
+
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // REVISION
+        $hs.html.select.init({
+            id: "ddl_REVISION",
+            dataurl: "/api/data/REVISION",
+            valueMember: "REVISION",
+            displayMember: "REVISION",
+            val: ""
+        });
+
+       $hs.html.$popup.init('modalDialog');
+       $hs.html.input.initAll();
+    });
+</script>
+
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">LOT DEPT 등록</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">Plan Control</li>
+            <li class="breadcrumb-item active">LOT DEPT 등록</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>DIVISION</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label"><label>ITEM CODE</label></div>
+                                <div class="control-form">
+                                    @* <input type="text" id="item_code" class="form-control" placeholder="Search" hs-df="item_code" hs-handler="true" maxlength="11"> *@
+                                    <input type="text" id="item_code" class="form-control" placeholder="Search" hs-df="item_code" hs-handler="true" maxlength="11">
+                                </div>
+                            </div>
+                            <div class="control-form">
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label"><label>REVISION</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="ddl_REVISION" hs-df="REVISION" hs-handler="true"></select>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <div class="control-label"><label>LOT NO</label></div>
+                                <div class="control-form">
+                                    <input type="text" id="txt_LOTNO" class="form-control" placeholder="Search" hs-df="LOTNO">
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon" hs-btn>Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box">
+                <div class="box-body">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div id="pnlSearch2">
+                                <div class="form-group">
+                                    <div class="control-label"><label>TARGET DEPARTMENT</label></div>
+                                    <div class="control-form">
+                                        <div class="input-group form-search">
+                                            <input type="text" id="ptb_TARGET_DEPARTMENT" class="form-control" placeholder="Search" hs-df="OPERATION_SEQ_NUM" hs-dsf="DEPT_NAME" hs-handler="true">
+                                            <span class="input-group-btn">
+                                                <button type="button" class="btn btn-search" id="btn_target_department_open" hs-handler="true" hs-btn><span class="blind">search</span></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div id="pnlSearch3">
+                                <div class="control-label"><label>SITE</label></div>
+                                <div class="control-form">
+                                    <div class="input-group form-search">
+                                        <input type="text" id="ptb_SITE" class="form-control" placeholder="Search" hs-df="SITE_ID" hs-dsf="SITE_ID" hs-handler="true">
+                                        <span class="input-group-btn">
+                                            <button type="button" class="btn btn-search" id="btn_ptb_site_open" hs-handler="true" hs-btn><span class="blind">search</span></button>
+                                        </span>
+                                        <input type="text" id="txt_APS_RESOURCE_ID" class="form-control" hs-df="APS_RESOURCE_ID" hs-dsf="APS_RESOURCE_ID" style="display:none">
+                                        <input type="text" id="txt_APS_RESOURCE_NAME" class="form-control" hs-df="APS_RESOURCE_NAME" hs-dsf="APS_RESOURCE_NAME" style="display:none">
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="control-label">
+                                <label>MESSAGE</label>
+                            </div>
+                            <input type="text" id="TXT_MESSAGE" class="form-control" hs-df="MESSAGE">
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                  @*   <div class="col-md-6">
+                        <div class="header-title">
+                            <span class="title-list-count">
+                                <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                            </span>
+                        </div> 
+                    </div> *@
+
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="row" flex_row>
+                    <div class="col-md-6" flex>
+                        <div class="header-btn">
+                            <button id="btn_excel_download_mst" type="button" class="btn btn-download">excel</button>
+                        </div>
+                        <div class="box-body" flex>
+                            <div class="grid-container" flex>
+                                <div id="grid" data-grid-id="CONTROL_LOT_DEPT"></div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6" flex>
+                        <div class="header-btn">
+                            <button id="btn_grid_save" type="button" class="btn btn-save">Add save</button>
+                            <button id="btn_grid_delete" type="button" class="btn btn-delete" hs-btn>delete</button>
+                            <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                           @*  <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button> *@
+                        </div>
+                        <div class="box-body" flex>
+                            <div class="grid-container" flex>
+                                <div id="grid_input" data-grid-id="CONTROL_LOT_DEPT_INPUT"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+
+<!-- /e:modal -->

@@ -1,0 +1,1252 @@
+﻿@page
+@model HS.Web.Pages.delivery_request
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+<style>
+
+    .modal_input_excel_css {
+        display: none;
+        position: absolute;
+        top: 5px;
+        width: 90%;
+    }
+
+    .modal-content {
+        /*   resize: both;
+            overflow: auto;  */
+        /*      min-width: 300px;
+            min-height: 200px;
+            max-width: 100%;
+            max-height: 100%;
+            box-sizing: border-box; */
+    }
+
+</style>
+<script>
+
+        $hs.handler = {
+            "btn_reset" : {
+                click: function() {
+                    // 값 초기화
+                    $hs.$("pnlSearch").reset();
+                }
+            }
+            ,
+            "btnSearch": {
+                click: function () {
+
+                    let toServer = {};
+                    let pnlSearch = $hs.$("pnlSearch").val();
+
+
+                    if(pnlSearch["group_id"] =="" || pnlSearch["group_id"] == null)
+                    {
+                          alert('GROUP 구분을 선택 하세요');
+                          document.getElementById("group_id").focus();
+                          return false;
+                    }
+
+                    if(pnlSearch["search_order_date"] =="" || pnlSearch["search_order_date"] == null)
+                    {
+                          alert('Order Date가 없습니다');
+                          document.getElementById("search_order_date").focus();
+                          return false;
+                    }
+
+                    // if(pnlSearch["end_date"] =="" || pnlSearch["end_date"] == null)
+                    // {
+                    //       alert('날짜가 없습니다');
+                    //       document.getElementById("end_date").focus();
+                    //       return false;
+                    // }
+
+
+                     toServer["searchterms"] = pnlSearch;
+
+
+                    $hs.fetch({
+                        command: "search",
+                        param: toServer
+                    }).then(fromServer => {
+
+                        let MasterData = fromServer["MasterData"];
+                        $hs.$("grid1").data(MasterData);
+                        $hs.$("grid2").data(null);
+
+                    }).catch(e => $hs.errorBox(e))
+                }
+            }
+            ,
+            //grid1======================================================================================
+            "btn_excel_download1": {
+                click : function() {
+                    $hs.util.$CommonUtil.excelDownload("grid1", "납기요청");
+                }
+            }
+            ,
+            "grid1": {
+                contextHeaderClick: function (data) {
+                    $hs.util.$CommonUtil.getHeaderContextClick(data);
+                }
+                ,
+                headerFormat: function (data) {
+                    if (data.dataField == "ORDER_DATE"
+                        || data.dataField == "ITEM_CODE"
+                        || data.dataField == "TOTAL_QTY_PCS"
+                        || data.dataField == "SHIP_TO_ID"
+                        || data.dataField == "SHIP_TO_NAME"
+                        || data.dataField == "PO_NUMBER"
+                        || data.dataField == "SHIP_DATE"
+                        || data.dataField == "CUST_PO_NUMBER"
+                        || data.dataField == "TEAM"
+                        || data.dataField == "DESCRIPTION"
+                    ) {
+                        data.cell.css("color", "blue");
+                    }
+                }
+                ,
+                //셀이 변경 되면 data.rowData["$update"] = true 입력함
+                cellValueChanged: function (data) {
+                    data.rowData["$update"] = true;
+                    // 2025-09-16 프레임워크 오류로 다른 방법 처리
+                    // if(data.dataField == "ITEM_CODE")
+                    // {
+                    //     let item_code = data.value
+                    //     if(item_code.length > 10) {
+                    //         let toServer = {};
+                    //         let trems ={};
+                    //         trems["ITEM_CODE"] = data.value;
+                    //         toServer["trems"] = trems;
+                    //         $hs.fetch({
+                    //             command: "GET_CBST_SPEC_BASIC",
+                    //             param: toServer
+                    //         }).then(fromServer => {
+                    //             let trems_result = fromServer["trems_result"][0];
+
+                    //             $hs.$("grid1").rowData(data.index, {
+                    //                 ITEM_CODE : trems_result["ITEM_CODE"],
+                    //                 REVISION : trems_result["REVISION"],
+                    //                 MODEL_NAME : trems_result["MODEL_NAME"],
+                    //                 CUST_ID : trems_result["CUST_ID"],
+                    //                 CUST_NAME : trems_result["CUST_NAME"]
+                    //             });
+                    //         }).catch(e => $hs.errorBox(e))
+                    //     }
+                    // }
+                    if(data.dataField == "ITEM_CODE"){
+                       let item_code = data.value
+                       if(item_code.length > 10) {
+
+                          let rowsAllData = $hs.$("grid1").data();
+                          let toServer = {};
+                          let trems ={};
+                          trems["ITEM_CODE"] = data.value;
+                          toServer["trems"] = trems;
+
+                          $hs.fetch({
+                                command: "GET_CBST_SPEC_BASIC",
+                                param: toServer
+                          }).then(fromServer => {
+                              let trems_result = fromServer["trems_result"][0];
+                              rowsAllData.forEach(D => {
+                                  if (D["_key"] == data.key) {
+                                      D["ITEM_CODE"] = trems_result["ITEM_CODE"];
+                                      D["REVISION"] = trems_result["REVISION"];
+                                      D["MODEL_NAME"] = trems_result["MODEL_NAME"];
+                                      D["CUST_ID"] = trems_result["CUST_ID"];
+                                      D["CUST_NAME"] = trems_result["CUST_NAME"];
+                                  }
+                              });
+                          $hs.$("grid1").data(rowsAllData);
+
+                          }).catch(e => $hs.errorBox(e))
+
+                       }
+                    }
+                },
+                cellClick: function (data) {
+
+                   if(data.dataField == "BUTTON_TEXT")
+                   {
+                        let rowData =   data.rowData;
+                        let toServer = {};
+                        toServer["rowterms"] = rowData;
+
+                        $hs.fetch({
+                        command: "search_detail",
+                        param: toServer
+                        }).then(fromServer => {
+                        let DetailData = fromServer["DetailData"];
+                        $hs.$("grid2").data(DetailData);
+
+                        }).catch(e => $hs.errorBox(e))
+
+                    }
+
+                },
+
+            }
+            ,
+            "btn_grid_add": {
+                click: function () {
+
+                    let pnlSearch = $hs.$("pnlSearch").val();
+                    if(pnlSearch["group_id"] =="" || pnlSearch["group_id"] == null)
+                    {
+                        alert('DIVISION 구분을 선택 하세요');
+                        document.getElementById("group_id").focus();
+                        return false;
+                    }
+
+                    $hs.$("grid1").addRow({
+                        DIVISION_ID : pnlSearch["group_id"],
+                        ORDER_DATE : pnlSearch["search_order_date"],
+                        $update : true
+                    });
+
+                }
+            }
+            ,
+            "btn_grid_save": {
+                click: function () {
+
+                    let rowsAllData = $hs.$("grid1").data();
+                    let updated_data = [];
+
+                    //수정된 행 배열에 담기
+                    for (var D of rowsAllData) {
+                        if(D["$update"] === true)
+                        {
+                           updated_data.push(D);
+                        }
+                    }
+
+                    let toServer = {};
+                    let pnlSearch = $hs.$("pnlSearch").val();
+
+                    toServer["searchterms"] = pnlSearch
+                    toServer["data"] = updated_data;
+                    if (updated_data.length > 0)
+                    {
+                        $hs.fetch({
+                        command: "saveMaster",
+                        param: toServer
+                        }).then(fromServer => {
+                        alert("저장되었습니다.");
+                        $hs.$("grid1").data(fromServer["MasterData"]);
+
+                        }).catch(e => $hs.errorBox(e))
+
+                    }
+
+                },
+            },
+
+            "btn_grid_delete": {
+                click: function () {
+                    let toServer = {};
+                    toServer["searchterms"] = $hs.$("pnlSearch").val();
+                    let selData = $hs.$("grid1").val();
+
+                    if (selData.length == 0) {
+                         alert("삭제할 항목을 체크해 주세요.");
+                         return;
+                    }
+
+                    if(confirm("선택한 항목을 삭제 하시겠습니까?")){
+
+                        toServer["data"] = selData;
+                        $hs.fetch({
+                            command: "delete",
+                            param: toServer
+                        }).then(fromServer => {
+                            // 다시 조회
+                            $hs.$("grid1").data(fromServer["MasterData"]);
+                            $hs.$("grid2").data(null);
+                        }).catch(e => $hs.errorBox(e))
+
+                    }
+
+                },
+             }
+            ,
+            "btn_detail_split_make": {
+                click: function () {
+                    let selData = $hs.$("grid1").val();
+                    if (selData.length == 0) {
+                         alert("분할할 데이터를 선택 하세요");
+                         return;
+                    }
+
+                    //selData 0번째 행만 있다
+                    selData.forEach(D => {
+
+                        if(D["REQUEST_ORDER_ID"] =="" || D["REQUEST_ORDER_ID"] == null)
+                        {
+                                alert('저장후 실행 하세요');
+                                return false;
+                        }
+
+                        if(D["ITEM_CODE"] =="" || D["ITEM_CODE"] == null)
+                        {
+                                alert('아이템 코드를 입력 하세요');
+                                return false;
+                        }
+
+                        if(D["TOTAL_QTY_PCS"] =="" || D["TOTAL_QTY_PCS"] == null)
+                        {
+                                alert('입력된 수량이 없습니다.');
+                                return false;
+                        }
+
+
+
+                        $hs.$("modal_promising_split").open();
+
+
+
+                        setTimeout(function(){
+                            let toServer = {};
+                            toServer["data"] = {};
+                            toServer["data"]["ITEM_CODE"] = D["ITEM_CODE"];
+
+
+
+
+                            $hs.fetch({
+                                command: "search_jig",
+                                param: toServer
+                            }).then(fromServer => {
+
+                                // 팝업 데이터 입력
+                                $hs.$("pnl_promising").val(D);
+
+                                let order_date = D["ORDER_DATE"];
+                                let order_date_formattedDate = `${order_date.slice(0, 4)}-${order_date.slice(4, 6)}-${order_date.slice(6, 8)}`;
+
+                                let jigResult = fromServer["jig_result"];
+                                if (jigResult && jigResult.length > 0) {
+                                    let bbtCapa = jigResult[0].BBT_CAPA;
+                                    $hs.$("BBT_CAPA").val(bbtCapa);
+                                }
+                                $hs.$("PROMISING_ITEM_CODE").val(D["ITEM_CODE"]);
+                                $hs.$("PROMISING_MAKE_START_DATE").val(order_date_formattedDate);
+                                $hs.$("PROMISING_ORDER_QTY").val(D["TOTAL_QTY_PCS"]);
+
+
+                            }).catch(e => $hs.errorBox(e))
+
+
+                        },1);
+
+
+                        setTimeout(function(){
+                        let toServer = {};
+                        toServer["data"] = {};
+                        toServer["data"]["ITEM_CODE"] = D["ITEM_CODE"];
+
+                            $hs.fetch({
+                                    command: "SEARCH_LATEST_DUE_DATE",
+                                    param: toServer
+                                    }).then(fromServer2 => {
+
+                                    let DUE_DATE_RESULT = fromServer2["DUE_DATE_RESULT"];
+
+                                    if (DUE_DATE_RESULT && DUE_DATE_RESULT.length > 0) {
+                                            $hs.$("LATEST_DUE_DATE").val(DUE_DATE_RESULT[0].DUE_DATE);
+                                    }
+
+                            }).catch(e => $hs.errorBox(e))
+
+                        },1);
+
+
+
+
+                    });
+
+                },
+            },
+
+            "btn_grid_moveup": {
+                click: function () {
+                    var grid = $hs.$("grid1");
+                    $hs.util.grid.moveup(grid);
+                }
+            },
+            "btn_grid_movedown": {
+                click: function () {
+                    var grid = $hs.$("grid1");
+                    $hs.util.grid.movedown(grid);
+                }
+            },
+
+            "btn_grid_sort_save": {
+                click: function () {
+
+                    let rowsAllData = $hs.$("grid1").data();
+
+                    let toServer = {};
+                    let pnlSearch = $hs.$("pnlSearch").val();
+
+                    toServer["searchterms"] = pnlSearch
+                    toServer["data"] = rowsAllData;
+                    if (rowsAllData.length > 0)
+                    {
+                        $hs.fetch({
+                           command: "save_sortMaster",
+                           param: toServer
+                        }).then(fromServer => {
+                           alert("정렬저장 되었습니다.");
+                           $hs.$("grid1").data(fromServer["MasterData"]);
+
+                        }).catch(e => $hs.errorBox(e))
+
+                    }
+
+                },
+            }
+            ,
+            "btn_win_open_excel": {
+                 click: function () {
+                    $hs.$("modal_input_excel").open();
+                    $hs.$("grid_input_excel").data(null);
+                    setTimeout(function(){
+                        $hs.$("grid_input_excel").addRow();
+                    }, 100)
+                 },
+            }
+            ,
+
+            //grid2========================================================================================
+
+            "grid2": {
+                headerFormat: function (data) {
+                    data.cell.css("text-align", "center");
+                }
+                ,
+                cellValueChanged: function (data) {
+                    data.rowData["$update"] = true;
+                }
+                ,
+                cellClick: function (data) {
+                }
+
+            }
+            ,
+            "btn_grid2_add": {
+                    click: function () {
+                    let selMasterData = $hs.$("grid1").val();
+
+                    if (selMasterData.length == 0) {
+                            alert("마스터 항목을 선택해 주세요.");
+                            return;
+                    }
+
+                    $hs.$("grid2").addRow({
+                            DIVISION_ID : selMasterData[0]["DIVISION_ID"],
+                            ORDER_DATE : selMasterData[0]["ORDER_DATE"],
+                            REQUEST_ORDER_ID : selMasterData[0]["REQUEST_ORDER_ID"],
+                            ITEM_CODE : selMasterData[0]["ITEM_CODE"],
+                            MODEL_NAME : selMasterData[0]["MODEL_NAME"],
+                            REVISION : selMasterData[0]["REVISION"],
+                            $update : true
+                    });
+
+                }
+            }
+            ,
+            "btn_grid2_save": {
+                click: function () {
+                      let selMasterData = $hs.$("grid1").val();
+                      if (selMasterData.length == 0) {
+                             alert("마스터 항목을 선택해 주세요.");
+                             return;
+                       }
+                      let rowsAllData = $hs.$("grid2").data();
+                      let updated_data = [];
+
+                      //수정된 행 배열에 담기
+                      for (var D of rowsAllData) {
+                           if(D["$update"] === true)
+                           {
+                               updated_data.push(D);
+                           }
+                      }
+                      let toServer = {};
+                      let pnlSearch = $hs.$("pnlSearch").val();
+
+                      toServer["searchterms"] = pnlSearch;
+                      toServer["Masterterms"] = selMasterData[0];
+                      toServer["data"] = updated_data;
+                      if (updated_data.length > 0)
+                      {
+                           $hs.fetch({
+                            command: "saveDetail",
+                            param: toServer
+                          }).then(fromServer => {
+                            alert("저장되었습니다.");
+                            $hs.$("grid2").data(fromServer["DetailData"]);
+
+                          }).catch(e => $hs.errorBox(e))
+
+                      }
+
+                },
+            }
+            ,
+            "btn_grid2_delete": {
+                click: function () {
+
+                    let selData = $hs.$("grid2").val();
+
+                    if (selData.length == 0) {
+                         alert("삭제할 항목을 체크해 주세요.");
+                         return;
+                    }
+
+                    let selMasterData = $hs.$("grid1").val();
+
+                    if (selMasterData.length == 0) {
+                             alert("마스터 항목을 선택해 주세요.");
+                             return;
+                    }
+
+                    let toServer = {};
+                    toServer["searchterms"] = $hs.$("pnlSearch").val();
+                    toServer["Masterterms"] = selMasterData[0];
+
+                    if(confirm("선택한 항목을 삭제 하시겠습니까?")){
+
+                        toServer["data"] = selData;
+                        $hs.fetch({
+                            command: "deleteDetail",
+                            param: toServer
+                        }).then(fromServer => {
+                            // 다시 조회
+                            $hs.$("grid2").data(fromServer["DetailData"]);
+                        }).catch(e => $hs.errorBox(e))
+                    }
+                },
+             }
+             ,
+            "btn_excel_download2": {
+                click : function() {
+                    $hs.util.$CommonUtil.excelDownload("grid2", "납기요청2");
+                }
+            }
+            ,
+            "PROMISING_SPLIT_QTY" : {
+                change: function (data) {
+                    fn_PROMISING_SPLIT_QTY_CALC(data);
+                }
+            }
+            ,
+            "btn_promising_split": { // 분할저장
+                click: function () {
+                    let toServer = {};
+                    let pnl_promising = $hs.$("pnl_promising").val();
+
+                    toServer["searchterms"] = $hs.$("pnlSearch").val();
+                    toServer["pnl_promising_terms"] = pnl_promising;
+
+                    $hs.fetch({
+                            command: "promising_split",
+                            param: toServer
+                    }).then(fromServer => {
+                            alert("저장되었습니다.");
+                            $hs.$("grid2").data(fromServer["DetailData"]);
+                            $hs.$("modal_promising_split").close();
+
+                    }).catch(e => $hs.errorBox(e))
+
+
+                },
+             }
+            ,
+            "btn_PR_OM_MASTER":{
+                 click: function(){
+                     $hs.$("btn_PR_OM_MASTER").set({ enabled: false });
+                     $hs.fetch({
+                            command: "EXEC_PR_OM_MASTER",
+                            param: {},
+                     }).then(fromServer => {
+                        if(fromServer["RESULT_PARAMS"]["RTN"] =="OK")
+                        {
+                            alert("실행이 완료 되었습니다.");
+                        }
+                        else
+                        {
+                            alert("실행 실패.");
+
+                        }
+                        $hs.$("btn_PR_OM_MASTER").set({ enabled: true });
+
+                     }).catch(e => alert(e)); // 오류시 처리 루틴
+                 }
+            }
+            ,
+            "btn_grid2_moveup": {
+                click: function () {
+                    var grid = $hs.$("grid2");
+                    $hs.util.grid.moveup(grid);
+                }
+            },
+
+            "btn_grid2_movedown": {
+                click: function () {
+                    var grid = $hs.$("grid2");
+                    $hs.util.grid.movedown(grid);
+                }
+            },
+            "btn_grid2_sort_save": {
+                click: function () {
+
+                    let selMasterData = $hs.$("grid1").val();
+                    if (selMasterData.length == 0) {
+                         alert("마스터 항목을 선택해 주세요.");
+                         return;
+                    }
+
+                    let rowsAllData = $hs.$("grid2").data();
+                    let toServer = {};
+                    let pnlSearch = $hs.$("pnlSearch").val();
+
+                    toServer["searchterms"] = pnlSearch;
+                    toServer["Masterterms"] = selMasterData[0];
+                    toServer["data"] = rowsAllData;
+
+                    if (rowsAllData.length > 0)
+                    {
+                        $hs.fetch({
+                          command: "save_sortDetail",
+                          param: toServer
+                        }).then(fromServer => {
+                          alert("정렬저장 되었습니다.");
+                          $hs.$("grid2").data(fromServer["DetailData"]);
+
+                        }).catch(e => $hs.errorBox(e))
+
+                    }
+
+                },
+            }
+            ,
+            "btn_input_excel_addrow":{
+                click: function (){
+                     $hs.$("grid_input_excel").addRow();
+                }
+            }
+            ,
+            "btn_input_excel_ok":{
+                click: function (){
+                    //엑셀 입력용 그리드에서 적용 버튼
+
+                    let pnlSearch = $hs.$("pnlSearch").val();
+                    if(pnlSearch["group_id"] =="" || pnlSearch["group_id"] == null)
+                    {
+                        alert('DIVISION 구분을 선택 하세요');
+                        document.getElementById("group_id").focus();
+                        return false;
+                    }
+
+
+                    let rowsAllData = $hs.$("grid_input_excel").data();
+
+                    let toServer = {};
+                    toServer["TermsList"] =  rowsAllData ;
+
+                     $hs.fetch({
+                        command: "GET_EXCEL_INPUT_DATA",
+                        param: toServer
+                     }).then(fromServer => {
+                        let resultList =  fromServer["TermsList_result"];
+                            rowsAllData.forEach(D => {
+                            //resultList의 ITEM_CODE 를 resultList에서 찾아서 내용 입력
+                            let matched = resultList.find(result => result.ITEM_CODE === D.ITEM_CODE);
+                            D["REVISION"] = matched.REVISION;
+                            D["CUST_ID"] = matched.CUST_ID;
+                            D["CUST_NAME"] = matched.CUST_NAME;
+                            D["MODEL_NAME"] = matched.MODEL_NAME;
+                            });
+
+
+                        for (var D of rowsAllData) {
+                            $hs.$("grid1").addRow({
+                                DIVISION_ID : pnlSearch["group_id"],
+                                ORDER_DATE : pnlSearch["search_order_date"],
+                                ITEM_CODE : D["ITEM_CODE"],
+                                MODEL_NAME : D["MODEL_NAME"],
+                                REVISION : D["REVISION"],
+                                CUST_ID : D["CUST_ID"],
+                                CUST_NAME : D["CUST_NAME"],
+                                PO_NUMBER  : D["PO"],
+                                TOTAL_QTY_PCS:  D["TTL"],
+                                DESCRIPTION : D["DESCRIPTION"],
+                                TEAM : D["TEAM"],
+                                $update : true
+                            });
+                        }
+
+
+                     }).catch(e => $hs.errorBox(e));
+
+                        //ITEM_CODE 로 관련 정보 가져와서 그리드에 넣어주기
+                    // for (var D of rowsAllData) {
+                    //     let toServer = {};
+                    //     let trems ={};
+                    //     trems["ITEM_CODE"] = D["ITEM_CODE"]
+                    //     toServer["trems"] = trems;
+                    //     $hs.fetch({
+                    //         command: "GET_CBST_SPEC_BASIC",
+                    //         param: toServer
+                    //     }).then(fromServer => {
+                    //         let trems_result = fromServer["trems_result"][0];
+                    //         D["REVISION"] = trems_result["REVISION"];
+                    //         D["MODEL_NAME"] = trems_result["MODEL_NAME"];
+                    //         D["CUST_ID"] = trems_result["CUST_ID"];
+                    //         D["CUST_NAME"] = trems_result["CUST_NAME"];
+                    //        // console.log(D)
+                    //         //부모창에 행추가 입력
+                    //         $hs.$("grid1").addRow({
+                    //             DIVISION_ID : pnlSearch["group_id"],
+                    //             ORDER_DATE : pnlSearch["search_order_date"],
+                    //             ITEM_CODE : D["ITEM_CODE"],
+                    //             MODEL_NAME : D["MODEL_NAME"],
+                    //             REVISION : D["REVISION"],
+                    //             CUST_ID : D["CUST_ID"],
+                    //             CUST_NAME : D["CUST_NAME"],
+                    //             $update : true
+                    //         });
+
+                    //     }).catch(e => $hs.errorBox(e));
+                    //}
+
+                    setTimeout(function(){
+                      //  $hs.$("modal_input_excel").close();
+                    },500);
+
+                }
+            }
+
+
+        }
+
+        $hs.load(() => {
+            // 현재 localStorage에 저장된 메뉴 ID 가져옴
+            var curMenuId = localStorage.getItem("curMenuId");
+            // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+            $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+            // 사업부
+            $hs.html.select.init({
+                id: "group_id",
+                dataurl: "/api/data/DIVISION_LIST",
+                valueMember: "CODE",
+                displayMember: "NAME",
+                val :"SPS"
+            });
+
+            // search
+            $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+            const now = new Date();
+            const startDate = new Date(now);
+
+            // 오늘로부터 2주 후 날짜
+            const endDate = new Date(now);
+            endDate.setDate(endDate.getDate() + 14);
+
+            // 실제 input에 설정
+            document.getElementById('search_order_date').value = formatDate(startDate);
+          //  document.getElementById('end_date').value = formatDate(endDate);
+            //panel
+            $hs.html.panel.init({ id: "pnlSearch" });
+            $hs.ui.button.init({ id: "btn_grid_add" });
+            $hs.ui.button.init({ id: "btn_excel_download1"});
+            $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+            $hs.ui.button.init({ id: "btn_grid_delete" });
+            $hs.ui.button.init({ id: "btn_detail_split_make" }); //분할
+            $hs.ui.button.init({ id: "btn_grid_moveup" });
+            $hs.ui.button.init({ id: "btn_grid_movedown" });
+            $hs.ui.button.init({ id: "btn_grid_sort_save" });
+            $hs.ui.button.init({ id: "btn_PR_OM_MASTER" }); //마스터 데이터 생성
+            $hs.ui.button.init({ id: "btn_win_open_excel" });
+
+
+
+            $hs.ui.button.init({ id: "btn_grid2_add" });
+            $hs.ui.button.init({ id: "btn_excel_download2"});
+            $hs.ui.button.init({ id: "btn_grid2_save" });
+            $hs.ui.button.init({ id: "btn_grid2_delete" });
+            $hs.html.panel.init({ id: "pnl_promising" });
+            $hs.ui.button.init({ id: "btn_promising_split" }); //분할저장
+            $hs.ui.button.init({ id: "btn_grid2_moveup" });
+            $hs.ui.button.init({ id: "btn_grid2_movedown" });
+            $hs.ui.button.init({ id: "btn_grid2_sort_save" });
+            $hs.ui.button.init({ id: "btn_input_excel_ok" });
+            $hs.ui.button.init({ id: "btn_input_excel_addrow" });
+
+
+
+            const zoomLevel = window.devicePixelRatio; // 예: 1.25, 1.5 등
+            const windowHeight = window.innerHeight * zoomLevel;
+            const newHeight = windowHeight - 490;
+
+            // 마스터 그리드 초기화
+            $hs.dx.grid.init({
+                id: "grid1",
+                width: "100%",
+                autoHeight: true,
+                height: ""+newHeight+"px",
+                sortable: true,
+               //selectMode: "single",
+                selectMode: "multiple",
+                rownumber: false,
+                filterable: true,
+                editable: true,
+                handler: true,
+                reOrdering: true, // 컬럼 재배치 여부
+                headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                    {
+                        menu : "CAL",
+                        child : [
+                            "Count",
+                            "Avg",
+                            "Max",
+                            "Min",
+                            "Sum",
+                            "Std. Div"
+                        ]
+                    }
+                ],
+            })
+            .columns(col => {
+                col.add({ dataField: "BUTTON_TEXT", label: "선택",  buttonLabel : "선택", type: "button", width: 80, align:'center', editable: false, visible: true });
+                col.add({ dataField: "DIVISION_ID", label: "DIVISION",  width: 100, align:'center' ,editable: false, visible: false });
+                col.add({ dataField: "ORDER_DATE", label: "ORDER DATE", type:'date', width: 100, editable: false, visible: false });
+                col.add({ dataField: "REQUEST_ORDER_ID", label: "REQUEST_ORDER_ID", width: 100, editable: false, visible: false });
+                col.add({ dataField: "REQUEST_ORDER_SORT_ORDER", label: "SORT", width: 100, editable: true, visible: false });
+                col.add({ dataField: "ITEM_CODE", label: "ITEM CODE", width: 150, editable: true, visible: true });
+                col.add({ dataField: "MODEL_NAME", label: "Model", width: 300, editable: false, visible: true });
+                col.add({ dataField: "REVISION", label: "REVISION", width: 80, align:'center', editable: false, visible: true });
+                col.add({ dataField: "TOTAL_QTY_PCS", label: "Total QTY (PCS)", width: 130, type:'number', align:'right', editable: true, visible: true });
+                col.add({ dataField: "DESCRIPTION", label: "DESCRIPTION", width: 100, editable: true, visible: true });
+                col.add({ dataField: "TEAM", label: "TEAM", width: 100, editable: true, visible: true });
+                col.add({ dataField: "CUST_ID", label: "CUST_ID", width: 100, editable: true, visible: false });
+                col.add({ dataField: "CUST_NAME", label: "Customer", width: 100, editable: true, visible: true });
+                col.add({ dataField: "SHIP_TO_ID", label: "Ship To ID", width: 100, editable: true, visible: true });
+                col.add({ dataField: "SHIP_TO_NAME", label: "Ship To", width: 100, editable: true, visible: true });
+                col.add({ dataField: "PO_NUMBER", label: "PO_NUMBER", width: 100, editable: true, visible: true });
+                col.add({ dataField: "CUST_PO_NUMBER", label: "CUST PO NUMBER", width: 130, editable: true, visible: true });
+                col.add({ dataField: "SCHEDULE_SHIP_DATE", label: "SCHED SHIP_DATE", width: 150, editable: true, visible: true });
+                col.add({ dataField: "REQUEST_DATE", label: "REQUEST DATE", width: 120, editable: true, visible: true });
+                col.add({ dataField: "PROMISE_DATE", label: "PROMISE DATE", width: 100, editable: true, visible: true });
+                col.add({ dataField: "SHIP_DATE", label: "SHIP DATE", width: 100, editable: true, visible: true });
+            });
+
+            // 디테일 그리드 초기화
+            $hs.dx.grid.init({
+                id: "grid2",
+                width: "100%",
+                height: "250px",
+                sortable: true,
+                selectMode: "multiple",
+                rownumber: false,
+                filterable: false,
+                editable: true,
+                handler: true,
+                reOrdering: false, // 컬럼 재배치 여부
+                headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                    {
+                        menu : "CAL",
+                        child : [
+                            "Count",
+                            "Avg",
+                            "Max",
+                            "Min",
+                            "Sum",
+                            "Std. Div"
+                        ]
+                    }
+                ],
+            })
+            .columns(col => {
+                col.add({ dataField: "DIVISION_ID", label: "DIVISION_ID",  width: 100, editable: false, visible: false });
+                col.add({ dataField: "ORDER_DATE", label: "ORDER_DATE", type : 'date', width: 100, align:'center', editable: false, visible: false });
+                col.add({ dataField: "REQUEST_ORDER_ID", label: "REQUEST_ORDER_ID", width: 100, editable: true, visible: false });
+                col.add({ dataField: "REQUEST_ORDER_DUE_SEQ", label: "REQUEST_ORDER_DUE_SEQ", width: 100, editable: true, visible: false });
+                col.add({ dataField: "REQUEST_ORDER_DUE_SEQ_ORDER", label: "REQUEST_ORDER_DUE_SEQ_ORDER", width: 100, editable: true, visible: false });
+                col.add({ dataField: "TOTAL_SORT_ORDER", label: "TOTAL_SORT_ORDER", width: 100, editable: true, visible: false });
+                col.add({ dataField: "ITEM_CODE", label: "ITEM_CODE", width: 100, editable: true, visible: false });
+                col.add({ dataField: "MODEL_NAME", label: "MODEL_NAME", width: 100, editable: true, visible: false });
+                col.add({ dataField: "REVISION", label: "REVISION", width: 100, editable: true, visible: false });
+
+                col.add({ dataField: "PROMISING_DATE", label: "납기일", type : 'date', width:' 20%',  align:'center', editable: true, visible: true });
+                col.add({ dataField: "QTY_PCS", label: "QTY", width: ' 20%', type:'number', align:'right', editable: true, visible: true });
+                col.add({ dataField: "DESCRIPTION", label: "DESCRIPTION", width: ' 40%', editable: true, visible: true });
+            });
+
+            const _instance = $hs.$("grid1")._instance;
+            // 컬럼 라인 그리기
+            _instance.option('showColumnLines', true);
+            _instance.option('rowAlternationEnabled', false);
+            _instance.option('showBorders', true);
+            _instance.option('scrolling', {
+                showScrollbar: 'always',
+                useNative: true
+            });
+
+    ///$hs.util.$CommonUtil.setExcelToGridPaste("grid1");
+
+            const _instance2 = $hs.$("grid2")._instance;
+             // 컬럼 라인 그리기
+            _instance2.option('showColumnLines', true);
+            _instance2.option('rowAlternationEnabled', false);
+            _instance2.option('showBorders', true);
+            _instance2.option('scrolling', {
+                 showScrollbar: 'always',
+                 useNative: true
+            });
+
+            //demension grid
+            $hs.dx.grid.init({
+                id: "dimension_grid",
+                width: "100%",
+                height: "300px",
+                sortable: true,
+                selectMode: "single",
+                dragRow: true,
+                rownumber: false,
+                filterable: false,
+                editable: true,
+                handler: true,
+            }).columns(col => {
+                col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+                col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+                col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+                col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+                col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+                col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+            });
+
+            // 마스터 그리드 초기화
+            $hs.dx.grid.init({
+                id: "grid_input_excel",
+                width: "100%",
+                height: "500px",
+                sortable: false,
+                selectMode: "multiple",
+                rownumber: true,
+                filterable: true,
+                editable: true,
+                handler: true,
+                reOrdering: true, // 컬럼 재배치 여부
+                })
+            .columns(col => {
+                //col.add({ dataField: "DIVISION_ID", label: "DIVISION",  width: 100, align:'center' ,editable: false, visible: false });
+                col.add({ dataField: "ORDER_DATE", label: "ORDER DATE", type:'date', width: 100, editable: true,  });
+                col.add({ dataField: "TEAM", label: "TEAM", width: 100, editable: true,  });
+                col.add({ dataField: "CUSTOMER", label: "Customer", width: 100, editable: true,  });
+                col.add({ dataField: "SHIP_TO", label: "Ship To", width: 100, editable: true,  });
+                col.add({ dataField: "DESCRIPTION", label: "Description", width: 100, editable: true,  });
+                col.add({ dataField: "PO", label: "PO", width: 100, editable: true,  });
+                col.add({ dataField: "ITEM_CODE", label: "Itemcode ", width: 100, editable: true,  });
+                col.add({ dataField: "요청일", label: "요청일", width: 100, editable: true,  });
+                col.add({ dataField: "TTL", label: "TTL", width: 100, editable: true,  });
+                col.add({ dataField: "REVISION", label: "REVISION", width: 100, editable: false,  });
+                col.add({ dataField: "MODEL_NAME", label: "MODEL_NAME", width: 100, editable: false,  });
+                col.add({ dataField: "CUST_ID", label: "CUST_ID", width: 100, editable: false,  });
+                col.add({ dataField: "CUST_NAME", label: "CUST_NAME", width: 100, editable: false,  });
+            });
+
+            // 팝업
+            $hs.html.$popup.init('modalDialog');
+            $hs.html.$popup.init('modal_promising_split');
+            $hs.html.$popup.init('modal_input_excel');
+
+            $hs.util.$CommonUtil.setExcelToGridPaste("grid_input_excel"); //엑셀 붙여넣기 기능
+
+            $hs.html.input.initAll();
+        });
+
+         // yyyy-mm-dd 포맷으로 변환하는 함수
+        function formatDate(date) {
+            const yyyy = date.getFullYear();
+            const mm = String(date.getMonth() + 1).padStart(2, '0'); // month: 0-based
+            const dd = String(date.getDate()).padStart(2, '0');
+            return `${yyyy}-${mm}-${dd}`;
+        }
+
+        function fn_PROMISING_SPLIT_QTY_CALC(data) {
+          let TOTAL_QTY_PCS = parseFloat($hs.$("PROMISING_ORDER_QTY").val());
+          let PROMISING_SPLIT_QTY = parseFloat(data.value);
+
+          if (PROMISING_SPLIT_QTY > 0) {
+            let PROMISING_SPLIT_DAY = Math.ceil(TOTAL_QTY_PCS / PROMISING_SPLIT_QTY);
+            $hs.$("PROMISING_SPLIT_DAY").val(PROMISING_SPLIT_DAY);
+          } else {
+            $hs.$("PROMISING_SPLIT_DAY").val("0"); // 또는 오류 처리
+          }
+        }
+
+        window.addEventListener('DOMContentLoaded', function () {
+                $hs.$("grid1").data(null);
+        });
+
+         window.addEventListener('resize', function () {
+            const zoomLevel = window.devicePixelRatio; // 예: 1.25, 1.5 등
+            const windowHeight = window.innerHeight * zoomLevel;
+            const newHeight = windowHeight - 490;
+
+            // 마스터 그리드 초기화
+            $hs.dx.grid.init({
+                id: "grid1",
+                width: "100%",
+                autoHeight: true,
+                height: ""+newHeight+"px",
+            });
+
+        });
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">납기산출 요청 등록</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">ORDER PROMISING</li>
+            <li class="breadcrumb-item active">납기산출 요청 등록</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <!--상단블록-->
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id"></select>
+                                </div>
+                            </div>
+
+
+                            <div class="form-group">
+                                <div class="control-label"><label>ORDER DATE</label></div>
+                                <div class="control-form">
+                                    <div class="form-date-period">
+                                        <input type="text" id="search_order_date" hs-df="search_order_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="">
+                                        <!--  <input type="text" id="end_date" hs-df="end_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="End Date">-->
+                                    </div>
+                                </div>
+                            </div>
+
+
+                            <button type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                            <button id="btn_PR_OM_MASTER" type="button" class="btn btn-add">Master Data산출</button>
+                            <button id="btn_win_open_excel" type="button" class="btn btn-download">엑셀 붙여넣기 창 열기</button>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--상단블록끝-->
+            <!--하단 블록 -->
+            <div class="content-box" flex>
+                <!--  상단 그리드 블록  style="min-height: calc(100% - 200px);display: flex;flex-direction: column;" -->
+                <div class="box-body" flex>
+                    <div class="box-header">
+                        <div class="header-title">
+                        </div>
+                        <div class="header-btn">
+                            <button id="btn_grid_moveup" type="button" class="btn btn-default"> △ </button>
+                            <button id="btn_grid_movedown" type="button" class="btn btn-default"> ▽ </button>
+                            <button id="btn_grid_sort_save" type="button" class="btn btn-save">정렬저장</button>
+                            <button id="btn_grid_save" type="button" class="btn btn-save">Save</button>
+                            <button id="btn_grid_add" type="button" class="btn btn-add">Row Add</button>
+                            <button id="btn_grid_delete" type="button" class="btn btn-delete">Delete</button>
+                            <button id="btn_excel_download1" type="button" class="btn btn-download">Excel</button>
+                            <button id="btn_detail_split_make" type="button" class="btn btn-save">분할</button>
+                        </div>
+                    </div>
+                    <div class="grid-container">
+                        <div id="grid1"></div> <!--상단그리드 -->
+                    </div>
+                </div>
+                <!-- 상단그리드 블록 끝-->
+                <!--  하단 그리드 블록 -->
+                <div class="box-body" flex>
+                    <div class="box-header">
+                        <div class="header-title">
+                        </div>
+                        <div class="header-btn">
+                            <button id="btn_grid2_moveup" type="button" class="btn btn-default"> △ </button>
+                            <button id="btn_grid2_movedown" type="button" class="btn btn-default"> ▽ </button>
+                            <button id="btn_grid2_sort_save" type="button" class="btn btn-save">정렬저장</button>
+                            <button id="btn_grid2_save" type="button" class="btn btn-add">Save</button>
+                            <button id="btn_grid2_add" type="button" class="btn btn-add">Row Add</button>
+                            <button id="btn_grid2_delete" type="button" class="btn btn-delete">Delete</button>
+                            <button id="btn_excel_download2" type="button" class="btn btn-download">Excel</button>
+                        </div>
+                    </div>
+                    <div class="grid-container" flex>
+                        <div id="grid2"></div><!--하단그리드 -->
+                    </div>
+                </div>
+                <!--  하단 그리드 블록 끝-->
+            </div>
+            <!-- 하단 블록끝-->
+
+
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->
+
+
+
+
+<div id="modal_promising_split" style="display:none;position:absolute;width:calc(100vh - 100px)">
+    <div class="modal-content">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">분할</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="pnl_promising">
+
+            <div class="form-group">
+                <div class="control-label"><label>ITEM CODE</label></div>
+                <div class="control-form"><input id="PROMISING_ITEM_CODE" type="text" class="form-control" hs-df="PROMISING_ITEM_CODE" readonly></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>출고시작일</label></div>
+                <div class="control-form"> <input type="text" id="PROMISING_MAKE_START_DATE" hs-df="PROMISING_MAKE_START_DATE" class="form-datepicker form-control" data-toggle="datepicker"></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>Latest Due Date </label></div>
+                <div class="control-form"> <input type="text" id="LATEST_DUE_DATE" hs-df="LATEST_DUE_DATE" class="form-datepicker form-control" data-toggle="datepicker"></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>Order Qty</label></div>
+                <div class="control-form"><input id="PROMISING_ORDER_QTY" type="text" class="form-control" hs-df="PROMISING_ORDER_QTY" readonly></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>BBT Capa</label></div>
+                <div class="control-form"> <input id="BBT_CAPA" type="number" hs-handler="true" hs-df="BBT_CAPA" class="form-control" readonly></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>분할기준수량</label></div>
+                <div class="control-form"> <input id="PROMISING_SPLIT_QTY" type="number" hs-handler="true" hs-df="PROMISING_SPLIT_QTY" class="form-control"></div>
+            </div>
+            <div class="form-group">
+                <div class="control-label"><label>예상 분할일수</label></div>
+                <div class="control-form"><input id="PROMISING_SPLIT_DAY" type="text" class="form-control" hs-df="PROMISING_SPLIT_DAY" readonly></div>
+            </div>
+            <div style="display:none">
+                <input id="DIVISION_ID" type="text" class="form-control" hs-df="DIVISION_ID" readonly>&nbsp;
+                <input id="ORDER_DATE" type="text" class="form-control" hs-df="ORDER_DATE" readonly>&nbsp;
+                <input id="REQUEST_ORDER_ID" type="text" class="form-control" hs-df="REQUEST_ORDER_ID" readonly>
+                <input id="MODEL_NAME" type="text" class="form-control" hs-df="MODEL_NAME" readonly>
+                <input id="REVISION" type="text" class="form-control" hs-df="REVISION" readonly>
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btn_promising_split" type="button" class="btn btn-save">분할 저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+
+
+
+<div id="modal_input_excel" class="modal_input_excel_css">
+    <div class="modal-content">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title"></h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" style="min-height:500px">
+
+            <div class="grid-container" flex>
+                <div id="grid_input_excel"></div>
+            </div>
+
+        </div>
+        <div class="modal-footer">
+            <button id="btn_input_excel_ok" type="button" class="btn btn-save">적용</button>
+            <button id="btn_input_excel_addrow" type="button" class="btn btn-add">행추가</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+

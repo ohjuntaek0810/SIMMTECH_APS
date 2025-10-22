@@ -1,0 +1,29 @@
+﻿@page
+@model HS.Web.Pages.MailModel
+@{
+    Layout = "_Layout_iFrame";
+}
+
+<script>
+
+    $hs.handler = {
+        "btnMail" : {
+            click : function(){
+                let toServer = {};
+                $hs.fetch({
+                    command: "mail",
+                    param: toServer
+                }).then(fromServer => {
+
+                    alert(fromServer["msg"]);
+                }).catch(e => {
+                    alert(e);
+                })
+            }
+        }
+    }
+
+</script>
+
+<button type="button" id="btnMail" hs-btn>메일보내기</button>
+

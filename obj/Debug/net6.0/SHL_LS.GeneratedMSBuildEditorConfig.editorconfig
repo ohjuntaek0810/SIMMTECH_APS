@@ -1,0 +1,209 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = SHL_LS
+build_property.RootNamespace = SHL_LS
+build_property.ProjectDir = C:\HSSoft\SVN_Root\Products\APS\APS_SIMMTECH\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\HSSoft\SVN_Root\Products\APS\APS_SIMMTECH
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 6.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/common_code.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGNvbW1vbl9jb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/dept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRlcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/employee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/grp_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9hdXRoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_0_03_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMF8wM18wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_0_03_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMF8wM18wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_1_01_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMV8wMV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_1_02_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMV8wMl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_2_01_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfMl8wMV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/mng/mng_3_01_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1uZ1xtbmdfM18wMV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/openapi_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9wZW5hcGlfbW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/org_company.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19jb21wYW55LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/org_facility.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWNpbGl0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/org_factory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_01_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wMV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_02_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wMl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_03_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wM18wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_04_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wNF8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_05_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wNV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_05_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wNV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_05_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wNV8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_05_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wNV8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_07_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wN18wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_07_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wN18wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_07_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wN18wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_09_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wOV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_09_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wOV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_0_09_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMF8wOV8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_1_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_1_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_1_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfMV8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/saf/saf_6_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNhZlxzYWZfNl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_grp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX2dycC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/user.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/user_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXJfYXV0aC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/APS/APS_SIMMTECH/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

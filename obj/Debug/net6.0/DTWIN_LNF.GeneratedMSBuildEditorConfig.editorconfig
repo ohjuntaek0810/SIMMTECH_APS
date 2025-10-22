@@ -1,0 +1,659 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = DTWIN_LNF
+build_property.RootNamespace = DTWIN_LNF
+build_property.ProjectDir = C:\HSSoft\SVN_Root\Products\SHE\SHE_LS\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\HSSoft\SVN_Root\Products\SHE\SHE_LS
+build_property._RazorSourceGeneratorDebug = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/main2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_V2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfVjIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/Shared/_Layout_V3.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfVjMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/as_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzX21uZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/as_mng_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGFzX21uZ190ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_4m/bd_4m_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkXzRtXGJkXzRtXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_4m/bd_4m_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkXzRtXGJkXzRtXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_aas/bd_aas_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Fhc1xiZF9hYXNfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_aas/bd_aas_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Fhc1xiZF9hYXNfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_aas/bd_aas_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Fhc1xiZF9hYXNfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_aas/bd_aas_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Fhc1xiZF9hYXNfMDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_aas/bd_aas_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Fhc1xiZF9hYXNfMDA1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwNS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_006.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwNi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_007.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwNy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_basic/bd_basic_008.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2Jhc2ljXGJkX2Jhc2ljXzAwOC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_conf/bd_conf_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2NvbmZcYmRfY29uZl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_conf/bd_conf_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2NvbmZcYmRfY29uZl8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwNS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_006.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwNi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip/bd_equip_007.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwXGJkX2VxdWlwXzAwNy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_main/bd_equip_main_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX21haW5cYmRfZXF1aXBfbWFpbl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_main/bd_equip_main_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX21haW5cYmRfZXF1aXBfbWFpbl8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_main/bd_equip_main_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX21haW5cYmRfZXF1aXBfbWFpbl8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_main/bd_equip_main_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX21haW5cYmRfZXF1aXBfbWFpbl8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_stat/bd_equip_stat_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX3N0YXRcYmRfZXF1aXBfc3RhdF8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_stat_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX3N0YXRfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_stat_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX3N0YXRfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_stat_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX3N0YXRfMDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_equip_stat_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2VxdWlwX3N0YXRfMDA1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_fdc/bd_fdc_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2ZkY1xiZF9mZGNfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_fdc/bd_fdc_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2ZkY1xiZF9mZGNfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_fdc/bd_fdc_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2ZkY1xiZF9mZGNfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_hu/bd_hu_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2h1XGJkX2h1XzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_hu/bd_hu_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2h1XGJkX2h1XzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_hu/bd_hu_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2h1XGJkX2h1XzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_hu/bd_hu_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2h1XGJkX2h1XzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_006.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA2LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_007.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA3LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_008.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_009.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDA5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_ins/bd_ins_010.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2luc1xiZF9pbnNfMDEwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_lot_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX2xvdF8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mat/bd_mat_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21hdFxiZF9tYXRfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mat/bd_mat_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21hdFxiZF9tYXRfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mat/bd_mat_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21hdFxiZF9tYXRfMDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mat/bd_mat_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21hdFxiZF9tYXRfMDA1LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining2/bd_mining2_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZzJcYmRfbWluaW5nMl8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining2/bd_mining2_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZzJcYmRfbWluaW5nMl8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining2/bd_mining2_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZzJcYmRfbWluaW5nMl8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining2/bd_mining2_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZzJcYmRfbWluaW5nMl8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining/bd_mining_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZ1xiZF9taW5pbmdfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining/bd_mining_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZ1xiZF9taW5pbmdfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining/bd_mining_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZ1xiZF9taW5pbmdfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mining/bd_mining_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21pbmluZ1xiZF9taW5pbmdfMDA0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mon_eng_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21vbl9lbmdfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_mon_eng_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX21vbl9lbmdfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_out/bd_out_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX291dFxiZF9vdXRfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_out/bd_out_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX291dFxiZF9vdXRfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod/bd_prod_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2RcYmRfcHJvZF8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod/bd_prod_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2RcYmRfcHJvZF8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod/bd_prod_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2RcYmRfcHJvZF8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod/bd_prod_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2RcYmRfcHJvZF8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod/bd_prod_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2RcYmRfcHJvZF8wMDUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat/bd_prod_stat_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdFxiZF9wcm9kX3N0YXRfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat/bd_prod_stat_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdFxiZF9wcm9kX3N0YXRfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat/bd_prod_stat_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdFxiZF9wcm9kX3N0YXRfMDAzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_006.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_007.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDcuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_008.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_prod_stat_009.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3Byb2Rfc3RhdF8wMDkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa/bd_qa_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhXGJkX3FhXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa/bd_qa_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhXGJkX3FhXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa/bd_qa_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhXGJkX3FhXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa/bd_qa_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhXGJkX3FhXzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa_stat/bd_qa_stat_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhX3N0YXRcYmRfcWFfc3RhdF8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa_stat_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhX3N0YXRfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_qa_stat_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3FhX3N0YXRfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_stock/bd_stock_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3N0b2NrXGJkX3N0b2NrXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_stock/bd_stock_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3N0b2NrXGJkX3N0b2NrXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/bd_stock/bd_stock_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGJkX3N0b2NrXGJkX3N0b2NrXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/common_code.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGNvbW1vbl9jb2RlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRlcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dev_sample.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRldl9zYW1wbGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dev_sample2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGRldl9zYW1wbGUyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_alarm/dt_alarm_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2FsYXJtXGR0X2FsYXJtXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_alarm/dt_alarm_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2FsYXJtXGR0X2FsYXJtXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_alarm/dt_alarm_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2FsYXJtXGR0X2FsYXJtXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_basic/dt_basic_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2Jhc2ljXGR0X2Jhc2ljXzAwMS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_basic/dt_basic_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2Jhc2ljXGR0X2Jhc2ljXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_basic/dt_basic_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2Jhc2ljXGR0X2Jhc2ljXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_basic/dt_basic_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2Jhc2ljXGR0X2Jhc2ljXzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_demo.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X2RlbW8uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_eng_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lbmdfMDAxLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_eng_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lbmdfMDAyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_equip_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lcXVpcF8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_equip_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lcXVpcF8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_equip_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lcXVpcF8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_equip_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9lcXVpcF8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwMi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwMy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwNC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwNS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_006.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwNi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_007.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwNy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_prod_008.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9wcm9kXzAwOC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_qa_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9xYV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/dt_mon_qa_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGR0X21vbl9xYV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/employee.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVtcGxveWVlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/eqp_mttr_mtbf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVxcF9tdHRyX210YmYuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/eqp_overall_efficiency.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGVxcF9vdmVyYWxsX2VmZmljaWVuY3kuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/grp_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGdycF9hdXRoLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/hrf_clsf.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGhyZl9jbHNmLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/lca_carbon_emissions.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9jYXJib25fZW1pc3Npb25zLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/lca_dashboard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9kYXNoYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/lca_energy_monitoring.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGxjYV9lbmVyZ3lfbW9uaXRvcmluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/openapi_mng.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9wZW5hcGlfbW5nLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_company.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19jb21wYW55LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_facility.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWNpbGl0eS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/org_factory.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZ19mYWN0b3J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/osung_rr.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9zdW5nX3JyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/pp.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/pp_parent.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBwX3BhcmVudC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/prd_achieve_rate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9hY2hpZXZlX3JhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/prd_achieve_rate2.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9hY2hpZXZlX3JhdGUyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/prd_daily_productivity.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9kYWlseV9wcm9kdWN0aXZpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/prd_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHByZF9zdGF0dXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/qlt_defect_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHFsdF9kZWZlY3Rfc3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/rat_search.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHJhdF9zZWFyY2guY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/test_report.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHRlc3RfcmVwb3J0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/user.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/user_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHVzZXJfYXV0aC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/HSSoft/SVN_Root/Products/SHE/SHE_LS/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

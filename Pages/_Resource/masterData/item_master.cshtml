@@ -1,0 +1,507 @@
+﻿@page
+@model HS.Web.Pages.item_master
+@{
+    Params Params = Model.Params;
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+    // 즐겨찾기 플래그
+    var favorite_flag = false;
+    // 필터영역 플래그
+    var filter_visible = true;
+
+    // 헤더컬럼 초기값 정의
+        const defaultColumns = [
+            // { dataField: "DIVISION", label: "Division", width: 150 },
+            // { dataField: "ITEM_CODE", label: "Item no", width: 150 },
+            // { dataField: "REVISION", label: "Rev", width: 150 },
+            // { dataField: "CATEGORY", label: "Category", width: 150 },
+            // { dataField: "LAYER", label: "Layer", width: 150 },
+            // { dataField: "MFG_CATEGORY", label: "MFG Category", width: 150 },
+            // { dataField: "ORDER_TYPE", label: "Order Type", width: 150 },
+            // { dataField: "CUSTOMER_NAME", label: "Customer", width: 150 },
+            // { dataField: "MODEL_NAME", label: "Model name", width: 150 },
+            // { dataField: "CUSTOMIZED", label: "Customized", width: 150 },
+            // { dataField: "고객향", label: "고객향", width: 150 },
+            // { dataField: "PROJECT", label: "Project", width: 150 },
+            // { dataField: "Sub Product", label: "Sub Product", width: 150 },
+            // { dataField: "MSAP/Tenting", label: "MSAP/Tenting", width: 150 },
+            // { dataField: "Pattern Type", label: "Pattern Type", width: 150 },
+            // { dataField: "YIELD", label: "Yield", width: 150 },
+            // { dataField: "Lot Size", label: "Lot Size", width: 150 },
+            // { dataField: "Pnl/SQM", label: "Pnl/SQM", width: 150 },
+            // { dataField: "THICK", label: "Thick", width: 150 },
+            // { dataField: "FINISH", label: "Finish", width: 150 },
+            // { dataField: "Pcs/Strip X", label: "Pcs/Strip X", width: 150 },
+            // { dataField: "Pcs/Strip Y", label: "Pcs/Strip Y", width: 150 },
+            // { dataField: "Up", label: "Up", width: 150 },
+            // { dataField: "Strip/Pnl X", label: "Strip/Pnl X", width: 150 },
+            // { dataField: "Strip/Pnl Y", label: "Strip/Pnl Y", width: 150 },
+            // { dataField: "Blk Qty", label: "Blk Qty", width: 150 },
+            // { dataField: "UNIT_SIZE_X", label: "Unit Size X", width: 150 },
+            // { dataField: "UNIT_SIZE_Y", label: "Unit Size Y", width: 150 },
+            // { dataField: "STRIP_SIZE_X", label: "Strip Size X", width: 150 },
+            // { dataField: "STRIP_SIZE_Y", label: "Strip Size Y", width: 150 },
+            // { dataField: "PANEL_SIZE_X", label: "Panel Size X", width: 150 },
+            // { dataField: "PANEL_SIZE_Y", label: "Panel Size Y", width: 150 },
+            // { dataField: "Pcs/Pnl", label: "Pcs/Pnl", width: 150 },
+            // { dataField: "UNIT_NO", label: "Unit No", width: 150 },
+            // { dataField: "STRIP_NO", label: "Strip No", width: 150 },
+            // { dataField: "MATERIAL_TYPE", label: "Material Type", width: 150 },
+            // { dataField: "LAYUP_TYPE", label: "Lay-up Type", width: 150 },
+            // { dataField: "DDR", label: "DDR", width: 150 },
+            // { dataField: "BALL_PAD_COUNT", label: "Ball Pad Count", width: 150 },
+            // { dataField: "GRADE", label: "Grade", width: 150 },
+            // { dataField: "X_OUT_STRIP", label: "X-out Strip", width: 150 },
+            // { dataField: "CCL Thick", label: "CCL Thick", width: 150 },
+            // { dataField: "PPG Thick", label: "PPG Thick", width: 150 },
+            // { dataField: "C/Foil Thick", label: "C/Foil Thick", width: 150 },
+            // { dataField: "S/M Material", label: "S/M Material", width: 150 },
+            // { dataField: "S/M Color", label: "S/M Color", width: 150 },
+            // { dataField: "S/M Type", label: "S/M Type", width: 150 },
+            // { dataField: "Laser Type", label: "Laser Type", width: 150 },
+            // { dataField: "Hole Type", label: "Hole Type", width: 150 },
+            // { dataField: "Surface Cu", label: "Surface Cu", width: 150 },
+            // { dataField: "Dimple", label: "Dimple", width: 150 },
+            // { dataField: "Finger Width", label: "Finger Width", width: 150 },
+            // { dataField: "Finger Space", label: "Finger Space", width: 150 },
+            // { dataField: "Finger Pitch", label: "Finger Pitch", width: 150 },
+            // { dataField: "Finger Delta", label: "Finger Delta", width: 150 },
+            // { dataField: "Trace Width", label: "Trace Width", width: 150 },
+            // { dataField: "Trace Space", label: "Trace Space", width: 150 },
+            // { dataField: "Trace Pitch", label: "Trace Pitch", width: 150 },
+            // { dataField: "Trace Delta", label: "Trace Delta", width: 150 },
+            // { dataField: "Ball Pad Size", label: "Ball Pad Size", width: 150 },
+            // { dataField: "Ball Open", label: "Ball Open", width: 150 },
+            // { dataField: "Ball Clearance", label: "Ball Clearance", width: 150 },
+            // { dataField: "Bump Pad", label: "Bump Pad", width: 150 },
+            // { dataField: "Bump Pad Space", label: "Bump Pad Space", width: 150 },
+            // { dataField: "Bump Pad Pitch", label: "Bump Pad Pitch", width: 150 },
+            // { dataField: "SR Thick(TOP)", label: "SR Thick(TOP)", width: 150 },
+            // { dataField: "SR Thick(BTM)", label: "SR Thick(BTM)", width: 150 },
+            // { dataField: "SR Shift TOP", label: "SR Shift TOP", width: 150 },
+            // { dataField: "SR Shift BTM", label: "SR Shift BTM", width: 150 },
+            // { dataField: "Soft Ni", label: "Soft Ni", width: 150 },
+            // { dataField: "Soft Au", label: "Soft Au", width: 150 },
+            // { dataField: "Hard Ni", label: "Hard Ni", width: 150 },
+            // { dataField: "Hard Au", label: "Hard Au", width: 150 },
+            // { dataField: "Ni(Electroless)", label: "Ni(Electroless)", width: 150 },
+            // { dataField: "ITS Location", label: "ITS Location", width: 150 },
+            // { dataField: "Approval Date", label: "Approval Date", width: 150 },
+            // { dataField: "SPS_Grade", label: "SPS_Grade", width: 150 },
+            // { dataField: "HYNIX_ Gv value", label: "HYNIX_ Gv value", width: 150 }
+        ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search_header_basic",
+                    param : toServer
+                }).then(fromServer => {
+                    const data = fromServer["data"];
+
+                    let defaultColumns2 = [];
+                    // default 값은 LOOKUP_VALUE 테이블에서 가져오는중
+                    data.forEach(col => {
+                        defaultColumns2.push({
+                            dataField: col.ATTRIBUTE02,
+                            label: col.ATTRIBUTE02,
+                            width: col.ATTRIBUTE13, 
+                            visible: true
+                        });
+                    });
+
+                    // 그리드 컬럼가져오기
+                    // 1. id로 사용할 grid_id(js용)
+                    // 2. 초기화용 컬럼들 (LIST)
+                    // <div id="grid" data-grid-id="ITEM_GRID"></div>
+                    // 나중에 동기처리로 해야될 수도..
+                    // defaultColumns에 추가하고 그리드 세팅이 필요함..
+                    $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns2); 
+                    
+                    // 헤더컬럼 재정의에서 조금 문제가 있음;;
+
+                    // TODO : 헤더컬럼 조회한거랑 dataField랑 맞춰야함
+                    toServer["headers"] = data;
+                    console.log(toServer);
+                    $hs.fetch({
+                        command: "search",
+                        param: toServer
+                    }).then(fromServer => {
+
+                        $hs.$("grid").data(fromServer["data"]);
+                        $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+                    }).catch(e => $hs.errorBox(e))
+
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "grid": {
+            contextClick: function(data) {
+                // 우클릭 메뉴 많아지면 data로 구분필요
+
+                // routing 확인 클릭시 routing 화면 팝업 띄어줌
+                // 현재 open_routing command가 안넘어감.
+                // url을 현재페이지로 하면 잘 넘어감.
+                $hs.post({
+                    url: "main", // 기본값 현재페이지
+                    command: "open_routing",
+                    param: {
+                        item_id: data.rowData["ITEM_ID"]     // 파라미터로 item_id를 넘겨준다.
+                    },
+                    window: {
+                        option: "width=700,height=700"
+                    }
+                });
+                // 새창으로 열고 세션스토리지 삭제
+                sessionStorage.removeItem('newWindowData');
+            },
+        },
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "Item_Master_info");
+            }
+        },
+        "btn_grid_setting" : {
+            click : function() {
+                // 그리드 세팅 modal open
+                // param : modal_id, grid_id, dimension_grid_id
+                $hs.util.$CommonUtil.openGridSettingModal("modalDialog", "grid", "dimension_grid");
+            }
+        },
+        "btnSave_dimension" : {
+            click : function() {
+                $hs.util.$CommonUtil.saveGridSetting("modalDialog", "grid", "dimension_grid");
+            }
+        }
+    }
+
+    $hs.load(() => {
+
+        var curMenuId = localStorage.getItem("curMenuId"); // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        // $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+        $hs.ui.button.init({ id: "btn_reset"});
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+        
+        // grid setting
+        $hs.ui.button.init({ id : "btn_grid_setting"});
+        $hs.ui.button.init({ id: "btnSave_dimension"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+        
+        // 즐겨찾기 추가
+        // $hs.ui.button.init({id:"btn_favorite"});
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: false,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            contextmenu : ["Routing 정보"],
+        });
+
+
+        
+
+        
+        // ERP 전용 오라클 DB 붙을때만 열기
+        // 추가 헤더컬럼 불러오기
+        let toServer = {};
+        toServer["terms"] = {
+            special_process : false,
+            etc : false
+        };
+
+        $hs.fetch({
+            command: "search_header_basic",
+            param:toServer
+        }).then(fromServer => {
+            const data = fromServer["data"];
+
+            // default 값은 LOOKUP_VALUE 테이블에서 가져오는중
+            data.forEach(col => {
+                defaultColumns.push({
+                    dataField: col.ATTRIBUTE02,
+                    label: col.ATTRIBUTE02,
+                    width: col.ATTRIBUTE13, 
+                    visible: true
+                });
+            });
+
+            // 그리드 컬럼가져오기
+            // 1. id로 사용할 grid_id(js용)
+            // 2. 초기화용 컬럼들 (LIST)
+            // <div id="grid" data-grid-id="ITEM_GRID"></div>
+            // 나중에 동기처리로 해야될 수도..
+            // defaultColumns에 추가하고 그리드 세팅이 필요함..
+            $hs.util.$CommonUtil.getGridSetting("grid", defaultColumns);
+
+            const _instance = $hs.$("grid")._instance;
+            // 컬럼 라인 그리기
+            _instance.option('showColumnLines', true);
+            _instance.option('rowAlternationEnabled', false);
+            _instance.option('showBorders', true);
+
+            _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        }).catch(e => $hs.errorBox(e))
+        
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+        // radioGroup
+        $hs.ui.radiogroup.init({
+            id: "rdoGroup",
+            direction: "horizontal", // horizontal(기본값), vertical
+            width : "800px",
+            height : "400px",
+            enabled : true,
+            val : "PRI", // 초기값,
+            //visible: false, // 숨김처리
+            data: [{ value: "PRI", text: "Private" }, { value: "PUB", text: "Public" }], // 배열형태의 Object, 데이타가 있어야 라디오 버튼이 보임
+            handler: true, // handler true 일시 이벤트 등록이 가능
+            //theme: "hstest",
+            //handlerName : "testhandler", // 핸들러 명칭 지정시 해당 핸들러로 호출 가능
+        });
+
+        // modal
+        // 사업부
+        $hs.html.select.init({
+            id: "division",
+            dataurl: "/api/data/DIVISION_LIST",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+        
+
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+
+    
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">Item Master</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">MASTER DATA</li>
+            <li class="breadcrumb-item active">Item Master</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+                            <div class="form-group">
+                                <!-- ID CODE로 수정 필요-->
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="division" hs-df="division"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Item no</label></div>
+                                <div class="control-form">
+                                    <input type="text" class="form-control" id="item_no" hs-df="item_no" style="width: 150px;"/>
+                                </div>
+                            </div>
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>Category</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="category" hs-df="category" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>Layer</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="layer" hs-df="layer" style="width: 50px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>MFG Category</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="mfg_category" hs-df="mfg_category" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>Customer</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="customer" hs-df="customer" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>MSAP/Tenting</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="msap_tenting" hs-df="msap_tenting" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>Pattern Type</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="pattern_type" hs-df="pattern_type" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            @* <div class="form-group"> *@
+                            @*     <div class="control-label"><label>Model Name</label></div> *@
+                            @*     <div class="control-form"> *@
+                            @*         <input type="text" class="form-control" id="model_name" hs-df="model_name" style="width: 150px;" /> *@
+                            @*     </div> *@
+                            @* </div> *@
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Special Process</label></div>
+                                <div class="control-form">
+                                    <input type="checkbox" class="form-control substituted" id="special_process" hs-df="special_process" style="width: 20px" checked />
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>Etc.</label></div>
+                                <div class="control-form">
+                                    <input type="checkbox" class="form-control substituted" id="etc" hs-df="etc" style="width: 20px" checked />
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="content-box" flex>
+                <!-- 헤더부분 정의-->
+                <div class="box-header">
+                    <div class="header-title">Item 정보<span class="title-list-count"><small id="total_cnt"></small></span></div>
+                    <div class="header-btn">
+                        @* <button id="btn_grid_save" type="button" class="btn btn-save">save</button> *@
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button>
+                    </div>
+                </div>
+                <!-- 바디부분 정의-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="ITEM_GRID"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

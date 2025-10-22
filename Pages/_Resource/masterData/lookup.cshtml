@@ -1,0 +1,605 @@
+﻿@page
+@model HS.Web.Pages.lookup
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+}
+
+
+<script>
+
+    const detailDefaultColumns = [
+        { dataField: "ORIGN_SEGMENT1", label: "ORIGN_SEGMENT1", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT2", label: "ORIGN_SEGMENT2", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT3", label: "ORIGN_SEGMENT3", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT4", label: "ORIGN_SEGMENT4", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT5", label: "ORIGN_SEGMENT5", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT6", label: "ORIGN_SEGMENT6", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT7", label: "ORIGN_SEGMENT7", width: 150, editable: false, visible: false},
+        { dataField: "ORIGN_SEGMENT8", label: "ORIGN_SEGMENT8", width: 150, editable: false, visible: false},
+        { dataField: "LOOKUP_TYPE_CODE", label: "LOOKUP_TYPE_CODE", width: 150, editable: false },
+        { dataField: "LOOKUP_TYPE_VERSION", label: "LOOKUP_TYPE_VERSION", width: 150, editable: false },
+        { dataField: "ACTIVE_FLAG", label: "ACTIVE_FLAG", width: 150, editable: true },
+        { dataField: "IS_LATEST_VERSION_YN", label: "IS_LATEST_VERSION_YN", width: 150, editable: true },
+        { dataField: "SORT_ORDER", label: "SORT_ORDER", width: 150, editable: true},
+        { dataField: "VALUE_DESCRIPTION", label: "VALUE_DESCRIPTION", width: 150, editable: true },
+        { dataField: "SEGMENT1", label: "SEGMENT1", width: 150, editable: true },
+        { dataField: "SEGMENT2", label: "SEGMENT2", width: 150, editable: true },
+        { dataField: "SEGMENT3", label: "SEGMENT3", width: 150, editable: true },
+        { dataField: "SEGMENT4", label: "SEGMENT4", width: 150, editable: true },
+        { dataField: "SEGMENT5", label: "SEGMENT5", width: 150, editable: true },
+        { dataField: "SEGMENT6", label: "SEGMENT6", width: 150, editable: true },
+        { dataField: "SEGMENT7", label: "SEGMENT7", width: 150, editable: true },
+        { dataField: "SEGMENT8", label: "SEGMENT8", width: 150, editable: true },
+        { dataField: "ATTRIBUTE01", label: "ATTRIBUTE01", width: 150, editable: true },
+        { dataField: "ATTRIBUTE02", label: "ATTRIBUTE02", width: 150, editable: true },
+        { dataField: "ATTRIBUTE03", label: "ATTRIBUTE03", width: 150, editable: true },
+        { dataField: "ATTRIBUTE04", label: "ATTRIBUTE04", width: 150, editable: true },
+        { dataField: "ATTRIBUTE05", label: "ATTRIBUTE05", width: 150, editable: true },
+        { dataField: "ATTRIBUTE06", label: "ATTRIBUTE06", width: 150, editable: true },
+        { dataField: "ATTRIBUTE07", label: "ATTRIBUTE07", width: 150, editable: true },
+        { dataField: "ATTRIBUTE08", label: "ATTRIBUTE08", width: 150, editable: true },
+        { dataField: "ATTRIBUTE09", label: "ATTRIBUTE09", width: 150, editable: true },
+        { dataField: "ATTRIBUTE10", label: "ATTRIBUTE10", width: 150, editable: true },
+        { dataField: "ATTRIBUTE11", label: "ATTRIBUTE11", width: 150, editable: true },
+        { dataField: "ATTRIBUTE12", label: "ATTRIBUTE12", width: 150, editable: true },
+        { dataField: "ATTRIBUTE13", label: "ATTRIBUTE13", width: 150, editable: true },
+        { dataField: "ATTRIBUTE14", label: "ATTRIBUTE14", width: 150, editable: true },
+        { dataField: "ATTRIBUTE15", label: "ATTRIBUTE15", width: 150, editable: true },
+        { dataField: "INSERT_ID", label: "INSERT_ID", width: 150, editable: false },
+        { dataField: "INSERT_DTTM", label: "INSERT_DTTM", width: 150, editable: false },
+        { dataField: "UPDATE_ID", label: "UPDATE_ID", width: 150, editable: false },
+        { dataField: "UPDATE_DTTM", label: "UPDATE_DTTM", width: 150, editable: false }
+    ];
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    $hs.$("lookup_type_info").data(fromServer["data"]);
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "lookup_type_info": {
+            cellDoubleClick: function(data) {
+                searchValue(data);
+            },
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+        },
+        "lookup_value_info": {
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            },
+        },
+        "btnSave_dimension": {
+            click: function() {
+                let updated_data = [];
+                // 클릭 이력으로 수정 or 입력여부 체크
+                $hs.$("lookup_type_info").data().forEach(item => {
+                    if(item.$rowChecked == false || item.$rowChecked == true ) {
+                        updated_data.push(item);
+                    }
+                });
+
+
+                let toServer = {};
+                toServer["data"] = updated_data;
+
+                $hs.fetch({
+                    command: "save",
+                    param: toServer
+                }).then(fromServer => {
+                    alert("저장되었습니다.");
+                    $hs.handler["btnSearch"].click();
+                }).catch(e => $hs.errorBox(e))
+            }
+        }
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // add row
+        $hs.ui.button.init({ id: "btn_add_row", enabled: @W });
+        $hs.ui.button.init({ id: "btn_detail_add_row", enabled: @W });
+
+        // grid save
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+        $hs.ui.button.init({ id: "btn_detail_grid_save", enabled: @W });
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+        $hs.ui.button.init({ id: "btn_detail_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+            
+        // Async 로직 때문에 그리드에 들어가는 버튼 리스너를 따로 달아주어야함. ----------------------------------
+        document.getElementById('btn_add_row').addEventListener('click', function() {
+            // 빈행 마지막에 추가 하기
+            $hs.$("lookup_type_info").addRow();
+
+            setTimeout(() => {
+                const instance = $hs.$("lookup_type_info")._instance;
+                const scrollable = instance.getScrollable();
+                if (scrollable) {
+                    scrollable.scrollTo({ top: 999999 }); // 맨 아래로 스크롤
+                }
+            }, 100); 
+        });
+
+        document.getElementById('btn_detail_add_row').addEventListener('click', function() {
+            // 빈행 마지막에 추가 하기
+            const grid = $hs.$("lookup_value_info")._instance;
+            const dataSource = grid.getDataSource();
+            const items = dataSource.items();
+
+            let defaultRow = {};
+            if (items.length > 0) {
+                const lastRow = items[items.length - 1];
+                defaultRow = { ...lastRow };
+
+                // LOOKUP_TYPE_CODE
+                // LOOKUP_TYPE_VERSION
+
+                // 기본키나 불필요한 필드 제거 (예시)
+                // delete defaultRow.id; 기본키 제거
+            }
+
+            const add_row = {
+                LOOKUP_TYPE_CODE : defaultRow.LOOKUP_TYPE_CODE,
+                LOOKUP_TYPE_VERSION : defaultRow.LOOKUP_TYPE_VERSION,
+                ACTIVE_FLAG : defaultRow.ACTIVE_FLAG,
+                IS_LATEST_VERSION_YN : defaultRow.IS_LATEST_VERSION_YN
+            };
+
+            $hs.$("lookup_value_info").addRow(add_row);
+
+            setTimeout(() => {
+                const instance = $hs.$("lookup_value_info")._instance;
+                const scrollable = instance.getScrollable();
+                if (scrollable) {
+                    scrollable.scrollTo({ top: 999999 }); // 맨 아래로 스크롤
+                }
+            }, 100);
+        });
+
+        document.getElementById('btn_excel_download').addEventListener('click', function() {
+            $hs.util.$CommonUtil.excelDownload("lookup_type_info", "lookup_type_info");
+        });
+
+        document.getElementById('btn_detail_excel_download').addEventListener('click', function() {
+            $hs.util.$CommonUtil.excelDownload("lookup_value_info", "lookup_value_info");
+        });
+
+        document.getElementById('btn_grid_save').addEventListener('click', function() {
+            let updated_data = [];
+            // 클릭 이력으로 수정 or 입력여부 체크
+            // $hs.$("lookup_type_info").data().forEach(item => {
+            //     if(item.$rowChecked == false || item.$rowChecked == true ) {
+
+            //         if(item["LOOKUP_TYPE_CODE"] != item["ORIGN_LOOKUP_TYPE_CODE"]) {
+            //             TODO : 팝업띄우기
+            //             $hs.$("modalDialog").open();
+            //             return;
+            //         }
+            //         updated_data.push(item);
+            //     }
+            // });
+
+
+            for (let item of $hs.$("lookup_type_info").data()) {
+                if (item.$rowChecked === false || item.$rowChecked === true) {
+                    if (item["LOOKUP_TYPE_CODE"] !== item["ORIGN_LOOKUP_TYPE_CODE"]) {
+                        $hs.$("modalDialog").open();
+                        return; 
+                    }
+                    updated_data.push(item);
+                }
+            }
+
+            let toServer = {};
+            toServer["data"] = updated_data;
+
+            $hs.fetch({
+                command: "save",
+                param: toServer
+            }).then(fromServer => {
+                alert("저장되었습니다.");
+                $hs.handler["btnSearch"].click();
+            }).catch(e => $hs.errorBox(e))
+        });
+
+        document.getElementById('btn_detail_grid_save').addEventListener('click', function() {
+            // TODO : ORGINAL 데이터 가져오기
+            // 입력하기 이전에 데이터를 갖고있어야함
+
+
+            let updated_data = [];
+            // 클릭 이력으로 수정 or 입력여부 체크
+            $hs.$("lookup_value_info").data().forEach(item => {
+                if(item.$rowChecked == false || item.$rowChecked == true ) {
+                    updated_data.push(item);
+                }
+            });
+
+            let toServer = {};
+            toServer["data"] = updated_data;
+
+            $hs.fetch({
+                command: "save_detail",
+                param: toServer
+            }).then(fromServer => {
+                alert("저장되었습니다.");
+                // TODO : cellDoubleClick event 실행시켜야함
+                searchValue(cur_type_data);
+            }).catch(e => $hs.errorBox(e))
+        });
+
+        // ---------------------------------------------------------------------------------------------------------------------
+
+        // lookup_type_info
+        $hs.dx.grid.init({
+            id: "lookup_type_info",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear"],
+        })
+        // 헤더컬럼 초기값 정의
+        const defaultColumns = [
+            { dataField: "ORIGN_LOOKUP_TYPE_CODE", label: "ORIGN_LOOKUP_TYPE_CODE", width: 150, editable: true, visible: false },
+            { dataField: "LOOKUP_TYPE_CODE", label: "LOOKUP_TYPE_CODE", width: 150, editable: true },
+            { dataField: "TYPE_DESCRIPTION", label: "TYPE_DESCRIPTION", width: 300, editable: true },
+            { dataField: "LOOKUP_TYPE_VERSION", label: "LOOKUP_TYPE_VERSION", width: 150, editable: false },
+            { dataField: "ACTIVE_FLAG", label: "ACTIVE_FLAG", width: 150, editable: true },
+            { dataField: "IS_LATEST_VERSION_YN", label: "IS_LATEST_VERSION_YN", width: 150, editable: false },
+            // { dataField: "VALUE_TABLE_TYPE", label: "VALUE_TABLE_TYPE", width: 150, editable: false },
+            { dataField: "SEGMENT1", label: "SEGMENT1", width: 150, editable: true },
+            { dataField: "SEGMENT2", label: "SEGMENT2", width: 150, editable: true },
+            { dataField: "SEGMENT3", label: "SEGMENT3", width: 150, editable: true },
+            { dataField: "SEGMENT4", label: "SEGMENT4", width: 150, editable: true },
+            { dataField: "SEGMENT5", label: "SEGMENT5", width: 150, editable: true },
+            { dataField: "SEGMENT6", label: "SEGMENT6", width: 150, editable: true },
+            { dataField: "SEGMENT7", label: "SEGMENT7", width: 150, editable: true },
+            { dataField: "SEGMENT8", label: "SEGMENT8", width: 150, editable: true },
+            { dataField: "ATTRIBUTE01", label: "ATTRIBUTE01", width: 150, editable: true },
+            { dataField: "ATTRIBUTE02", label: "ATTRIBUTE02", width: 150, editable: true },
+            { dataField: "ATTRIBUTE03", label: "ATTRIBUTE03", width: 150, editable: true },
+            { dataField: "ATTRIBUTE04", label: "ATTRIBUTE04", width: 150, editable: true },
+            { dataField: "ATTRIBUTE05", label: "ATTRIBUTE05", width: 150, editable: true },
+            { dataField: "ATTRIBUTE06", label: "ATTRIBUTE06", width: 150, editable: true },
+            { dataField: "ATTRIBUTE07", label: "ATTRIBUTE07", width: 150, editable: true },
+            { dataField: "ATTRIBUTE08", label: "ATTRIBUTE08", width: 150, editable: true },
+            { dataField: "ATTRIBUTE09", label: "ATTRIBUTE09", width: 150, editable: true },
+            { dataField: "ATTRIBUTE10", label: "ATTRIBUTE10", width: 150, editable: true },
+            { dataField: "ATTRIBUTE11", label: "ATTRIBUTE11", width: 150, editable: true },
+            { dataField: "ATTRIBUTE12", label: "ATTRIBUTE12", width: 150, editable: true },
+            { dataField: "ATTRIBUTE13", label: "ATTRIBUTE13", width: 150, editable: true },
+            { dataField: "ATTRIBUTE14", label: "ATTRIBUTE14", width: 150, editable: true },
+            { dataField: "ATTRIBUTE15", label: "ATTRIBUTE15", width: 150, editable: true },
+            { dataField: "INSERT_ID", label: "INSERT_ID", width: 150, editable: false },
+            { dataField: "INSERT_DTTM", label: "INSERT_DTTM", width: 150, editable: false },
+            { dataField: "UPDATE_ID", label: "UPDATE_ID", width: 150, editable: false },
+            { dataField: "UPDATE_DTTM", label: "UPDATE_DTTM", width: 150, editable: false }
+        ];
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="lot_routing_sequence_info" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("lookup_type_info", defaultColumns);
+        // Excel to Grid 복사 붙여넣기 추가
+        $hs.util.$CommonUtil.setExcelToGridPaste("lookup_type_info");
+
+        const _instance = $hs.$("lookup_type_info")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        $hs.util.$CommonUtil.setGridClick("lookup_type_info");
+
+        // const originalOnCellClick = _instance.option("onCellClick");
+
+        // _instance.option("onCellClick", function(e) {
+        //     기존 이벤트 먼저 실행
+        //     if (typeof originalOnCellClick === "function") {
+        //         originalOnCellClick(e);
+        //     }
+
+        //     추가 로직 :rowData 강제 선택
+        //     if (e.row && e.row.rowType === "data") {
+        //         _instance.selectRows([e.key], false);
+        //     }
+        // })
+
+        // lookup_value_info
+        $hs.dx.grid.init({
+            id: "lookup_value_info",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear"],
+        })
+        // 헤더컬럼 초기값 정의
+
+        $hs.util.$CommonUtil.getGridSetting("lookup_value_info", detailDefaultColumns);
+
+        $hs.util.$CommonUtil.setExcelToGridPaste("lookup_value_info");
+        $hs.util.$CommonUtil.setGridClick("lookup_value_info");
+
+        const _instance2 = $hs.$("lookup_value_info")._instance;
+        // 컬럼 라인 그리기
+        _instance2.option('showColumnLines', true);
+        _instance2.option('rowAlternationEnabled', false);
+        _instance2.option('showBorders', true);
+        _instance2.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        // Search Pannel
+        $hs.html.select.init({ 
+            id: "active_flag", 
+            data: [{ label: "전체", value: "" },{ label: "Y", value: "Y" }, { label: "N", value: "N" }],
+            val: "Y" 
+        });
+        
+        // 팝업
+        $hs.html.$popup.init('modalDialog');
+    });
+
+    let cur_type_data = {};
+
+    // lookup value 데이터 조회
+    function searchValue(data) {
+        cur_type_data = data;
+        let toServer = {};
+        toServer["terms"] = data.rowData;
+
+        $hs.fetch({
+            command: "search_detail",
+            param: toServer
+        }).then(fromServer => {
+            // VALUE의 헤더를 바꾸는 작업
+            // 컬럼은 추가되지 않기 SEGMENT1 ~ 8 까지 변수로 생성
+            let segList = [];
+            let attributeList = [];
+
+            // SEGMENT1 ~ SEGMENT8 자동으로 추출
+            for (let i = 1; i <= 8; i++) {
+                let key = `SEGMENT${i}`;
+                let value = data.rowData[key];
+                segList.push(value);
+            }
+
+            // ATTRIBUTE01 ~ ATTRIBUTE15 자동으로 추출
+            for (let i = 1; i <= 15; i++) {
+                if( i < 10 ) {
+                    i = '0' + i; // 10 이하인경우는 01~ 09로 변경
+                }
+                let key = `ATTRIBUTE${i}`;
+                let value = data.rowData[key];
+                attributeList.push(value);
+            }
+
+            // 컬럼에 SEGMENT1 ~ SEGMENT8 있을 경우 label 설정 + "-" 일 경우 visible false 처리
+            detailDefaultColumns.forEach((col) => {
+                let segIndex = parseInt(col.dataField?.replace("SEGMENT", ""));
+                col.visible = true;
+                if (!isNaN(segIndex) && segIndex >= 1 && segIndex <= 8) {
+                    let labelValue = segList[segIndex - 1];
+                    col.label = labelValue;
+
+                    if (labelValue === "-") {
+                        col.visible = false;
+                    }
+                }
+
+                let attributeIndex = parseInt(col.dataField?.replace("ATTRIBUTE", ""));
+                if (!isNaN(attributeIndex) && attributeIndex >= 1 && attributeIndex <= 15) {
+                    let labelValue = attributeList[attributeIndex - 1];
+                    col.label = labelValue;
+                    if (labelValue === "undefined") {
+                        col.visible = false;
+                    }
+                }
+                // ORIGN_SEGMENT1 ~ ORIGN_SEGMENT8
+                // ORIGNAL SEGMENT는 false로 바꿔주는 로직 추가 필요.
+                if( col.dataField == "ORIGN_SEGMENT1" ||
+                    col.dataField == "ORIGN_SEGMENT2" ||
+                    col.dataField == "ORIGN_SEGMENT3" ||
+                    col.dataField == "ORIGN_SEGMENT4" ||
+                    col.dataField == "ORIGN_SEGMENT5" ||
+                    col.dataField == "ORIGN_SEGMENT6" ||
+                    col.dataField == "ORIGN_SEGMENT7" ||
+                    col.dataField == "ORIGN_SEGMENT8") {
+                    col.visible = false;
+                }
+            });
+
+            // 컬럼에 ATTRIBUTE01 ~ ATTRIBUTE15 있을 경우 label 설정 + undefined 일 경우 visible false 처리
+            // detailDefaultColumns.forEach((col) => {
+            //     col.visible = true;
+            // });
+
+            // 그리드 컬럼 셋팅
+            $hs.util.$CommonUtil.getGridSetting("lookup_value_info", detailDefaultColumns);
+
+            // value table에 반영
+            $hs.$("lookup_value_info").data(fromServer["data"]);
+
+            // value데이터가 없는 type_code면 처음에 한줄 추가해줘야함.
+            if(fromServer["data"].length == 0)
+            {
+                const add_row = {
+                    LOOKUP_TYPE_CODE : data.rowData.LOOKUP_TYPE_CODE,
+                    LOOKUP_TYPE_VERSION : data.rowData.LOOKUP_TYPE_VERSION,
+                    ACTIVE_FLAG : data.rowData.ACTIVE_FLAG,
+                    IS_LATEST_VERSION_YN : data.rowData.IS_LATEST_VERSION_YN
+                };
+
+                $hs.$("lookup_value_info").addRow(add_row);
+            }
+
+        }).catch(e => $hs.errorBox(e))
+    }
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">공통코드 Lookup</span>
+            <div class="toggle-container-favorites">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">Master Data</li>
+            <li class="breadcrumb-item active">공통코드 Lookup</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+
+                            <div class="form-group">
+                                <div class="control-label"><label>ACTIVE_FLAG</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="active_flag" hs-df="active_flag" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon"><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-box" flex>
+                <!-- 차트-->
+                <div class="box-header">
+                    <div class="header-title">Lookup Type<span class="title-list-count"><small></small></span></div>
+                    <div class="header-btn">
+                        <button id="btn_add_row" type="button" class="btn btn-add">add</button>
+                        <button id="btn_grid_save" type="button" class="btn btn-save">save</button>
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                        @* <button id="btn_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button> *@
+                    </div>
+                </div>
+
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="lookup_type_info" data-grid-id="LOOKUP_TYPE"></div>
+                    </div>
+                </div>
+
+                <div class="box-header">
+                    <div class="header-title">Lookup Value<span class="title-list-count"><small></small></span></div>
+                    <div class="header-btn">
+                        <button id="btn_detail_add_row" type="button" class="btn btn-add">add</button>
+                        <button id="btn_detail_grid_save" type="button" class="btn btn-save">save</button>
+                        <button id="btn_detail_excel_download" type="button" class="btn btn-download">excel</button>
+                        @* <button id="btn_detail_grid_setting" type="button" class="btn btn-setting-icon"><span class="blind">setting</span></button> *@
+                    </div>
+                </div>
+
+                <!--  그리드 -->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="lookup_value_info" data-grid-id="LOOKUP_VALUE"></div>
+                    </div>
+                </div>
+            </div>
+
+            
+
+
+
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:200px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">Warning</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input" style="min-height: 0px;">
+            <div>
+                LOOKUP_TYPE_CODE가 바뀐 데이터가 있습니다. 그래도 저장하시겠습니까?
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save" hs-btn>저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

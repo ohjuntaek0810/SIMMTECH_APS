@@ -1,0 +1,317 @@
+is_global = true
+build_property.TargetFramework = net6.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = APS_SIMMTECH
+build_property.RootNamespace = APS_SIMMTECH
+build_property.ProjectDir = D:\Dev\Products\APS\APS_SIMMTECH\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 6.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = D:\Dev\Products\APS\APS_SIMMTECH
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 6.0
+build_property.EnableCodeStyleSeverity = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/CmnURL.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQ21uVVJMLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Mail.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcTWFpbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/main.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbWFpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/notice.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcbm90aWNlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Partial/_ScriptCss.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Partial/_ScriptCss_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUGFydGlhbFxfU2NyaXB0Q3NzX2xvZ2luLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout_iFrame.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfaUZyYW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Shared/_Layout_login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXRfbG9naW4uY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/Test/task_wait_all.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcVGVzdFx0YXNrX3dhaXRfYWxsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/voc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcdm9jLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/example/example_001.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGV4YW1wbGVcZXhhbXBsZV8wMDEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/example/example_002.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGV4YW1wbGVcZXhhbXBsZV8wMDIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/example/example_003.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGV4YW1wbGVcZXhhbXBsZV8wMDMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/example/example_004.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGV4YW1wbGVcZXhhbXBsZV8wMDQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/example/example_005.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXGV4YW1wbGVcZXhhbXBsZV8wMDUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/aps_resource_group_capa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcYXBzX3Jlc291cmNlX2dyb3VwX2NhcGEuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/bom.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcYm9tLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/bor.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcYm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/department_master.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcZGVwYXJ0bWVudF9tYXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/item_master.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcaXRlbV9tYXN0ZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/item_model_search_excel_upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcaXRlbV9tb2RlbF9zZWFyY2hfZXhjZWxfdXBsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/item_process_gbn_excel_upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcaXRlbV9wcm9jZXNzX2dibl9leGNlbF91cGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/item_route_attribute_drill.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcaXRlbV9yb3V0ZV9hdHRyaWJ1dGVfZHJpbGwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/item_route_attribute_router.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcaXRlbV9yb3V0ZV9hdHRyaWJ1dGVfcm91dGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/lead_time.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcbGVhZF90aW1lLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/lookup.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcbG9va3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/resource_capa.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFccmVzb3VyY2VfY2FwYS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/resource_master.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFccmVzb3VyY2VfbWFzdGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/routing.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFccm91dGluZy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/masterData/status_by_lot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG1hc3RlckRhdGFcc3RhdHVzX2J5X2xvdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/delivery_capaload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGRlbGl2ZXJ5X2NhcGFsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/delivery_request.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGRlbGl2ZXJ5X3JlcXVlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/delivery_result_calc.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGRlbGl2ZXJ5X3Jlc3VsdF9jYWxjLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/delivery_scheduler.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGRlbGl2ZXJ5X3NjaGVkdWxlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/item_by_bottle_neck.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGl0ZW1fYnlfYm90dGxlX25lY2suY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/item_by_lt_input.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXGl0ZW1fYnlfbHRfaW5wdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/material_inout_simul.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXG1hdGVyaWFsX2lub3V0X3NpbXVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/orderPromising/monthly_delivery_capa_input.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXG9yZGVyUHJvbWlzaW5nXG1vbnRobHlfZGVsaXZlcnlfY2FwYV9pbnB1dC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/daily_plan_analysis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xkYWlseV9wbGFuX2FuYWx5c2lzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/daily_plan_analysis_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xkYWlseV9wbGFuX2FuYWx5c2lzX3Rlc3QuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/downtime_plan.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xkb3dudGltZV9wbGFuLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/input_daily_production_target.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xpbnB1dF9kYWlseV9wcm9kdWN0aW9uX3RhcmdldC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/input_plan_simul.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xpbnB1dF9wbGFuX3NpbXVsLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/item_by.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xpdGVtX2J5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/item_by_sales_order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xpdGVtX2J5X3NhbGVzX29yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/lot_routing_sequence.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xsb3Rfcm91dGluZ19zZXF1ZW5jZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/lot_routing_sequence_test.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xsb3Rfcm91dGluZ19zZXF1ZW5jZV90ZXN0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/material_availability.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xtYXRlcmlhbF9hdmFpbGFiaWxpdHkuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/material_input_inform_excel_upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xtYXRlcmlhbF9pbnB1dF9pbmZvcm1fZXhjZWxfdXBsb2FkLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/plan_grid.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xwbGFuX2dyaWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/problem_report.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xwcm9ibGVtX3JlcG9ydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/process_item_simul.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xwcm9jZXNzX2l0ZW1fc2ltdWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/process_load_analysis.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xwcm9jZXNzX2xvYWRfYW5hbHlzaXMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/ready_by_input_excel_upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xyZWFkeV9ieV9pbnB1dF9leGNlbF91cGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/ready_by_input_material_excel_upload.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1xyZWFkeV9ieV9pbnB1dF9tYXRlcmlhbF9leGNlbF91cGxvYWQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/wip_status.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1x3aXBfc3RhdHVzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planAnalysis/work_order.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5BbmFseXNpc1x3b3JrX29yZGVyLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/control_board.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXGNvbnRyb2xfYm9hcmQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/control_cust_resource.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXGNvbnRyb2xfY3VzdF9yZXNvdXJjZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/control_lot_dept.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXGNvbnRyb2xfbG90X2RlcHQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/control_resource_cust.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXGNvbnRyb2xfcmVzb3VyY2VfY3VzdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/control_resource_item.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXGNvbnRyb2xfcmVzb3VyY2VfaXRlbS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/planControl/tar_urgent_lot.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHBsYW5Db250cm9sXHRhcl91cmdlbnRfbG90LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_code_group.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX2NvZGVfZ3JvdXAuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_code_info.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX2NvZGVfaW5mby5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_group.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX2dyb3VwLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_group_auth.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX2dyb3VwX2F1dGguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_menu.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX21lbnUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/si/si_user.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXHNpXHNpX3VzZXIuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_Resource/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1Jlc291cmNlXF9WaWV3U3RhcnQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[D:/Dev/Products/APS/APS_SIMMTECH/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 

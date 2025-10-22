@@ -1,0 +1,807 @@
+﻿@page
+@model HS.Web.Pages.process_load_analysis
+@{
+    string CLIENT = Model.Params["CLIENT"].AsString();
+    string R = Model.Params["R"].AsString();
+    string W = Model.Params["W"].AsString();
+    string first_plan_id = Model.Params["first_plan_id"].AsString();
+}
+
+
+<script>
+
+    // 최신버번 PLAN_ID
+    let first_plan_id = '@first_plan_id';
+
+    // chart_dat 초기화
+    let chart_data = [];
+
+    // 헤더컬럼 초기값 정의
+    const defaultColumns = [
+        { dataField: "RESOURCE_ID", label: "RESOURCE_ID", width: 170, editable: false, visible: false},
+        { dataField: "RESOURCE_CAPA_GROUP_NAME", label: "RESOURCE CAPA GROUP", width: 200, editable: false, fixed:true },
+        { dataField: "APS_RESOURCE_NAME", label: "APS RESOURCE NAME", width: 170, editable: false, fixed:true },
+        { dataField: "P_MIX_CAPA", label: "CAPA", width: 120, editable: false, align:"right", type:"number", fixed:true },
+        { dataField: "RCG_WIP_QTY", label: "WIP QTY", width: 140, editable: false, align:"right", type:"number", fixed:true}
+    ];
+
+
+
+    $hs.handler = {
+        "btn_reset" : {
+            click: function() {
+                // 값 초기화
+                $hs.$("pnlSearch").reset();
+            }
+        },
+        "btnSearch": {
+            click: function () {
+
+                let toServer = {};
+                toServer["terms"] = $hs.$("pnlSearch").val();
+
+                console.log(toServer);
+
+                $hs.fetch({
+                    command: "search",
+                    param: toServer
+                }).then(fromServer => {
+                    //  조회한 날짜로 헤더컬럼 재설정
+                    const searchColumns = [];
+                    const srchStartDate = new Date(toServer["terms"].start_date);
+                    const srchEndDate = new Date(toServer["terms"].end_date);
+
+                    defaultColumns.forEach(col => searchColumns.push(col));
+
+                    for (let d = new Date(srchStartDate); d.getTime() <= srchEndDate.getTime(); d.setDate(d.getDate() + 1)) {
+                        const dateStr = formatDate(d);
+                        const column = {
+                            dataField: dateStr,
+                            label: dateStr,
+                            width: 100,
+                            editable: false,
+                            type:"number",
+                            align:"right"
+                        };
+                        searchColumns.push(column);
+                    }
+
+                    $hs.$("grid").columns(col => {
+                        searchColumns.forEach(column => {
+                            col.add({
+                                dataField: column.dataField,
+                                label: column.label,
+                                width: column.width,
+                                visible: (column.visible === undefined || column.visible === true || column.visible === "True"),
+                                fixed: column.fixed === true || column.fixed === "True" ? true : false,
+                                editable: column.editable === true || column.editable === "True" ? true : false,
+                                type: column.type ? column.type : null,
+                                align: column.align ? column.align : null
+                            });
+                        });
+                    });
+
+
+
+                    $hs.$("grid").data(fromServer["data"]);
+                    $('#total_cnt').text('(Total Count:' + fromServer["data"].length + ')');
+
+                    $hs.chart.high.init({
+                        id:"chart",
+                        chart: {
+                            type: 'column'
+                        },
+                        title: {
+                            text: ''
+                        },
+                        xAxis: {
+                            categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+                        },
+                        yAxis: [{
+                            min: 0,
+                            max : 100,
+                            title: {
+                                text: 'DAILY PLAN QTY'
+                            }
+                        }, {
+                            title: {
+                                text: 'RATE'
+                            },
+                            opposite: true
+                        }],
+                        tooltip: {
+                            shared: true
+                        },
+                        plotOptions: {
+                            column: {
+                                stacking: 'normal', // 누적형 설정
+                                dataLabels: {
+                                    enabled: true
+                                }
+                            }
+                        }
+                    });
+
+                    // chart_data 넣어주기
+                    chart_data = fromServer["chart_data"];
+                }).catch(e => $hs.errorBox(e))
+            }
+        },
+        "grid": {
+             cellClick: function (data) {
+                const start_date = $hs.$("start_date").val();
+                const end_date = $hs.$("end_date").val();
+
+                const start = new Date(start_date);
+                const end = new Date(end_date);
+                // 실제 사용 date List
+                const dateList = [];
+                // 데이터에 넣을 date List
+                const dateList2 = [];
+
+                while (start <= end) {
+                    const yyyy = String(start.getFullYear());
+                    const mm = String(start.getMonth() + 1).padStart(2, '0');
+                    const dd = String(start.getDate()).padStart(2, '0');
+                    dateList.push(`${mm}-${dd}`);
+                    dateList2.push(`${yyyy}-${mm}-${dd}`);
+
+                    // 다음 날짜로 이동
+                    start.setDate(start.getDate() + 1);
+                }
+
+                let mass_list = [];
+                let sample_list = [];
+                let test_list = [];
+
+                // 비율을 구하기위한 P_MIX_CAPA 변수
+                let p_mix_capa = 0;
+                // RESOURCE_ID 같은것만 찾아내기
+                chart_data.forEach(item => {
+                    if(item.RESOURCE_ID == data.rowData.RESOURCE_ID ) {
+                        const lot = item.LOT_ID;
+
+                        if(lot == "M" || lot == null) {
+                            dateList2.forEach(date => {
+                                const value = item[date];
+                                mass_list.push(value !== undefined ? value : 0);
+                            });
+                        } else if(lot == "T") {
+                            dateList2.forEach(date => {
+                                const value = item[date];
+                                test_list.push(value !== undefined ? value : 0);
+                            });
+                        } else {
+                            dateList2.forEach(date => {
+                                const value = item[date];
+                                sample_list.push(value !== undefined ? value : 0);
+                            });
+                        }
+
+                        p_mix_capa = item["P_MIX_CAPA"];
+                    }
+                });
+                // RATE 산출을 위한 전체 값 가져오기
+                const total_list = [];
+
+                for (let i = 0; i < mass_list.length; i++) {
+                    const mass = mass_list[i] ?? 0;
+                    const sample = sample_list[i] ?? 0;
+                    const test = test_list[i] ?? 0;
+
+                    total_list.push(mass + sample + test);
+                }
+
+                const rate_list = total_list.map(value =>
+                    parseFloat(((value / p_mix_capa) * 100).toFixed(2))
+                );
+
+                //console.log(rate_list);
+                let stitle =data.rowData.APS_RESOURCE_NAME;
+                // 그래프에 데이터 넣기
+                $hs.$("chart").set({
+                   
+                    title: {
+                            text: stitle
+                            ,align: 'left'
+                    },
+                    "xAxis": {
+                        "categories": dateList
+                    },
+                    "yAxis": [{
+                        min: 0,
+                        title: {
+                            text: 'Daily Plan QTY'
+                        }
+                    }, {
+                        min: 0,
+                        max: 100,
+                        title: {
+                            text: 'Rate'
+                        },
+                        opposite: true
+                    }],
+                    "series": [{
+                        name: '양산',
+                        data: mass_list,
+                        color: '#7cb5ec'
+                    }, {
+                        name: '샘플',
+                        data: sample_list,
+                        color: '#fcc000'
+                    }, {
+                        name: 'TEST',
+                        data: test_list,
+                        color: '#aeaeae'
+                    }, {
+                        name: 'Rate',
+                        type: 'line', //spline : 흐느적 라인
+                        yAxis: 1,
+                        data: rate_list,
+                        color: '#90ed7d',
+                        marker: {
+                            radius: 6 // 기본은 4~5, 여기서 키우면 점이 커짐
+                        },
+                        lineWidth: 4
+                    }, {
+                        name: '총합',
+                        type: 'line',
+                        data: total_list,
+                        yAxis: 0,
+                        color: 'transparent', // 선 색상 투명
+                        lineWidth: 0,          // 선 두께 0
+                            dataLabels: {
+                            enabled: true,
+                            formatter: function () {
+                                return Highcharts.numberFormat(this.y, 0, '.', ','); // 소수점 0자리, 천 단위 쉼표
+                            },
+                            style: {
+                                fontWeight: 'bold',
+                                color: '#000'
+                            }
+                        },
+                        enableMouseTracking: false,
+                        marker: {
+                            enabled: false
+                        }
+                    }]
+                });
+
+
+                // $hs.fetch({
+                //     command: "search_chart",
+                //     param: toServer
+                // }).then(fromServer => {
+                //     console.log(fromServer["data"]);
+                //     
+
+                // }).catch(e => $hs.errorBox(e))
+               
+            },
+            headerFormat: function (data) {
+                data.cell.css("text-align", "center");
+            },
+            contextHeaderClick: function (data) {
+                $hs.util.$CommonUtil.getHeaderContextClick(data);
+            }
+        },
+        "btn_excel_download": {
+            click : function() {
+                $hs.util.$CommonUtil.excelDownload("grid", "DAILY_PLAN_ANALYSIS_INFO");
+            }
+        },
+        "plan_id" : {
+            change : function(data) {
+                        // PLAN ID 선택 시 달력에 시작날짜를 세팅한다.
+                        // data.value 잘라서 날짜형식으로 바꾸기
+                const plan_id_parts = data.value.split("_");
+                const date_part = plan_id_parts[1];
+                        // Date 포맷으로 변경
+                const date_format = `${date_part.slice(0,4)}-${date_part.slice(4,6)}-${date_part.slice(6,8)}`;
+                const dateObj = new Date(date_format);
+
+                const two_week_later = new Date(dateObj);
+                two_week_later.setDate(dateObj.getDate() + 45);
+
+                        // 실제 input에 설정
+                document.getElementById('start_date').value = formatDate(dateObj);
+                document.getElementById('end_date').value = formatDate(two_week_later);
+
+            }
+        },
+        "group_id" : {
+            change : function(data){
+                // 넘겨줄 파라미터
+                let division_id = data.value;
+                // resource_capa_group
+
+                $hs.html.select.init({
+                    id: "resource_capa_group",
+                    dataurl: "/api/data/APS_RESOURCE_GROUP_V2?DIVISION_ID=" + division_id,
+                    valueMember: "CODE",
+                    displayMember: "NAME",
+                    val: ""
+                });
+
+                // resource_name
+                $hs.html.select.init({
+                    id: "resource_name",
+                    dataurl: "/api/data/APS_RESOURCE_NAME?DIVISION_ID=" + division_id,
+                    valueMember: "CODE",
+                    displayMember: "NAME",
+                    val: ""
+                });
+            }
+        },
+        "resource_capa_group" : {
+            change : function(data){
+                // 넘겨줄 파라미터
+                let RESOURCE_CAPA_GROUP_ID = data.value;
+
+                // resource_name
+                $hs.html.select.init({
+                    id: "resource_name",
+                    dataurl: "/api/data/APS_RESOURCE_NAME?RESOURCE_CAPA_GROUP_ID=" + RESOURCE_CAPA_GROUP_ID,
+                    valueMember: "CODE",
+                    displayMember: "NAME",
+                    val: ""
+                });
+            }
+        },
+    }
+
+    $hs.load(() => {
+        // 현재 localStorage에 저장된 메뉴 ID 가져옴
+        var curMenuId = localStorage.getItem("curMenuId"); 
+        // 즐겨찾기 여부 체크 후 버튼 리스너 추가
+        $hs.util.$CommonUtil.checkFavorite(curMenuId);
+
+        // search
+        $hs.ui.button.init({ id: "btnSearch", class: ["smart-btn", "btn-search"] });
+
+        // grid save
+        $hs.ui.button.init({ id: "btn_grid_save", enabled: @W });
+
+        // excel download
+        $hs.ui.button.init({ id: "btn_excel_download"});
+          
+        // panel
+        $hs.html.panel.init({ id: "pnlSearch" });
+
+        // grid setting
+        // $hs.ui.button.init({ id: "btn_grid_setting"});
+        // $hs.ui.button.init({ id: "btnSave_dimension"});
+
+        // text Box open
+        $hs.ui.button.init({ id: "btn_plan_id_box_open" });
+
+        // grid
+        $hs.dx.grid.init({
+            id: "grid",
+            width: "100%",
+            height: "100%",
+            sortable: true,
+            selectMode: "single",
+            rownumber: false,
+            filterable: true,
+            editable: true,
+            handler: true,
+            reOrdering: true, // 컬럼 재배치 여부
+            headerContextmenu : ["Sort Asc", "Sort Desc", "Sort Clear", "Fixed", "Unfixed", "Hide", "Hide Clear",
+                {
+                    menu : "CAL",
+                    child : [
+                        "Count",
+                        "Avg",
+                        "Max",
+                        "Min",
+                        "Sum",
+                        "Std. Div"
+                    ]
+                }
+            ],
+        })
+        
+
+        // 오늘 날짜 기준
+        const today = new Date();
+
+        // first_plan_id 기준으로 시작날짜를 정해야함
+        // first_plan_id 잘라서 날짜형식으로 바꾸기
+        const plan_id_parts = first_plan_id.split("_");
+        const date_part = plan_id_parts[1];
+        // Date 포맷으로 변경
+        const date_format = `${date_part.slice(0,4)}-${date_part.slice(4,6)}-${date_part.slice(6,8)}`;
+        const dateObj = new Date(date_format);
+
+        // 이번 달 첫째 날
+        const startDate = new Date(today.getFullYear(), today.getMonth(), 1);
+
+        // plan_id 날짜 기준 2주뒤까지
+        const endDate = new Date(dateObj);
+        endDate.setDate(endDate.getDate() + 45);
+
+        // 실제 input에 설정
+        document.getElementById('start_date').value = formatDate(dateObj);
+        document.getElementById('end_date').value = formatDate(endDate);
+
+        // 기존 default 컬럼 초기화
+        const firstColumn = [];
+        defaultColumns.forEach(col => firstColumn.push(col));
+
+        // dateObj ~ endDate 까지 헤더 컬럼 생성 필요
+        // 시작일 ~ 종료일까지 반복해서 컬럼 생성
+        for (let d = new Date(dateObj); d <= endDate; d.setDate(d.getDate() + 1)) {
+            const dateStr = formatDate(d);
+            firstColumn.push({
+                dataField: dateStr,
+                label: dateStr,
+                width: 100,
+                editable: false,
+                align:"right",
+                type: "number",
+            });
+        }
+
+
+
+        // 그리드 컬럼가져오기
+        // 1. id로 사용할 grid_id(js용)
+        // 2. 초기화용 컬럼들 (LIST)
+        // <div id="grid" data-grid-id="RESOURCE_GRID"></div>
+        $hs.util.$CommonUtil.getGridSetting("grid", firstColumn);
+
+        const _instance = $hs.$("grid")._instance;
+        // 컬럼 라인 그리기
+        _instance.option('showColumnLines', true);
+        _instance.option('rowAlternationEnabled', false);
+        _instance.option('showBorders', true);
+        _instance.option('scrolling', {
+            showScrollbar: 'always',
+            useNative: true
+        });
+
+        const gridInstance = $hs.$("grid")._instance;
+
+        function mergeCellsByFields(fields) {
+            const rows = gridInstance.getVisibleRows();
+            const columns = gridInstance.getVisibleColumns();
+
+            // 먼저 기존 병합 상태 초기화
+            for (let i = 0; i < rows.length; i++) {
+                fields.forEach(fieldName => {
+                    const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+                    const cell = gridInstance.getCellElement(i, columnIndex);
+                    if (cell && cell.length) {
+                        // display, rowspan 초기화
+                        cell[0].style.display = '';
+                        cell[0].removeAttribute('rowSpan');
+                    }
+                });
+            }
+
+            // 본격 병합 로직
+            fields.forEach(fieldName => {
+                const columnIndex = columns.findIndex(col => col.dataField === fieldName);
+
+                let prevValue = null;
+                let startRowIndex = 0;
+                let spanCount = 1;
+
+                for (let i = 0; i < rows.length; i++) {
+                    const currentValue = rows[i].data[fieldName];
+
+                    if (currentValue === prevValue) {
+                        spanCount++;
+                        const cell = gridInstance.getCellElement(i, columnIndex);
+                        if (cell && cell.length) {
+                            cell[0].style.display = 'none';
+                        }
+                    } else {
+                        // 이전 그룹 병합 처리
+                        if (spanCount > 1) {
+                            const topCell = gridInstance.getCellElement(startRowIndex, columnIndex);
+                            if (topCell && topCell.length) {
+                                topCell[0].rowSpan = spanCount;
+                                topCell[0].style.verticalAlign = 'middle';
+                            }
+                        }
+
+                        // 새 그룹 시작
+                        prevValue = currentValue;
+                        startRowIndex = i;
+                        spanCount = 1;
+                    }
+                }
+
+                // 마지막 그룹 병합 처리
+                if (spanCount > 1) {
+                    const topCell = gridInstance.getCellElement(startRowIndex, columnIndex);
+                    if (topCell && topCell.length) {
+                        topCell[0].rowSpan = spanCount;
+                        topCell[0].style.verticalAlign = 'middle';
+                    }
+                }
+            });
+        }
+
+        // gridInstance.option("scrolling", {
+        //     mode : "standard"
+        // });
+        gridInstance.getScrollable().on("scroll", function() {
+            mergeCellsByFields(["RESOURCE_CAPA_GROUP_NAME", "RCG_WIP_QTY"]);
+        });
+
+
+        // gridInstance.option("scrolling.mode", "standard");
+        gridInstance.option("onContentReady", function(e) {
+            mergeCellsByFields(["RESOURCE_CAPA_GROUP_NAME", "RCG_WIP_QTY"]);
+        });
+
+        // demension grid
+        $hs.dx.grid.init({
+            id: "dimension_grid",
+            width: "100%",
+            height: "300px",
+            sortable: true,
+            selectMode: "single",
+            dragRow: true,
+            rownumber: false,
+            filterable: false,
+            editable: true,
+            handler: true,
+        }).columns(col => {
+            col.add({ dataField: "dataField", label: "dataField", width: 200, editable: false, visible:false })
+            col.add({ dataField: "editable", label: "editable", width: 200, editable: false, visible:false })
+            col.add({ dataField: "name", label: "NAME", width: 200, editable: false })
+            col.add({ dataField: "visible", label: "VISIBLE", width: 80, editable: true, type: "boolean" })
+            col.add({ dataField: "width", label: "WIDTH", width: 80, editable: true })
+            col.add({ dataField: "fix", label: "FIX", width: 80, editable: true, type: "boolean" })
+        });
+
+
+        $hs.html.select.init({
+            id: "plan_id",
+            dataurl: "/api/data/PLAN_ID",
+            valueMember: "PLAN_ID",
+            displayMember: "PLAN_ID",
+            val: first_plan_id
+        });
+
+
+        $hs.chart.high.init({
+            id:"chart",
+            chart: {
+                type: 'column'
+            },
+            title: {
+                text: ''
+            },
+            xAxis: {
+                categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun']
+            },
+            yAxis: [{
+                min: 0,
+                title: {
+                    text: 'DAILY PLAN QTY'
+                }
+            }, {
+                title: {
+                    text: 'RATE'
+                },
+                opposite: true
+            }],
+            tooltip: {
+                shared: true
+            },
+            plotOptions: {
+                column: {
+                    stacking: 'normal', // 누적형 설정
+                    dataLabels: {
+                        enabled: true
+                    }
+                }
+            }
+        });
+
+
+        // 사업부
+        $hs.html.select.init({
+            id: "group_id",
+            dataurl: "/api/data/DIVISION_LIST",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+
+        // resource_capa_group
+        $hs.html.select.init({
+            id: "resource_capa_group",
+            dataurl: "/api/data/APS_RESOURCE_GROUP_V2",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+
+        // resource_name
+        $hs.html.select.init({
+            id: "resource_name",
+            dataurl: "/api/data/APS_RESOURCE_NAME",
+            valueMember: "CODE",
+            displayMember: "NAME",
+            val: ""
+        });
+        
+        // 팝업
+        $hs.html.$popup.init('modalDialog');        
+    });
+
+    // yyyy-mm-dd 포맷으로 변환하는 함수
+    function formatDate(date) {
+        const yyyy = date.getFullYear();
+        const mm = String(date.getMonth() + 1).padStart(2, '0'); // month: 0-based
+        const dd = String(date.getDate()).padStart(2, '0');
+        return `${yyyy}-${mm}-${dd}`;
+    }
+
+</script>
+
+<!-- s:Content Header (Page header) -->
+<div class="content-header">
+    <div class="header-location">
+        <div class="header-title">
+            <span class="sub-title">설비 부하 분석</span>
+            <div class="toggle-container-favoritess">
+                <input type="checkbox" id="favorites-toggle" hidden>
+                <label for="favorites-toggle" class="favorites-toggle">
+                    <i class="bx bx-star"></i>
+                </label>
+            </div>
+        </div>
+        <ol class="breadcrumb">
+            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+            <li class="breadcrumb-item active">공정분석</li>
+            <li class="breadcrumb-item active">설비 부하 분석</li>
+        </ol>
+    </div>
+    <div class="header-setting">
+        <div class="header-btn">
+            <div class="filter-toggle-container">
+                <span class="toggle-title">Search Area</span>
+                <input type="checkbox" id="favorites-toggle-switch" hidden checked>
+                <label for="favorites-toggle-switch" class="switch"></label>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- /e:Content Header -->
+<hr>
+<!-- s:content -->
+<section class="content-body" flex>
+    <div class="content row" flex>
+        <div class="col-lg-12" flex>
+            <div class="content-box content-filter">
+                <div class="box-body">
+                    <div class="list-filter">
+                        <div id="pnlSearch" class="filter-content form-inline">
+
+                            <div class="form-group">
+                                <div class="control-label"><label>PLAN ID</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="plan_id" hs-df="PLAN_ID" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="group_id" hs-df="group_id" hs-handler="true"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>RESROUCE CAPA GROUP</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="resource_capa_group" hs-df="resource_capa_group" hs-handler="true" style="width:200px"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>RESOURCE NAME</label></div>
+                                <div class="control-form">
+                                    <select class="form-control" id="resource_name" hs-df="resource_name" hs-handler="true" style="width:200px"></select>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>DATE</label></div>
+                                <div class="control-form">
+                                    <div class="form-date-period">
+                                        <input type="text" id="start_date" hs-df="start_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="Start Date">
+                                        <span class="date-term">~</span>
+                                        <input type="text" id="end_date" hs-df="end_date" class="form-datepicker form-control" data-toggle="datepicker" placeholder="End Date">
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <div class="control-label"><label>RATE</label></div>
+                                <div class="control-form">
+                                    <input type="checkbox" class="form-control substituted" id="is_rate" hs-df="is_rate" style="width: 20px" checked />
+                                </div>
+                            </div>
+
+                            <button id="btn_reset" type="button" class="btn btn-reset-icon" hs-btn><span class="blind">filter reset</span></button>
+                            <button id="btnSearch" type="button" class="btn btn-search-icon">Search<span class="blind">filter search</span></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+
+
+            <!-- 그리드 공정부하 분석 -->
+            <div class="content-box" flex>
+              
+                
+
+                <!-- 차트-->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="chart" style="width:100%;height:300px"></div>
+                    </div>
+                </div>
+
+                <div class="box-header">
+                    <div class="header-title">
+                        설비 부하 분석
+                        <span class="title-list-count">
+                            <small id="total_cnt"></small><small id="grid_cal" class="" style="color: black;margin-left: 10px;font-weight: 500;"></small>
+                        </span>
+                    </div>
+                    <div class="header-btn">
+                        <button id="btn_excel_download" type="button" class="btn btn-download">excel</button>
+                    </div>
+                </div>
+
+                <!--  그리드 -->
+                <div class="box-body" flex>
+                    <div class="grid-container" flex>
+                        <div id="grid" data-grid-id="RESOURCE_CAPA"></div>
+                    </div>
+                </div>
+            </div>
+
+           
+        </div>
+    </div>
+</section>
+<!-- /e:content -->
+<!-- s:modal -->
+<div id="modalDialog" style="display:none; position:absolute; height:400px;width:600px;">
+    <div class="modal-content animate-top">
+        <div id="modal-header" class="modal-header">
+            <h5 class="modal-title">PERSONALIZATION</h5>
+            <button type="button" class="btn-popup-close">
+                <span class="xi-close-min" aria-hidden="true"></span>
+            </button>
+        </div>
+        <div class="modal-body" id="panel_input">
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <div class="control-label"><label>Dimension</label></div>
+                    </div>
+                </div>
+            </div>
+            <div class="grid-container" flex>
+                <div id="dimension_grid"></div>
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="btnSave_dimension" type="button" class="btn btn-save">저장</button>
+            <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+        </div>
+    </div>
+</div>
+<!-- /e:modal -->

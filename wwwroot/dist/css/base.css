@@ -1,0 +1,74 @@
+@charset "utf-8";
+/************************************************************************
+ * filename     : base.css
+ * description  : SIMMTECH APS base style CSS
+ * date         : 2025.03.25 JDW
+************************************************************************/
+/* reset */
+* {
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', 'Pretendard Variable', Pretendard, "Malgun Gothic",sans-serif;
+    letter-spacing: -0.5px;
+    outline: none;
+}
+body {
+    font-family: "Pretendard Variable", Pretendard, "Malgun Gothic",sans-serif;
+    background: none;
+    margin: 0;
+    padding: 0;
+    line-height: 1.4;
+}
+img{
+  max-width:100%;
+}
+ul, ul li, dl, dl dt, dl dd, ol, ol li, p{
+  list-style: none;
+  margin:0; padding:0;
+} 
+hr{
+  display:none;
+}
+.blind{
+  position: absolute;
+  clip: rect(0 0 0 0);
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: polygon(0 0, 0 0, 0 0);
+}
+
+/* placeholder 설정 */
+input::-webkit-input-placeholder {
+  color: rgb(0 0 0 / 35%);
+}
+input:-ms-input-placeholder {
+  color: rgb(0 0 0 / 35%);
+}
+textarea::-webkit-input-placeholder {
+  color: rgb(0 0 0 / 35%);
+}
+textarea:-ms-input-placeholder {
+  color: rgb(0 0 0 / 35%);
+}
+
+/* 전체 스크롤바 스타일 */
+::-webkit-scrollbar {
+  width: 12px; height:12px;
+  background:#ffffff;
+}
+/* 스크롤바 트랙 (배경) */
+::-webkit-scrollbar-track {
+  background-color: #ffffff;
+  border-radius: 10px;
+}
+/* 스크롤바 핸들(움직이는 부분) */
+::-webkit-scrollbar-thumb {
+  background-color: #898989;
+  border-radius: 10px;
+}
+/* 스크롤바 핸들 호버 효과 */
+::-webkit-scrollbar-thumb:hover {
+  background: #919191;
+}

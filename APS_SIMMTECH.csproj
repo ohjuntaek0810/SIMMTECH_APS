@@ -1,0 +1,86 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="IF_Model\**" />
+    <Content Remove="IF_Model\**" />
+    <EmbeddedResource Remove="IF_Model\**" />
+    <None Remove="IF_Model\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="wwwroot\dist\css\aps.cs" />
+    <Content Remove="wwwroot\dist\images\logo-aps-txt.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="Controllers\.svn\all-wcprops" />
+    <None Include="Controllers\.svn\entries" />
+    <None Include="Controllers\.svn\text-base\WebDataController.cs.svn-base" />
+    <None Include="wwwroot\dist\css\adminlte.min.css.map" />
+    <None Include="wwwroot\dist\js\adminlte.min.js" />
+    <None Include="wwwroot\dist\js\adminlte.min.js.map" />
+    <None Include="wwwroot\dist\js\jquery.mousewheel.js" />
+    <None Include="wwwroot\dist\js\jquery.scrolltabs.js" />
+    <None Include="wwwroot\dist\js\smart.ui.js" />
+    <None Include="wwwroot\dist\js\sub.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.bundle.min.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.bundle.min.js.map" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.min.js" />
+    <None Include="wwwroot\plugins\bootstrap\js\bootstrap.min.js.map" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-brands-400.svg" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-brands-400.woff2" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-regular-400.svg" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-regular-400.woff2" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-solid-900.svg" />
+    <None Include="wwwroot\plugins\fontawesome-free\webfonts\fa-solid-900.woff2" />
+    <None Include="wwwroot\plugins\jquery\jquery.min.js" />
+    <None Include="wwwroot\plugins\jquery\jquery.min.map" />
+    <None Include="wwwroot\plugins\overlayScrollbars\js\jquery.overlayScrollbars.min.js" />
+    <None Include="wwwroot\plugins\overlayScrollbars\js\OverlayScrollbars.min.js" />
+    <None Include="wwwroot\plugins\scrolling-bootstrap-tabs\js\scrollable-tabs.min.js" />
+    <None Include="wwwroot\plugins\xeicon\fonts\xeicon.svg" />
+    <None Include="wwwroot\plugins\xeicon\fonts\xeicon.woff2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ClosedXML" Version="0.102.3" />
+    <PackageReference Include="ClosedXML.Extensions.Mvc" Version="0.4.0" />
+    <PackageReference Include="GrapeCity.ActiveReports" Version="17.3.0" />
+    <PackageReference Include="GrapeCity.ActiveReports.Export.Pdf" Version="17.3.0" />
+    <PackageReference Include="MongoDB.Driver" Version="2.29.0" />
+    <PackageReference Include="MySql.Data" Version="8.2.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Popbill" Version="1.56.1" />
+    <PackageReference Include="RabbitMQ.Client" Version="6.8.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Controllers\.svn\prop-base\" />
+    <Folder Include="Controllers\.svn\props\" />
+    <Folder Include="Controllers\.svn\tmp\prop-base\" />
+    <Folder Include="Controllers\.svn\tmp\props\" />
+    <Folder Include="Controllers\.svn\tmp\text-base\" />
+    <Folder Include="Proc\BI\" />
+    <Folder Include="Service\" />
+    <Folder Include="wwwroot\Core\js\hs\" />
+    <Folder Include="wwwroot\img\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\ERP\hs.ui\HS.Package\HS.Web.Common\HS.Web.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="HS.Core">
+      <HintPath>..\..\ERP\hs.ui\dll\HS.Core.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+</Project>

@@ -1,0 +1,244 @@
+{
+  "openapi": "3.0.1",
+  "info": {
+    "title": "myapi",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/file/upload": {
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "file": {
+                    "type": "string",
+                    "format": "binary"
+                  }
+                }
+              },
+              "encoding": {
+                "file": {
+                  "style": "form"
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/file/down": {
+      "get": {
+        "tags": [
+          "File"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      },
+      "post": {
+        "tags": [
+          "File"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/UP_MENU_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/LOGIN_GRP_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/UP_GRP_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/GRP_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/DPT_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/YEAR": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/MONTH": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/DIV_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/yn": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/TIME_HH": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/TIME_MM": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/UP_CMN_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/CMN_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/CST_CD": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    },
+    "/api/data/USER_ID": {
+      "get": {
+        "tags": [
+          "WebData"
+        ],
+        "responses": {
+          "200": {
+            "description": "Success"
+          }
+        }
+      }
+    }
+  },
+  "components": { }
+}

@@ -1,0 +1,2065 @@
+<!DOCTYPE html>
+<html lang="ko">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <title>SHE 안전 보건 환경 시스템</title>
+
+        <!-- CSS -->
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@100;300;400;500;700;900&display=swap">
+        <link rel="stylesheet" href="./plugins/fontawesome-free/css/all.min.css">
+        <link rel="stylesheet" href="./plugins/xeicon/css/xeicon.min.css">
+        <link rel="stylesheet" href="./plugins/boxicons/css/boxicons.min.css">
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <link rel="stylesheet" href="./plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+        <link rel="stylesheet" href="./dist/css/adminlte.min.css">
+        <link rel="stylesheet" href="./plugins/datepicker/css/datepicker.min.css">
+        <link rel="stylesheet" href="./dist/css/base.css">
+        <link rel="stylesheet" href="./dist/css/ui.css">
+        <link rel="stylesheet" href="./dist/css/sub.css">
+
+        <!-- JS -->
+        <script src="./plugins/jquery/jquery.min.js"></script><!-- jQuery -->
+        <script src="./plugins/bootstrap/js/bootstrap.bundle.min.js"></script><!-- Bootstrap 4 -->
+        <script src="./plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+        <script src="./dist/js/adminlte.min.js"></script>
+        <script src="./plugins/datepicker/js/datepicker.min.js"></script>
+        <script src="./dist/js/jquery.scrolltabs.js"></script>
+        <script src="./dist/js/jquery.mousewheel.js"></script>
+        <script src="./dist/js/ui.js"></script>
+        <script src="./dist/js/sub.js"></script>
+
+        <style type="text/css">
+        </style>
+
+    </head>
+    <body class="hold-transition sidebar-mini layout-fixed">
+        <!-- s:wrapper -->
+        <div class="wrapper">
+
+        <!-- Preloader(로딩 화면) -->
+        <div class="preloader flex-column justify-content-center align-items-center">
+            <img class="animation__shake" src="./dist/images/logo-she.svg" alt="tech square Logo" width="180">
+        </div>
+        <!-- /e:Preloader(로딩 화면) -->
+        <hr>
+        <!-- s:Navbar -->
+        <nav class="main-header navbar navbar-expand">
+            <!-- Left navbar links -->
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a class="nav-link nav-toggle" data-widget="pushmenu" href="#link" role="button"><i class="bx bx-left-arrow-alt"></i></a>
+                </li>
+            </ul>
+
+            <!-- Right navbar links -->
+            <ul class="navbar-nav ml-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#link" role="button">
+                        <i class="bx bx-home"></i>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-fullscreen">
+                    <a class="nav-link" data-widget="fullscreen" href="#link" role="button">
+                        <i class="bx bx-expand"></i>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-alarm">
+                    <a class="nav-link" href="#link" role="button">
+                        <i class="bx bx-bell"></i>
+                        <span class="badge-new"></span>
+                    </a>
+                </li>
+                <li class="nav-item nav-item-setting">
+                    <a class="nav-link" href="#link" role="button">
+                        <i class="bx bx-cog"></i>
+                    </a>
+                </li>
+                <li class="nav-item dropdown">
+                    <a href="#link" class="nav-link nav-link-user" data-toggle="dropdown" >
+                        <div class="user-card">
+                            <div class="user-photo"><i class="bx bx-user"></i></div>
+                            <div class="user-info">
+                                <div class="user-name"><strong>장도우</strong>님</div>
+                                <div class="user-position">HSSOFT 개발팀</div>
+                            </div>
+                        </div>
+                    </a>
+                    <div class="dropdown-menu">
+                        <a href="#link" class="dropdown-item btn-password">
+                            <i class="xi-ico xi-lock"></i> 비밀번호 변경
+                        </a>
+                        <div class="dropdown-divider"></div>
+                        <a href="#link" class="dropdown-item btn-logout">
+                            <i class="xi-ico xi-log-out"></i> 로그아웃
+                        </a>
+                    </div>
+                </li>
+            </ul>
+        </nav>
+        <!-- /e:Navbar -->
+        <hr>
+        <!-- Sidebar Container -->
+        <aside class="main-sidebar">
+            <!-- Logo -->
+            <a href="#link" class="brand-link" target="_self">
+                <img src="./dist/images/logo-she-emblem.svg" alt="she emblem Logo" class="brand-image">
+                <span class="brand-text"><img src="./dist/images/logo-she-txt.svg" alt="she Logo"></span>
+            </a>
+            <hr>
+            <!-- s:Sidebar -->
+            <div class="sidebar">
+                <!-- s:Sidebar Menu -->
+                <nav class="mt-2">
+                    <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
+                        <!-- s:중대재해처벌법 -->
+                        <li class="nav-item">
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-1"></i>
+                                <p>
+                                    중대재해처벌법
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            중대재해처벌법 이행현황 <small><small>(삭제예정)</small></small>
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            중대재해처벌법/산업안전보건법
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            중처법 이행 증빙 문서 목록
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /e:중대재해처벌법 -->
+                        <!-- s:경영/공통 -->
+                        <li class="nav-item">    
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-2"></i>
+                                <p>
+                                    경영/공통
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            경영방침&amp;목표관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    ESH조직
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            전사조직도
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    경영방침
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            경영방침
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    목표관리 <small>(삭제예정)</small>
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            ESH 목표 수립 <small>(삭제예정)</small>
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            ESH 성과지표
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    지표관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            성과입력
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            ESH성과 그래프
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            안전지표
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            환경지표
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            보건지표
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            에너지지표
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전보건예산
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            안전보건예산
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            법규&amp;인허가
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    법규
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    인허가
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    자격/선해임
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            ESH문서
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    문서관리
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            게시판
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    공지사항
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    교육자료
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전매뉴얼
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전표지
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    공통서식
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            개인정보처리방침
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    개인정보처리방침
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    이용약관
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            Feed Back
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    메일방송이력
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    SMS발송이력
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            기준정보
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    법규
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            법규분류
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    인허가
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            법령
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            인허가 항목
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    이미지 삽입
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            ESH조직도
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            경영방침
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            전사목표관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /e:경영/공통 -->
+                        <!-- s:안전 시스템 -->
+                        <li class="nav-item">    
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-3"></i>
+                                <p>
+                                    안전 시스템
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            안전작업허가서
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    작업 기초 정보 등록 (1단계)
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전작업허가서 등록 (2단계)
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    작업허가서 현황&출력(3단계)
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    작업허가 MAP <small>(삭제예정)</small>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    출입현황관리 <small>(삭제예정)</small>
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    출입정지인원 이력관리 <small>(삭제예정)</small>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            안전보건점검
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전점검
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            점검결과 등록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            점검결과 모니터링 <small>(삭제예정)</small>
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            안전보건교육
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    교육 등록
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            교육결과 등록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    교육실적
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            교육실적 조회
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            개인별 교육현황
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            위험성평가
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    유해위험요인 기본정보
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    위험성평가
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    위험관리목록 <small>(삭제예정)</small>
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            TBM
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            안전사고
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    사고보고서 작성
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            협력업체 관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    등록
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    계정승인
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    계정관리
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전관리 벌점
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            회의체
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    산업안전보건위원회
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    도급사업안전보건협의체
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            비상훈련
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    시나리오 작성
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    훈련계획 수립
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    훈련결과 등록
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            시설관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    시설등록
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    시설검사
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            기준정보
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전작업허가
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            빈도/강도/위험도
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            작업분류
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            서식 및 지침
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전보검점검
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            점검명
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    교육관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            교육과정 등록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            교육대상자 선정
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            교육 정렬 기준정보
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    위험성 평가
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            재해형태
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    사고관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            사고구분
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            사고유형
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            상해부위
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            상해종류
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    안전경고장
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            안전경고장
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    협력업체 관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            벌점항목 설정
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            업체평가표
+                                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                                        </p>
+                                                    </a>
+                                                    <ul class="nav nav-treeview">
+                                                        <li class="nav-item">    
+                                                            <a href="#link" class="nav-link">
+                                                                <p>
+                                                                    → 신규업체평가표
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                        <li class="nav-item">    
+                                                            <a href="#link" class="nav-link">
+                                                                <p>
+                                                                    → 기존업체평가표
+                                                                </p>
+                                                            </a>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    작업출입자관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            문제관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            동영상관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    시설관리
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            시설구분 Lv1
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            시설구분 Lv2
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            시설구분 Lv3
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>                             
+                            </ul>
+                        </li>
+                        <!-- /e:안전 시스템 -->
+                        <!-- s:환경/에너지 시스템 -->
+                        <li class="nav-item">    
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-4"></i>
+                                <p>
+                                    환경/에너지 시스템
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            대기관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    대기운영일지
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    설비보수내역
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    대기자가측정결과등록
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    대기자가측정결과 그래프
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    대기자가측정 배출량 산정
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            수질관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    폐수위탁운영일지
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    수질자가측정결과등록
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    수질자가측정결과 그래프
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            폐기물관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    폐기물반출대장
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    올바로반출실적
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    폐기물반출그래프
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            에너지&amp;온실가스
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    전기 사용량
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    연료 사용량
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    차량연료 사용량
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    에너지&온실가스 현황
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            화학물질관리
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    화학물질 현황
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    경고표지 등록&amp;출력
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            기준정보
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    대기·수질
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            대기시설 등록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            대기인허가시설 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            유해화학물질시설 등록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            유해화학물질시설 MAP
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            환경측정항목 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            대기측정지점 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            수질측정지점 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    폐기물
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물분류
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물목록
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물운반처리업체
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물계약단가
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물처리방법
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물처리유형
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            폐기물담당자
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    에너지&amp;온실가스
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            산정계수 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            소재지 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            시설 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            차량 관리
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    화학물질
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            검토자 설정
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    MSDS
+                                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                                </p>
+                                            </a>
+                                            <ul class="nav nav-treeview">
+                                                <li class="nav-item">    
+                                                    <a href="#link" class="nav-link">
+                                                        <p>
+                                                            경고표지 기재 항목
+                                                        </p>
+                                                    </a>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /e:환경/에너지 시스템 -->
+                        <!-- s:보건 시스템 -->
+                        <li class="nav-item">    
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-5"></i>
+                                <p>
+                                    보건 시스템
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            건강검진
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    종합검진 예약 현황
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    나의 검진이력
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            작업환경측정
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    작업환경측정결과 현황
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            근골격계 관리
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            심뇌혈관 관리
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            직무 스트레스 관리
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            건강증진 활동
+                                        </p>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /e:보건 시스템 -->
+                        <!-- s:ESH커뮤니터 -->
+                        <li class="nav-item">    
+                            <a href="#link" class="nav-link">
+                                <i class="xi-ico xi-nav nav-menu-6"></i>
+                                <p>
+                                    ESH커뮤니터
+                                    <i class="right xi-ico xi-angle-left-min"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview"> 
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            안전관리자 커뮤니티
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            환경관리자 커뮤니티
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            보건관리자 커뮤니티
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            전기안전관리자 커뮤니티
+                                        </p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">    
+                                    <a href="#link" class="nav-link">
+                                        <p>
+                                            ESH컨설팅요청
+                                            <i class="right xi-ico xi-angle-left-min"></i>
+                                        </p>
+                                    </a>
+                                    <ul class="nav nav-treeview">
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    법무법인 XXX
+                                                </p>
+                                            </a>
+                                        </li>
+                                        <li class="nav-item">    
+                                            <a href="#link" class="nav-link">
+                                                <p>
+                                                    법무법인 CCC
+                                                </p>
+                                            </a>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </li>
+                        <!-- /e:ESH커뮤니터 -->
+                    </ul>
+                </nav>
+                <!-- /e:sidebar-menu -->
+            </div>
+            <!-- /e:sidebar -->
+        </aside>
+        <!-- /e:Sidebar Container -->
+        <hr>
+        <!-- s:Content Wrapper -->
+        <div class="content-wrapper">
+            <!-- center navbar tab -->
+            <div class="navbar-tabs">
+                <nav class="nav nav-tabs">
+                    <li class="nav-item nav-link"><a href="#link" role="tab" data-toggle="tab" class="">중처법 이행 증빙 문서 목록</a> <a href="#link" class="tab-btn-close"></a></li>
+                    <li class="nav-item nav-link"><a href="#link" role="tab" data-toggle="tab" class="">성과입력</a> <a href="#link" class="tab-btn-close"></a></li>
+                    <li class="nav-item nav-link active"><a href="#link" role="tab" data-toggle="tab" class="">서브 페이지 템플릿</a> <a href="#link" class="tab-btn-close"></a></li>
+                </nav>
+            </div>
+            <div class="navbar-content">
+                <!-- s:Content Header (Page header) -->
+                <div class="content-header">
+                    <div class="header-location">
+                        <div class="header-title">서브 페이지 템플릿</div>
+                        <ol class="breadcrumb">
+                            <li class="breadcrumb-item"><a href="#link"><i class="xi-ico xi-home"></i></a></li>
+                            <li class="breadcrumb-item active">서브 페이지 템플릿</li>
+                        </ol>
+                    </div>
+                    <div class="header-setting">
+                        <div class="header-btn">
+                            <div class="form-search form-search-text">
+                                <input type="text" class="form-control" placeholder="Search">
+                                <button type="button" class="btn btn-search"><span class="blind">search</span></button>
+                            </div>
+                            <button type="button" class="btn btn-add">등록</button>
+                            <button type="button" class="btn btn-default">결제요청</button>
+                            <button type="button" class="btn btn-excel">엑셀</button>
+                            <button type="button" class="btn btn-delete">삭제</button>
+                        </div>
+                    </div>
+                </div>
+                <!-- /e:Content Header -->
+                <hr>
+                <!-- s:content -->
+                <section class="content-body">
+                    <div class="content row">
+                        <div class="col-lg-12">
+                            <div class="content-box">
+                                <div class="box-header">
+                                    <div class="header-title">Form Sub Title</div>
+                                </div>
+                                <div class="box-body">
+                            
+                                    <!-- s:form content -->
+                                    <form>
+                            
+                                        <!-- input[text] -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                            <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                                        </div>
+                                
+                                
+                                        <!-- input[text] Disabled -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (Disabled)</label></div>
+                                            <div class="control-form"><input class="form-control" type="text" placeholder="Disabled input" disabled=""></div>    
+                                        </div>
+                                
+                                
+                                        <!-- input[text] Readonly -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (Readonly)</label></div>
+                                            <div class="control-form"><input class="form-control" type="text" placeholder="Readonly input" readonly=""></div>    
+                                        </div>
+                                        
+                                
+                                        <!-- input[text] (그룹형) 단위 있을 때 -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (그룹형)</label></div>
+                                            <div class="input-group">
+                                                <div class="input-group-addon">최대</div>
+                                                <input type="text" class="form-control" placeholder="내용을 입력">
+                                                <div class="input-group-addon">원</div>
+                                            </div>
+                                        </div>
+                                        
+                                
+                                        <!-- input[text] (그룹버튼형) 버튼 있을 때 -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (그룹버튼형)</label></div>
+                                            <div class="input-group">                 
+                                                <input type="text" class="form-control" placeholder="내용을 입력">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default">버튼</button>
+                                                </span>
+                                            </div>
+                                        </div>
+                                
+                                        <!-- input[text] (그룹아이콘버튼형) 버튼 있을 때 -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (그룹 아이콘 버튼형)</label></div>
+                                            <div class="input-group">                 
+                                                <input type="text" class="form-control" placeholder="내용을 입력">
+                                                <span class="input-group-btn">
+                                                    <button type="button" class="btn btn-default"><i class="xi-search"></i></button>
+                                                </span>
+                                            </div>
+                                        </div>
+
+                                        <!-- input[text] 날짜 선택 -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (날짜 선택)</label></div>
+                                            <div class="control-form">                 
+                                                <input type="text" class="form-datepicker form-control" data-toggle="datepicker" placeholder="시작일자">
+                                            </div>
+                                        </div> 
+                                        
+                                        <!-- input[text] 날짜 기간 선택 -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>타이틀 (날짜 기간 선택)</label></div>
+                                            <div class="control-form">                 
+                                                <div class="form-date-period">
+                                                    <input type="text" class="form-datepicker form-control" data-toggle="datepicker" placeholder="시작일자">
+                                                    <span class="date-term">~</span>
+                                                    <input type="text" class="form-datepicker form-control" data-toggle="datepicker" placeholder="종료일자">
+                                                </div>
+                                            </div>
+                                        </div>     
+                                
+                                        <!-- input[text] 상태 : 성공 -->
+                                        <div class="form-group has-success has-feedback">
+                                            <div class="control-label"><label for="inputSuccess">input[text] 상태 : 성공</label></div>
+                                            <div class="control-form">
+                                                <input type="text" class="form-control" id="inputSuccess" aria-describedby="inputSuccess2Status">
+                                                <i class="xi-ico xi-check-min form-control-feedback" aria-hidden="true"></i>
+                                                <span class="valid-feedback" style="display:block;">일치합니다.</span>
+                                            </div>
+                                        </div>
+                                
+                                        <!-- input[text] 상태 : 주의 -->
+                                        <div class="form-group has-warning has-feedback">
+                                            <div class="control-label"><label for="inputWarning">input[text] 상태 : 주의</label></div>
+                                            <div class="control-form">
+                                                <input type="text" class="form-control" id="inputWarning" aria-describedby="inputWarning2Status">
+                                                <i class="xi-ico xi-warning form-control-feedback" aria-hidden="true"></i>
+                                                <span class="valid-feedback" style="display:block;">주의하세요.</span>
+                                            </div>
+                                        </div>
+                                
+                                        <!-- input[text] 상태 : 에러 -->
+                                        <div class="form-group has-error has-feedback">
+                                            <div class="control-label"><label for="inputError">input[text] 상태 : 에러</label></div>
+                                            <div class="control-form">
+                                                <input type="text" class="form-control" id="inputError" aria-describedby="inputError2Status">
+                                                <i class="xi-ico xi-close-min form-control-feedback" aria-hidden="true"></i>
+                                                <span class="valid-feedback" style="display:block;">에러입니다.</span>
+                                            </div>
+                                        </div>
+                                
+                                        <!-- input[text](그룹형) 상태 : 성공 -->
+                                        <div class="form-group has-success has-feedback">
+                                            <div class="control-label"><label for="inputGroupSuccess1">input[text](그룹형) 상태 : 성공</label></div>
+                                            <div class="control-form">
+                                                <div class="input-group">
+                                                    <span class="input-group-addon">@</span>
+                                                    <input type="text" class="form-control" id="inputGroupSuccess1" aria-describedby="inputGroupSuccess1Status">
+                                                </div>
+                                                <i class="xi-ico xi-check-min form-control-feedback" aria-hidden="true"></i>
+                                                <span class="valid-feedback" style="display:block;">일치합니다.</span>
+                                            </div>
+                                        </div>
+                                
+                                
+                                        <!-- input[file] -->
+                                        <div class="form-group form-file">
+                                            <div class="control-label"><label for="exampleInputFile">파일 업로드</label></div>
+                                            <div class="control-form"><input type="file" class="upload-name" value="첨부파일" placeholder="첨부파일"></div>
+                                            <p class="help-block">파일 업로드 관련 추가 내용</p>
+                                        </div>
+                                
+                                
+                                        <br>
+                                
+                                        
+                                        <!-- textarea -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>textarea</label></div>
+                                            <div class="control-form"><textarea class="form-control" placeholder="내용을 입력"></textarea></div>    
+                                        </div>
+                                
+                                
+                                        <br>
+                                
+                                
+                                        <!-- select -->
+                                        <div class="form-group">
+                                            <div class="control-label"><label>select</label></div>
+                                            <div class="control-form">
+                                            <select class="form-control">
+                                                <option>1</option>
+                                                <option>2</option>
+                                                <option>3</option>
+                                                <option>4</option>
+                                                <option>5</option>
+                                            </select>
+                                            </div>    
+                                        </div>
+                                
+                                        
+                                        <br>
+                                
+                                        <!-- 체크박스 라벨없음 -->  
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="Checkbox0" value="" checked>
+                                            <label for="Checkbox0"></label>                
+                                        </div>
+                                
+                                        <br>
+                                
+                                        <!-- 체크박스 리스트형 -->
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="Checkbox1" value="" checked>                            
+                                            <label for="Checkbox1">(체크박스 리스트형) Checkbox Option 1</label>                        
+                                        </div>
+                                
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="Checkbox2" value="">                            
+                                            <label for="Checkbox2">(체크박스 리스트형) Checkbox Option 2</label>                        
+                                        </div>
+                                
+                                        <div class="checkbox-group">
+                                            <input type="checkbox" id="Checkbox3" value="" checked disabled>                            
+                                            <label for="Checkbox3">(체크박스 리스트형) Checkbox Option 3 disabled</label>                        
+                                        </div>
+                                
+                                        <br>
+                                
+                                        <!-- 체크박스 인라인 -->
+                                        <div class="checkbox-group checkbox-inline">
+                                            <input type="checkbox" id="Checkboxinline1" value="">                            
+                                            <label for="Checkboxinline1">(체크박스 인라인) Checkbox Inline Option 1</label>                        
+                                        </div>
+                                
+                                        <div class="checkbox-group checkbox-inline">
+                                            <input type="checkbox" id="Checkboxinline2" value="">                            
+                                            <label for="Checkboxinline2">(체크박스 인라인) Checkbox Inline Option 2</label>                        
+                                        </div>
+                                
+                                        <div class="checkbox-group checkbox-inline">
+                                            <input type="checkbox" id="Checkboxinline3" value="" checked disabled>                            
+                                            <label for="Checkboxinline3">(체크박스 인라인) Checkbox Inline Option 3 disabled</label>                        
+                                        </div>
+                                
+                                        <br><br>
+                                
+                                        <!-- 라디오버튼 라벨없음-->
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio0" name="radiooption" value="" checked>
+                                            <label for="radio0"></label>              
+                                        </div>
+                                
+                                        <br>
+                                
+                                        <!-- 라디오버튼 리스트형 -->
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio1" name="radiooption" value="" checked>                            
+                                            <label for="radio1">(라디오버튼 리스트형) radio Option 1</label>                        
+                                        </div>
+                                
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio2" name="radiooption" value="">                            
+                                            <label for="radio2">(라디오버튼 리스트형) radio Option 2</label>                        
+                                        </div>
+                                
+                                        <div class="radio-group">
+                                            <input type="radio" id="radio3" name="radiooption2" value="" checked disabled>                            
+                                            <label for="radio3">(라디오버튼 리스트형) radio Option 3 disabled</label>                        
+                                        </div>
+                                
+                                        <br>
+                                
+                                        <!-- 라디오버튼 인라인 -->
+                                        <div class="radio-group radio-inline">
+                                            <input type="radio" id="radioinline1" name="radioinlineoption" value="">                            
+                                            <label for="radioinline1">(라디오버튼 인라인) radio Inline Option 1</label>                        
+                                        </div>
+                                
+                                        <div class="radio-group radio-inline">
+                                            <input type="radio" id="radioinline2" name="radioinlineoption" value="">                            
+                                            <label for="radioinline2">(라디오버튼 인라인) radio Inline Option 2</label>                        
+                                        </div>
+                                
+                                        <div class="radio-group radio-inline">
+                                            <input type="radio" id="radioinline3" name="radioinlineoption2" value="" checked disabled>                            
+                                            <label for="radioinline3">(라디오버튼 인라인) radio Inline Option 3 disabled</label>                        
+                                        </div>  
+                                
+                                
+                                        <br><br><br>
+                                
+                                
+                                        <!-- 버튼 button -->
+                                        <button type="button" class="btn btn-default">기본</button>
+                                        <button type="button" class="btn btn-add">신규</button>
+                                        <button type="button" class="btn btn-save">저장</button>
+                                        <button type="button" class="btn btn-modify">수정</button>
+                                        <button type="button" class="btn btn-delete">삭제</button>
+                                        <button type="button" class="btn btn-cancel">취소</button>
+                                        <button type="button" class="btn btn-search">검색</button>
+                                        <button type="button" class="btn btn-print">출력</button>
+                                        <button type="button" class="btn btn-download">다운로드</button>
+                                        <button type="button" class="btn btn-excel">엑셀</button>
+                                        <button type="button" class="btn btn-link">링크</button>
+                                        
+                                
+                                        <br><br><br>
+                                
+                                        <!-- 팝업 -->
+                                        <button type="button" id="BtnVoteCounting" class="btn btn-default btn-open">팝업 띄우기</button>
+                                
+                                        
+                                        <br><br><br><br>
+                
+                
+                                    </form>
+                                    <!-- /e:form content -->
+                
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /e:content -->
+            </div>
+        </div>
+        <!-- /e:Content-wrapper -->
+        <hr>
+        <!-- Footer -->
+        <footer class="main-footer">
+            Copyright &copy; 2024 HS SOFT. All rights reserved.
+        </footer>
+        <!-- /e:Footer -->
+
+        </div>
+        <!-- /e:wrapper -->
+
+        <!-- s:modal -->
+        <div id="modalDialog" class="modal" style="display:none;">
+            <div class="modal-content animate-top">
+                <div class="modal-header">
+                    <h5 class="modal-title">타이틀 입니다.</h5>
+                    <button type="button" class="btn-popup-close">
+                        <span class="xi-close-min" aria-hidden="true"></span>
+                    </button>
+                </div>
+                <div class="modal-body"> 
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                        <div class="col-lg-4 col-md-6">
+                            <div class="form-group">
+                                <div class="control-label"><label>타이틀 (기본형)</label></div>
+                                <div class="control-form"><input type="text" class="form-control" placeholder="내용을 입력"></div>    
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-save">저장</button>
+                    <button type="button" class="btn btn-close btn-popup-close">닫기</button>
+                </div>
+            </div>
+        </div>
+        <!-- /e:modal -->
+    </body>
+</html>
+
+
+
+
